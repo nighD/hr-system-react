@@ -1,0 +1,17 @@
+// Here you can add other styles
+@mixin nc-rotate($degrees, $rotation) {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=#{$rotation});
+  -webkit-transform: rotate($degrees);
+  -moz-transform: rotate($degrees);
+  -ms-transform: rotate($degrees);
+  -o-transform: rotate($degrees);
+  transform: rotate($degrees);
+}
+@mixin linear-gradient-right($color, $states-color){
+    background: $color;
+    background: -webkit-linear-gradient(to right, $color 0%, $states-color 100%);
+    background: -o-linear-gradient(to right, $color 0%, $states-color 100%);
+    background: -moz-linear-gradient(to right, $color 0%, $states-color 100%);
+    background: linear-gradient(to right, $color 0%, $states-color 100%);
+}
+$transparent-bg:             transparent !default;

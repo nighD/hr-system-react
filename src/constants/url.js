@@ -1,0 +1,5 @@
+export const GET_METHOD = 'GET'
+export const POST_METHOD = 'POST'
+export const baseURL = 'http://localhost:3001'
+export const userList = '/users/'
+export const userDetail = '/users/'

@@ -1,0 +1,12 @@
+// Override Boostrap variables
+@import "../variables";
+@import "~bootstrap/scss/mixins";
+@import "~@coreui/coreui/scss/variables";
+@mixin linear-gradient-right($color, $states-color){
+    background: $color;
+    background: -webkit-linear-gradient(to right, $color 0%, $states-color 100%);
+    background: -o-linear-gradient(to right, $color 0%, $states-color 100%);
+    background: -moz-linear-gradient(to right, $color 0%, $states-color 100%);
+    background: linear-gradient(to right, $color 0%, $states-color 100%);
+}
+$transparent-bg:             transparent !default;

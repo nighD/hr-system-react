@@ -1,28 +1,41 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+// import { renderRoutes } from 'react-router-config';
+import './App.scss';
+import { withAuthentication } from './containers/Session';
+import Detail from './views/Employee/personalInfoView/employeeDetailView';
+import SignInPage from './views/Pages/Login';
+import * as ROUTES from './routes';
+const loading = () => <div className="animated fadeIn pt-3 text-center">Loading...</div>;
+
+// Containers
+const DefaultLayout = React.lazy(() => import('./containers/DefaultLayout'));
+
+// Pages
+// const Login = React.lazy(() => import('./views/Pages/Login'));
+const Register = React.lazy(() => import('./views/Pages/Register'));
+const Page404 = React.lazy(() => import('./views/Pages/Page404'));
+const Page500 = React.lazy(() => import('./views/Pages/Page500'));
 
 class App extends Component {
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <BrowserRouter>
+          <React.Suspense fallback={loading()}>
+            <Switch>
+              {/* <Route exact path={ROUTES.SIGN_IN} component={SignInPage} /> */}
+              {/* <Route exact path="/register" name="Register Page" render={props => <Register {...props}/>} />
+              <Route exact path="/404" name="Page 404" render={props => <Page404 {...props}/>} />
+              <Route exact path="/500" name="Page 500" render={props => <Page500 {...props}/>} /> */}
+              {/* <Route exact path={ROUTES.DETAIL} component={Detail} /> */}
+              {/* <Route exact path="/register" name="Register Page" render={props => <Register {...props}/>} /> */}
+              <Route path="/" name="Home" render={props => <DefaultLayout {...props}/>} />
+            </Switch>
+          </React.Suspense>
+      </BrowserRouter>
     );
   }
 }
 
-export default App;
+export default withAuthentication(App);
