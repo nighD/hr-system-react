@@ -34,7 +34,7 @@ class Firebase {
   // *** Auth API ***
 
   doCreateUserWithEmailAndPassword = (email, password) => {
-    console.log("create account");
+    // console.log("create account");
     this.auth.createUserWithEmailAndPassword(email, password);
   }
 
@@ -82,6 +82,7 @@ class Firebase {
             // console.log("on auth user");
             // console.log(snapshot.val());
             // default empty roles
+            console.log(dbUser);
             if (!dbUser.roles) {
               dbUser.roles = {};
             }

@@ -94,8 +94,11 @@ componentDidMount() {
     else if (this.state.person.emp_gender == 'female'){
       this.gender_female.current.selected = true;
     }
-    else {
+    else if (this.state.person.emp_gender == 'other') {
       this.gender_other.current.selected = true;
+    }
+    else {
+      
     }
   })
 }
@@ -109,7 +112,8 @@ componentDidMount() {
       <AuthUserContext.Consumer>
       {authUser =>
         <div>
-        {console.log("detail.view"),console.log(this.props.firebase)}
+        {
+         console.log(this.props.firebase)}
           {/* {!!(authUser.uid==1)} */}
         <div className="content">
           

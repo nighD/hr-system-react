@@ -46,7 +46,7 @@ class Dashboard extends Component {
   loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
 
   render() {
-    console.log("Here bao");
+    console.log(this.props.firebase);
     const authUser0 = JSON.parse(localStorage.getItem('authUser'));
     console.log(JSON.parse(localStorage.getItem('authUser')).roles.ADMIN);
     return (
