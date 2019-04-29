@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { CardGroup, Container } from 'reactstrap';
+// import { Link } from 'react-router-dom';
+// import { CardGroup, Container } from 'reactstrap';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { withFirebase } from '../../../containers/Firebase';
 import * as actionService from '../../../services/actionService';
 import captain from '../../../assets/img/captain.png';
-// import * as ROUTES from '../../../routes';
+import * as ROUTES from '../../../routes';
 import { AuthUserContext } from '../../../containers/Session';
 import {
-    Badge,
+    // Badge,
     Button,
     Card,
     CardBody,
@@ -17,31 +17,31 @@ import {
     CardHeader,
     CardText,
     Col,
-    Collapse,
-    DropdownItem,
-    DropdownMenu,
-    DropdownToggle,
-    Fade,
+    // Collapse,
+    // DropdownItem,
+    // DropdownMenu,
+    // DropdownToggle,
+    // Fade,
     Form,
     FormGroup,
     FormText,
-    FormFeedback,
+    // FormFeedback,
     Input,
-    InputGroup,
-    InputGroupAddon,
-    InputGroupButtonDropdown,
-    InputGroupText,
+    // InputGroup,
+    // InputGroupAddon,
+    // InputGroupButtonDropdown,
+    // InputGroupText,
     Label,
     Row,
   } from 'reactstrap';
-const EditUserPage = () => (
-  <div>
-    <EditUserDetail />
-  </div>
-);
+// const EditUserPage = () => (
+//   <div>
+//     <EditUserDetail />
+//   </div>
+// );
 
-const state = {
-  person : {
+let statea = {
+  
     id:'',
     emp_lname: '',
     emp_fname: '',
@@ -57,28 +57,42 @@ const state = {
     emp_postal: '',
     emp_country:'',
     emp_uid:'',
-  }
+  
 }
-class EditUserDetail extends Component {
+const ButtonSubmit = withRouter(({ history }) => (
+  <Button type="button" 
+  size="lg" 
+  color="primary"  
+  onClick={() => { 
+    console.log(this.state);
+    history.push('/dashboard') 
+  }}>
+  <i className="fa fa-pencil"></i> 
+  Submit</Button>
+))
+class EditDetail extends Component {
   constructor(props) {
       super(props);
-      console.log(props);
       this.gender_male = React.createRef();
       this.gender_female = React.createRef();
       this.gender_other = React.createRef();
-      this.state = { ...state };
+      this.handleChange = this.handleChange.bind(this);
+      this.state = { data : [] };
 
   }
   componentDidMount() {
     const uid =JSON.parse(localStorage.getItem('authUser')).uid;
     actionService.getUserdetail(uid).then(res => {
-      const person = res.data[0];
-      this.setState( {person} );
-      this.state.person.emp_dob = this.state.person.emp_dob.substring(0,10);
-      if (this.state.person.emp_gender == 'male'){
+      const data = res.data[0];
+      data.emp_dob = data.emp_dob.substring(0,10);
+      console.log(data);
+      this.setState( {data} );
+      console.log(this.state);
+      console.log(this.state.data.emp_dob);
+      if (this.state.data.emp_gender === 'male'){
         this.gender_male.current.selected = true;
       }
-      else if (this.state.person.emp_gender == 'female'){
+      else if (this.state.data.data.emp_gender == 'female'){
         this.gender_female.current.selected = true;
       }
       else {
@@ -86,28 +100,26 @@ class EditUserDetail extends Component {
       }
     })
   }
-  // onSubmit = event => {
-  //   const { email, password } = this.state;
+  onSubmit = event => {
+    event.preventDefault();
+    console.log(this.state.data);
+    const uid =JSON.parse(localStorage.getItem('authUser')).uid;
+    actionService.updateUserdetail(uid,this.state.data)
+  };
 
-  //   this.props.firebase
-  //     .doSignInWithEmailAndPassword(email, password)
-  //     .then(() => {
-  //       this.setState({ ...INITIAL_STATE });
-  //       this.props.history.push(ROUTES.DASHBOARD);
-  //       console.log("go to Dashboard");
-  //     })
-  //     .catch(error => {
-  //       this.setState({ error });
-  //       console.log(email);
-  //       console.log(password);
-  //       console.log("cant go to Dashboard");
-  //     });
-
-  //   event.preventDefault();
-  // };
-
-  onChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
+  handleChange = (event) => {
+    const {name, value} = event.target
+    // let data = {...this.state.data}
+    // data. = value
+    // console.log(data.(name))
+     this.setState( prevState => ({
+       data: {
+        ...prevState.data,
+        [name] : value
+       }
+     })
+      
+      );
   };
 
   render() {
@@ -133,11 +145,11 @@ class EditUserDetail extends Component {
                             <Label>Employee First Name</Label>
                             <Input 
                               type="text" 
-                              id="fname" 
+                              id="emp_fname" 
                               name ="emp_fname" 
                               placeholder="Enter your first name"  
-                              value = {this.state.person.emp_fname}
-                              onChange={this.onChange}
+                              defaultValue = {this.state.data.emp_fname}
+                              onChange={this.handleChange}
                             />
                         </FormGroup>
                       </Col>
@@ -146,11 +158,11 @@ class EditUserDetail extends Component {
                           <label>Employee Last Name</label>
                           <Input 
                             type="text" 
-                            id="lname" 
+                            id="emp_lname" 
                             name="emp_lname" 
                             placeholder="Enter your last name"  
-                            value = {this.state.person.emp_lname}
-                            onChange={this.onChange}
+                            defaultValue = {this.state.data.emp_lname}
+                            onChange={this.handleChange}
                           />
                         </FormGroup>
                       </Col>      
@@ -163,8 +175,8 @@ class EditUserDetail extends Component {
                             name="emp_email" 
                             placeholder="Enter Email" 
                             autoComplete="email"  
-                            value = {this.state.person.emp_email}
-                            onChange={this.onChange}
+                            defaultValue = {this.state.data.emp_email}
+                            onChange={this.handleChange}
                           />
                           <FormText className="help-block">Please enter your email</FormText>
                         </FormGroup>
@@ -179,8 +191,8 @@ class EditUserDetail extends Component {
                           id="date-input" 
                           name="emp_dob" 
                           placeholder="date"  
-                          value = {this.state.person.emp_dob}
-                          onChange={this.onChange} 
+                          defaultValue = {this.state.data.emp_dob}
+                          onChange={this.handleChange} 
                         />
                         </FormGroup>
                       </Col>
@@ -191,8 +203,8 @@ class EditUserDetail extends Component {
                               type="text" 
                               id="-input1" 
                               name="emp_status"  
-                              value = {this.state.person.emp_status}
-                              onChange={this.onChange} 
+                              defaultValue = {this.state.data.emp_status}
+                              onChange={this.handleChange} 
                             />
                         </FormGroup>
                       </Col>      
@@ -204,8 +216,8 @@ class EditUserDetail extends Component {
                             id="phoneNumber" 
                             name = "emp_phone" 
                             placeholder="Enter phone number"  
-                            value = {this.state.person.emp_phone}
-                            onChange={this.onChange}
+                            defaultValue = {this.state.data.emp_phone}
+                            onChange={this.handleChange}
                           />
                         </FormGroup>
                       </Col> 
@@ -214,7 +226,7 @@ class EditUserDetail extends Component {
                       <Col className="pr-md-1" md="6">
                         <FormGroup>
                           <Label htmlFor="select">Gender</Label>
-                          <Input type="select" name="emp_gender" id="select" required >
+                          <Input type="select" name="emp_gender" id="select" required  onChange = {this.handleChange}>
                           <option value="0" >Please select</option>
                           <option value="1" ref ={this.gender_male}>Male</option>
                           <option value="2" ref ={this.gender_female}>Female</option>
@@ -229,8 +241,8 @@ class EditUserDetail extends Component {
                             type="text" 
                             id="-input" 
                             name="emp_role"  
-                            value = {this.state.person.emp_role}
-                            onChange={this.onChange} 
+                            defaultValue = {this.state.data.emp_role}
+                            onChange={this.handleChange} 
                           />
                         </FormGroup>
                       </Col>
@@ -244,8 +256,8 @@ class EditUserDetail extends Component {
                             id="street" 
                             name = "emp_street" 
                             placeholder="Enter street name"   
-                            value = {this.state.person.emp_street}
-                            onChange={this.onChange}
+                            defaultValue = {this.state.data.emp_street}
+                            onChange={this.handleChange}
                           />
                         </FormGroup>
                       </Col>
@@ -259,8 +271,8 @@ class EditUserDetail extends Component {
                             id="city" 
                             name = "emp_city" 
                             placeholder="Enter your city"  
-                            value = {this.state.person.emp_city}
-                            onChange={this.onChange}
+                            defaultValue = {this.state.data.emp_city}
+                            onChange={this.handleChange}
                           />
                         </FormGroup>
                       </Col>
@@ -272,8 +284,8 @@ class EditUserDetail extends Component {
                             id="country" 
                             name = "emp_country" 
                             placeholder="Country name"  
-                            value = {this.state.person.emp_country}
-                            onChange={this.onChange}
+                            defaultValue = {this.state.data.emp_country}
+                            onChange={this.handleChange}
                           />
                         </FormGroup>
                       </Col>
@@ -285,8 +297,8 @@ class EditUserDetail extends Component {
                             id="postal-code" 
                             name = "emp_postal" 
                             placeholder="Postal Code"  
-                            value = {this.state.person.emp_postal}
-                            onChange={this.onChange}
+                            defaultValue = {this.state.data.emp_postal}
+                            onChange={this.handleChange}
                           />
                         </FormGroup>
                       </Col>
@@ -304,7 +316,7 @@ class EditUserDetail extends Component {
                         <Label htmlFor="password-input">Password</Label>
                       </Col>
                       <Col xs="12" md="9">
-                        <Input type="password" id="password-input" name="password-input" placeholder="Password" autoComplete="new-password"   value = {this.state.person.emp_pass}/>
+                        <Input type="password" id="password-input" name="password-input" placeholder="Password" autoComplete="new-password"   value = {this.state.data.person.emp_pass}/>
                         <FormText className="help-block">Please enter a complex password</FormText>
                       </Col>
                     </FormGroup> */}
@@ -315,7 +327,8 @@ class EditUserDetail extends Component {
                   <Row>
                   <Col md = "4"/>
                   <Col md = "4" className = "text-center">
-                  <Button type="submit" size="lg" color="primary"><i className="fa fa-pencil "></i> Submit</Button>
+                  {/* <ButtonSubmit/> */}
+                  <Button size="lg" color="primary" onClick = {this.onSubmit}><i className="fa fa-pencil " ></i> Submit</Button>
                   <Button type="reset" size="lg" color="danger"><i className="fa fa-ban"></i> Reset</Button>
                   </Col>
                   <Col md = "4"/>
@@ -324,7 +337,7 @@ class EditUserDetail extends Component {
               </Card>
               </Col>
               <Col md="4">
-              <Card className="card-user">
+              <Card className="card-user bg-dark">
                 <CardBody>
                   <CardText />
                   <div className="author">
@@ -338,9 +351,9 @@ class EditUserDetail extends Component {
                         className="avatar"
                         src={captain}
                       />
-                      <h5 className="title">{this.state.person.emp_lname + ' ' + this.state.person.emp_fname}</h5>
+                      <h5 className="title">{this.state.data.emp_lname + ' ' + this.state.data.emp_fname}</h5>
                     </a>
-                    <p className="description">{this.state.person.emp_role}</p>
+                    <p className="description">{this.state.data.emp_role}</p>
                   </div>
                   <div className="card-description">
                     “Doesn't matter what the press says. Doesn't matter what the politicians or the mobs say. 
@@ -377,6 +390,6 @@ class EditUserDetail extends Component {
 const EditUserForm = compose(
     withRouter,
     withFirebase,
-  )(EditUserDetail);
-export default EditUserPage;
+  )(EditDetail);
+export default EditDetail;
 export {EditUserForm};

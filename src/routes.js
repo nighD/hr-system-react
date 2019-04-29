@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const DASHBOARD = '/dashboard';
-export const SIGN_IN = '/signin';
+export const LOGIN = '/login';
 export const SIGN_OUT = '/signout';
 export const REGISTER = '/register';
 export const DETAIL = '/detail';
@@ -23,8 +23,9 @@ export const PAYROLL_CAL = '/payroll_cal';
 const Dashboard = React.lazy(() => import('./views/Dashboard'));
 const Users = React.lazy(() => import('./views/Users/Users'));
 const User = React.lazy(() => import('./views/Users/User'));
-const Sign_in = React.lazy(() => import('./views/Pages/Login'));
+const Login = React.lazy(() => import('./views/Pages/Login'));
 // const Sign_out = React.lazy(() => import('./views/Users/Users'));
+const Team_Detail = React.lazy(() => import('./views/Employee/teamView/teamInfo'));
 const Register = React.lazy(() => import('./views/Pages/Register'));
 const Detail = React.lazy(() => import('./views/Employee/personalInfoView/employeeDetailView'));
 const Edit_detail = React.lazy(() => import('./views/Employee/personalInfoView/employeeEDetailView'));
@@ -57,6 +58,7 @@ const routes = [
   { path: '/payroll_detail', exact: true, name: 'Payroll Detail', component: Payroll_Detail },
   { path: '/payroll_cal', exact: true, name: 'Payroll Calculation', component: Payroll_Cal },
   { path: '/register', exact: true,name: 'Register', component: Register},
+  { path: '/teamdetail', exact: true,name: 'Team Detail', component: Team_Detail},
 ];
 
 // const routes = [

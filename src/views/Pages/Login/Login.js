@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
+import { Button, Card, CardBody, CardGroup, Col, Container, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
 import { withFirebase } from '../../../containers/Firebase';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
@@ -54,8 +54,8 @@ class Login extends Component {
   };
 
   render() {
-    const { email, password, error } = this.state;
-    const isInvalid = password === '' || email === '';
+    // const { email, password, error } = this.state;
+    // const isInvalid = password === '' || email === '';
     return (
       
       <div className="app flex-row align-items-center">

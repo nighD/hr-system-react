@@ -7,3 +7,6 @@ export function getUserlist() {
 export function getUserdetail(uid) {
     return baseService(constants.GET_METHOD, constants.baseURL + constants.userDetail + uid);
 }
+export function updateUserdetail(uid,data) {
+    return baseService(constants.POST_METHOD, constants.baseURL + constants.userDetail + uid,data);
+}

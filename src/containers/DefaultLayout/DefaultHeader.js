@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { Badge, DropdownItem, DropdownMenu, DropdownToggle, Nav, NavItem } from 'reactstrap';
+import { NavLink } from 'react-router-dom';
+import {  DropdownItem, DropdownMenu, DropdownToggle, Nav, NavItem } from 'reactstrap';
 import PropTypes from 'prop-types';
-import Avatar from 'react-avatar';
+// import Avatar from 'react-avatar';
 import { AppAsideToggler, AppHeaderDropdown, AppNavbarBrand, AppSidebarToggler } from '@coreui/react';
 import react from '../../assets/img/brand/react.svg'
-import sygnet from '../../assets/img/brand/sygnet.svg'
-import userava from '../../assets/img/user.png'
+// import sygnet from '../../assets/img/brand/sygnet.svg'
+// import userava from '../../assets/img/user.png'
 import captain from '../../assets/img/captain.png';
 const propTypes = {
   children: PropTypes.node,

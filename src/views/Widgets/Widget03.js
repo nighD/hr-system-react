@@ -29,10 +29,10 @@ class Widget03 extends Component {
       return (null);
     }
     let back = '' ;
-    if (Role == 'admin' ){
+    if (Role === 'admin' ){
       back = 'bg-danger';
     }
-    else if (Role == 'employee'){
+    else if (Role === 'employee'){
       back = 'bg-success';
     }
     else {

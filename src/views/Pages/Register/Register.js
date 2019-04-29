@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Card, CardBody, CardFooter, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
 import { withFirebase } from '../../../containers/Firebase';
 import * as ROUTES from '../../../routes.js';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter} from 'react-router-dom';
 import { compose } from 'recompose';
 import { AuthUserContext } from '../../../containers/Session';
 // const INITIAL_STATE = {
@@ -152,10 +152,10 @@ import { AuthUserContext } from '../../../containers/Session';
 // export default RegisterPage;
 // export {RegisterForm};
 
-const SignUpPage = () => (
+const RegisterPage = () => (
   <div>
-    <h1>SignUp</h1>
-    <SignUpForm />
+    <h1>Register</h1>
+    <RegisterForm />
   </div>
 );
 
@@ -177,10 +177,10 @@ const ERROR_MSG_ACCOUNT_EXISTS = `
   on your personal account page.
 `;
 
-class SignUpFormBase extends Component {
+class RegisterFormBase extends Component {
   constructor(props) {
     super(props);
-
+    console.log(this.props);
     this.state = { ...INITIAL_STATE };
   }
 
@@ -193,24 +193,24 @@ class SignUpFormBase extends Component {
     // }
 
     this.props.firebase
-      .doCreateUserWithEmailAndPassword(email, passwordOne)
-      .then(authUser => {
-        // Create a user in your Firebase realtime database
-        return this.props.firebase.user(authUser.user.uid).set({
-          // username,
-          email,
-          role,
-        });
-      })
-      .then(() => {
-        return this.props.firebase.save(role);
-      })
+      .doCreateUserWithEmailAndPassword(email, passwordOne,role)
+      // .then(authUser => {
+      //   // Create a user in your Firebase realtime database
+      //   return this.props.firebase.user(authUser.user.uid).set({
+      //     // username,
+      //     email,
+      //     role,
+      //   });
+      // })
+      // .then(() => {
+      //   return this.props.firebase.save(role);
+      // })
       .then(() => {
         return this.props.firebase.doSendEmailVerification();
       })
       .then(() => {
-        // this.setState({ ...INITIAL_STATE });
-        // this.props.history.push(ROUTES.DETAIL);
+        this.setState({ ...INITIAL_STATE });
+        this.props.history.push(ROUTES.DETAIL);
       })
       .catch(error => {
         if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
@@ -232,7 +232,7 @@ class SignUpFormBase extends Component {
   };
 
   render() {
-    // console.log(this.props);
+    console.log(this.props);
     const {
       email,
       passwordOne,
@@ -249,7 +249,10 @@ class SignUpFormBase extends Component {
     return (
         <AuthUserContext.Consumer>
        {authUser =>
+
+       
       <div className="app flex-row align-items-center">
+        {console.log(this.props)}
         <Container>
           <Row className="justify-content-center">
             <Col md="9" lg="7" xl="6">
@@ -333,12 +336,12 @@ class SignUpFormBase extends Component {
 //   </p>
 // );
 
-const SignUpForm = compose(
+const RegisterForm = compose(
   withRouter,
   withFirebase,
-)(SignUpFormBase);
+)(RegisterFormBase);
 
-export default SignUpPage;
+export default RegisterPage;
 
-export { SignUpForm};
+export { RegisterForm};
 

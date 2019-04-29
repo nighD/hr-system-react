@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { CardGroup, Container } from 'reactstrap';
+// import { Link } from 'react-router-dom';
+// import { CardGroup, Container } from 'reactstrap';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { withFirebase } from '../../../containers/Firebase';
 import { AuthUserContext } from '../../../containers/Session';
 import * as actionService from '../../../services/actionService';
-import { Line } from 'react-chartjs-2';
+// import { Line } from 'react-chartjs-2';
 import captain from '../../../assets/img/captain.png';
 // import * as ROUTES from '../../../routes';
-import Widget03 from '../../Widgets/Widget03';
-import Avatar from 'react-avatar';
-import * as ROUTES from '../../../routes.js';
+// import Widget03 from '../../Widgets/Widget03';
+// import Avatar from 'react-avatar';
+// import * as ROUTES from '../../../routes.js';
 import {
-    Badge,
+    // Badge,
     Button,
     Card,
     CardBody,
@@ -25,19 +25,15 @@ import {
     FormGroup,
     FormText,
     Input,
-    InputGroup,
-    InputGroupAddon,
-    InputGroupButtonDropdown,
-    InputGroupText,
     Label,
     Row,
   } from 'reactstrap';
-const UserPage = () => (
-  <div>
-    <UserDetail />
-  </div>
-);
-var parseDate = require('postgres-date');
+// const UserPage = () => (
+//   <div>
+//     <UserDetail />
+//   </div>
+// );
+// var parseDate = require('postgres-date');
 
 const state = {
   person : {
@@ -66,45 +62,69 @@ const ButtonEdit = withRouter(({ history }) => (
   <i className="fa fa-pencil"></i> 
   Edit</Button>
 ))
-class UserDetail extends Component {
+class Detail extends Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.gender_male = React.createRef();
     this.gender_female = React.createRef();
     this.gender_other = React.createRef();
     this.state = { ...state };
+    // console.log(this.state);
 
   }
 
 componentDidMount() {
   const uid =JSON.parse(localStorage.getItem('authUser')).uid;
   // this.props.firebase.save('admin');
-  console.log("prorps");
-  console.log(this.props);
+  // console.log("prorps");
+  // console.log(this.props);
   actionService.getUserdetail(uid).then(res => {
     const person = res.data[0];
-    console.log(person);
-    this.setState( {person} );
-    this.state.person.emp_dob = this.state.person.emp_dob.substring(0,10);
-    console.log(this.state.person.emp_dob);
-    console.log(parseDate('1997-10-15 00:00.000Z'));
-    if (this.state.person.emp_gender == 'male'){
-      this.gender_male.current.selected = true;
-    }
-    else if (this.state.person.emp_gender == 'female'){
-      this.gender_female.current.selected = true;
-    }
-    else if (this.state.person.emp_gender == 'other') {
-      this.gender_other.current.selected = true;
-    }
-    else {
-      
-    }
+    // if (person !== undefined){
+    person.emp_dob = person.emp_dob.substring(0,10);
+    this.setState( {person} ); 
+      console.log(person.emp_dob);
+      if (this.state.person.emp_gender === 'male'){
+        this.gender_male.current.selected = true;
+      }
+      else if (this.state.person.emp_gender === 'female'){
+        this.gender_female.current.selected = true;
+      }
+      else if (this.state.person.emp_gender === 'other') {
+        this.gender_other.current.selected = true;
+      }
+      else {
+        
+      }
+    // }
+    // else {
+    //   this.state = { ...state };
+    // }
   })
 }
+// componentWillMount(){
+
+// }
 
   render() {
-    // const { email, password, error } = this.state;
+    // const {     id,
+    // emp_lname,
+    // emp_fname,
+    // emp_gender,
+    // emp_email,
+    // emp_role,
+    // emp_status,
+    // emp_dob,
+    // emp_pass,
+    // emp_street,
+    // emp_phone,
+    // emp_city,
+    // emp_postal,
+    // emp_country,
+    // emp_uid, } = this.state;
+    console.log(this.state);
+    console.log(this.props)
     // const isInvalid = password === '' || email === '';
     // console.log(this.state.persons);
 
@@ -112,8 +132,8 @@ componentDidMount() {
       <AuthUserContext.Consumer>
       {authUser =>
         <div>
-        {
-         console.log(this.props.firebase)}
+        {/* { */}
+         
           {/* {!!(authUser.uid==1)} */}
         <div className="content">
           
@@ -260,7 +280,7 @@ componentDidMount() {
                         className="avatar"
                         src={captain}
                       />
-                      <h5 className="title">{this.state.person.emp_lname + ' ' + this.state.person.emp_fname}</h5>
+                      <h5 className="title" value = {this.state.person.emp_lname + ' '+ this.state.person.emp_fname}>{this.state.person.emp_lname + ' '+ this.state.person.emp_fname}</h5>
                     </a>
                     <p className="description">{this.state.person.emp_role}</p>
                   </div>
@@ -299,6 +319,6 @@ componentDidMount() {
 const UserForm = compose(
     withRouter,
     withFirebase,
-  )(UserDetail);
-export default withFirebase(UserPage);
+  )(Detail);
+export default withFirebase(Detail);
 export {UserForm};

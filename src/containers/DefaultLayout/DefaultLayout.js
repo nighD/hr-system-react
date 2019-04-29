@@ -1,9 +1,9 @@
 import React, { Component, Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { Container } from 'reactstrap';
-import Dashboard from '../../views/Dashboard/Dashboard';
+// import Dashboard from '../../views/Dashboard/Dashboard';
 import SignInPage from '../../views/Pages/Login';
-import Detail from '../../views/Employee/personalInfoView/employeeDetailView'
+// import Detail from '../../views/Employee/personalInfoView/employeeDetailView'
 import { AuthUserContext } from '../Session';
 import { withFirebase } from '../Firebase';
 import * as ROLES from '../../constants/roles';
@@ -25,24 +25,24 @@ import ad_navigation from '../../Navigation/_navAdm';
 // routes config
 // import * as ROUTES from '../../routes'
 import routes from '../../routes';
-import { auth } from 'firebase';
+// import { auth } from 'firebase';
 
 const DefaultAside = React.lazy(() => import('./DefaultAside'));
 const DefaultFooter = React.lazy(() => import('./DefaultFooter'));
 const DefaultHeader = React.lazy(() => import('./DefaultHeader'));
-const loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>;
+// const loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>;
 
 // export default DefaultLayout;
 class DefaultLayout extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+    // super(props);
+  // }
   loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
 
   signOut(e) {
     e.preventDefault();
     this.props.firebase.doSignOut().then(() =>{
-      this.props.history.push('/login');
+      this.props.history.push('/singin');
     }).catch(error => {
       this.setState({ error });
     });
@@ -50,8 +50,27 @@ class DefaultLayout extends Component {
   }
   
   render(){
-    console.log("Bao");
+    // console.log("Bao");
     // console.log(this.localStorage.getItem('authUser'));
+      var isLoggedIn = false;
+      if (localStorage.getItem('authUser')){
+        isLoggedIn = true;
+        const authUser0 = JSON.parse(localStorage.getItem('authUser'));
+        var condition = false;
+        console.log(authUser0.roles.ADMIN);
+        if (authUser0.roles.ADMIN === ROLES.ADMIN){
+          condition = true;
+          console.log(condition);
+        }
+        else {
+          condition = false;
+          console.log(condition);
+        }
+      }
+      else {
+        isLoggedIn = false;
+      }
+    
     return(
       <AuthUserContext.Consumer>
           {authUser =>
@@ -70,18 +89,19 @@ class DefaultLayout extends Component {
                     <AppSidebarHeader />
                     <AppSidebarForm />
                     <Suspense>
-                    {
-                      !!authUser.roles.ADMIN[ROLES.ADMIN] && (
-                      console.log(authUser.roles.ADMIN),
-                      <AppSidebarNav navConfig={ad_navigation} {...this.props} />
-                      )
-                    } 
-                    {  
-                      !authUser.roles.ADMIN[ROLES.ADMIN] && (
-                        <AppSidebarNav navConfig={emp_navigation} {...this.props} />
-                      )
-                    }
-                    
+                      {
+                        isLoggedIn ? (condition ? (
+                          // console.log(!!authUser0.roles.ADMIN[ROLES.ADMIN]),
+                          console.log("admin"),
+                          <AppSidebarNav navConfig={ad_navigation} {...this.props} />
+                        )  : ( 
+                          console.log("Employee"),
+                          <AppSidebarNav navConfig={emp_navigation} {...this.props} />
+                        )) : (
+                          <AppSidebarNav navConfig={ad_navigation} {...this.props}  />
+                        )
+                         
+                      }
                     </Suspense>
                     <AppSidebarFooter />
                     <AppSidebarMinimizer />
@@ -99,7 +119,7 @@ class DefaultLayout extends Component {
                                 exact={route.exact}
                                 name={route.name}
                                 render={props => (
-                                  console.log(props),
+                                  // console.log(props),
                                   <route.component {...props} />
                                 )} />
                             ) : (null);
@@ -173,7 +193,7 @@ class DefaultLayout extends Component {
                                   )} />
                               ) : (null);
                             })} */}
-                            <Route exact path={routes.SIGN_IN} component={SignInPage} />
+                            <Route exact path={routes.LOGIN} component={SignInPage} />
                             {/* <Redirect from="/" to="/dashboard" /> */}
                           </Switch>
                         </Suspense>

@@ -1,7 +1,7 @@
 export default {
     items: [
       {
-        name: 'Admin',
+        name: 'Dashboard',
         url: '/dashboard',
         icon: 'icon-speedometer',
         badge: {
@@ -25,6 +25,20 @@ export default {
         name: 'Edit Detail',
         url: '/edit_detail',
         icon: 'fa fa-pencil-square-o',
+      },
+      {
+        title: true,
+        name: 'Team Information',
+        wrapper: {            // optional wrapper object
+          element: '',        // required valid HTML5 element tag
+          attributes: {}        // optional valid JS object with JS API naming ex: { className: "my-class", style: { fontFamily: "Verdana" }, id: "my-id"}
+        },
+        class: ''             // optional class names space delimited list for title item ex: "text-center"
+      },
+      {
+        name: 'Team Detail',
+        url: '/teamdetail',
+        icon: 'fa fa-users',
       },
       {
         title: true,

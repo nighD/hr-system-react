@@ -33,9 +33,31 @@ class Firebase {
 
   // *** Auth API ***
 
-  doCreateUserWithEmailAndPassword = (email, password) => {
+  doCreateUserWithEmailAndPassword = (email, password,role) => {
     // console.log("create account");
     this.auth.createUserWithEmailAndPassword(email, password);
+    this.auth.onAuthStateChanged(authUser =>{
+      if(authUser){
+          const data = {
+            email: email,
+            roles: {
+              ADMIN: role
+            }
+          }
+          
+          this.user(authUser.uid).set(data).then(()=>{
+            console.log("success");
+          });
+      }
+
+      });
+    // this.user(authUser.user.uid).set({
+    //       // username,
+    //       email,
+    //       roles: {
+    //         ADMIN: role
+    //       },
+    //     });
   }
 
   doSignInWithEmailAndPassword = (email, password) =>
@@ -82,7 +104,7 @@ class Firebase {
             // console.log("on auth user");
             // console.log(snapshot.val());
             // default empty roles
-            console.log(dbUser);
+            // console.log(dbUser);
             if (!dbUser.roles) {
               dbUser.roles = {};
             }

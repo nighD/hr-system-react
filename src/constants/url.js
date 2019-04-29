@@ -1,5 +1,6 @@
 export const GET_METHOD = 'GET'
 export const POST_METHOD = 'POST'
+export const PUT_METHOD = 'PUT'
 export const baseURL = 'http://localhost:3000/'
 export const userList = 'api/users/'
 export const userDetail = 'api/users/'
