@@ -22,11 +22,6 @@ export default {
         icon: 'fa fa-user',
       },
       {
-        name: 'Edit Detail',
-        url: '/edit_detail',
-        icon: 'fa fa-pencil-square-o',
-      },
-      {
         title: true,
         name: 'Team Information',
         wrapper: {            // optional wrapper object

@@ -82,6 +82,7 @@ class EditDetail extends Component {
   }
   componentDidMount() {
     const uid =JSON.parse(localStorage.getItem('authUser')).uid;
+    
     actionService.getUserdetail(uid).then(res => {
       const data = res.data[0];
       data.emp_dob = data.emp_dob.substring(0,10);
@@ -104,7 +105,8 @@ class EditDetail extends Component {
     event.preventDefault();
     console.log(this.state.data);
     const uid =JSON.parse(localStorage.getItem('authUser')).uid;
-    actionService.updateUserdetail(uid,this.state.data)
+    actionService.updateUserdetail(uid,this.state.data);
+    this.props.history.push(ROUTES.DETAIL);
   };
 
   handleChange = (event) => {

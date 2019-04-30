@@ -81,6 +81,8 @@ componentDidMount() {
   // console.log(this.props);
   actionService.getUserdetail(uid).then(res => {
     const person = res.data[0];
+    
+    
     // if (person !== undefined){
     person.emp_dob = person.emp_dob.substring(0,10);
     this.setState( {person} ); 
@@ -97,6 +99,8 @@ componentDidMount() {
       else {
         
       }
+      localStorage.setItem('userInfo',JSON.stringify(person));
+      console.log(person);
     // }
     // else {
     //   this.state = { ...state };

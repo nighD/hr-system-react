@@ -50,6 +50,7 @@ class DefaultLayout extends Component {
   }
   
   render(){
+    console.log(routes);
     // console.log("Bao");
     // console.log(this.localStorage.getItem('authUser'));
       var isLoggedIn = false;
