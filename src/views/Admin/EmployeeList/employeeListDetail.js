@@ -4,10 +4,15 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { withFirebase } from '../../../containers/Firebase';
-import * as actionService from '../../../services/actionService';
-import captain from '../../../assets/img/captain.png';
-import * as ROUTES from '../../../routes';
 import { AuthUserContext } from '../../../containers/Session';
+import * as actionService from '../../../services/actionService';
+// import { Line } from 'react-chartjs-2';
+import captain from '../../../assets/img/captain.png';
+import iron from '../../../assets/img/iron.png';
+// import * as ROUTES from '../../../routes';
+// import Widget03 from '../../Widgets/Widget03';
+// import Avatar from 'react-avatar';
+// import * as ROUTES from '../../../routes.js';
 import {
     // Badge,
     Button,
@@ -17,31 +22,23 @@ import {
     CardHeader,
     CardText,
     Col,
-    // Collapse,
-    // DropdownItem,
-    // DropdownMenu,
-    // DropdownToggle,
-    // Fade,
     Form,
     FormGroup,
     FormText,
-    // FormFeedback,
     Input,
-    // InputGroup,
-    // InputGroupAddon,
-    // InputGroupButtonDropdown,
-    // InputGroupText,
     Label,
     Row,
   } from 'reactstrap';
-// const EditUserPage = () => (
+import { timingSafeEqual } from 'crypto';
+// const UserPage = () => (
 //   <div>
-//     <EditUserDetail />
+//     <UserDetail />
 //   </div>
 // );
+// var parseDate = require('postgres-date');
 
-let statea = {
-  
+const state = {
+  person : {
     id:'',
     emp_lname: '',
     emp_fname: '',
@@ -57,30 +54,29 @@ let statea = {
     emp_postal: '',
     emp_country:'',
     emp_uid:'',
-  
+  }
 }
-const ButtonSubmit = withRouter(({ history }) => (
+const ButtonEdit = withRouter(({ history }) => (
   <Button type="button" 
   size="lg" 
   color="primary"  
-  onClick={() => { 
-    console.log(this.state);
-    history.push('/dashboard') 
-  }}>
+  onClick={() => { history.push('/employeelist/edit_detail') }}>
   <i className="fa fa-pencil"></i> 
-  Submit</Button>
+  Edit</Button>
 ))
-class EditDetail extends Component {
+class EmployeeListDetail extends Component {
   constructor(props) {
-      super(props);
-      this.gender_male = React.createRef();
-      this.gender_female = React.createRef();
-      this.gender_other = React.createRef();
-      this.handleChange = this.handleChange.bind(this);
-      this.state = { data : [] };
+    super(props);
+    console.log(props);
+    this.gender_male = React.createRef();
+    this.gender_female = React.createRef();
+    this.gender_other = React.createRef();
+    this.state = { ...state };
+    // console.log(this.state);
 
   }
-  componentDidMount() {
+
+componentDidMount() {
     const uid =this.props.location.state.uid;
     actionService.getUserdetail(uid).then(res => {
       const person = res.data[0];
@@ -100,39 +96,43 @@ class EditDetail extends Component {
         }
         localStorage.setItem('userInfo',JSON.stringify(person));
     })
-  }
-  onSubmit = event => {
-    event.preventDefault();
-    console.log(this.state.data);
-    const uid =JSON.parse(localStorage.getItem('authUser')).uid;
-    actionService.updateUserdetail(uid,this.state.data);
-    this.props.history.push(ROUTES.DETAIL);
-  };
+//   }
 
-  handleChange = (event) => {
-    const {name, value} = event.target
-    // let data = {...this.state.data}
-    // data. = value
-    // console.log(data.(name))
-     this.setState( prevState => ({
-       data: {
-        ...prevState.data,
-        [name] : value
-       }
-     })
-      
-      );
-  };
+}
+// componentWillMount(){
+
+// }
 
   render() {
+    // const {     id,
+    // emp_lname,
+    // emp_fname,
+    // emp_gender,
+    // emp_email,
+    // emp_role,
+    // emp_status,
+    // emp_dob,
+    // emp_pass,
+    // emp_street,
+    // emp_phone,
+    // emp_city,
+    // emp_postal,
+    // emp_country,
+    // emp_uid, } = this.state;
+    // console.log(this.state);
+    // console.log(this.props)
+    // const isInvalid = password === '' || email === '';
+    // console.log(this.state.persons);
 
     return (
-    <AuthUserContext.Consumer>
+      <AuthUserContext.Consumer>
       {authUser =>
         <div>
+        {/* { */}
+         
           {/* {!!(authUser.uid==1)} */}
         <div className="content">
-        
+          
           <Row>
             <Col md="8">
               <Card>
@@ -145,41 +145,19 @@ class EditDetail extends Component {
                       <Col className="pr-md-1" md="5">
                         <FormGroup>
                             <Label>Employee First Name</Label>
-                            <Input 
-                              type="text" 
-                              id="emp_fname" 
-                              name ="emp_fname" 
-                              placeholder="Enter your first name"  
-                              defaultValue = {this.state.data.emp_fname}
-                              onChange={this.handleChange}
-                            />
+                            <Input type="text" id="fname" placeholder="Enter your first name" disabled value = {this.state.person.emp_fname}/>
                         </FormGroup>
                       </Col>
                       <Col className="px-md-1" md="3">
                         <FormGroup>
                           <label>Employee Last Name</label>
-                          <Input 
-                            type="text" 
-                            id="emp_lname" 
-                            name="emp_lname" 
-                            placeholder="Enter your last name"  
-                            defaultValue = {this.state.data.emp_lname}
-                            onChange={this.handleChange}
-                          />
+                          <Input type="text" id="lname" placeholder="Enter your last name" disabled value = {this.state.person.emp_lname}/>
                         </FormGroup>
                       </Col>      
                       <Col className="pl-md-1" md="4">
                         <FormGroup>
                           <Label htmlFor="email-input">Email</Label>
-                          <Input 
-                            type="email" 
-                            id="email-input" 
-                            name="emp_email" 
-                            placeholder="Enter Email" 
-                            autoComplete="email"  
-                            defaultValue = {this.state.data.emp_email}
-                            onChange={this.handleChange}
-                          />
+                          <Input type="email" id="email-input" name="email-input" placeholder="Enter Email" autoComplete="email" disabled value = {this.state.person.emp_email}/>
                           <FormText className="help-block">Please enter your email</FormText>
                         </FormGroup>
                       </Col> 
@@ -188,39 +166,19 @@ class EditDetail extends Component {
                       <Col className="pr-md-1" md="5">
                         <FormGroup>
                         <Label htmlFor="date-input">Date of Birth</Label>
-                        <Input 
-                          type="date" 
-                          id="date-input" 
-                          name="emp_dob" 
-                          placeholder="date"  
-                          defaultValue = {this.state.data.emp_dob}
-                          onChange={this.handleChange} 
-                        />
+                        <Input type="date" id="date-input" name="date-input" placeholder="date" disabled value = {this.state.person.emp_dob} />
                         </FormGroup>
                       </Col>
                       <Col className="px-md-1" md="3">
                         <FormGroup>
-                            <Label htmlFor="-input">Status</Label>
-                            <Input 
-                              type="text" 
-                              id="-input1" 
-                              name="emp_status"  
-                              defaultValue = {this.state.data.emp_status}
-                              onChange={this.handleChange} 
-                            />
+                            <Label htmlFor="disabled-input">Status</Label>
+                            <Input type="text" id="disabled-input1" name="disabled-input" disabled value = {this.state.person.emp_status} />
                         </FormGroup>
                       </Col>      
                       <Col className="pl-md-1" md="4">
                         <FormGroup>
                           <Label htmlFor="phone">Phone Number</Label>
-                          <Input 
-                            type="number" 
-                            id="phoneNumber" 
-                            name = "emp_phone" 
-                            placeholder="Enter phone number"  
-                            defaultValue = {this.state.data.emp_phone}
-                            onChange={this.handleChange}
-                          />
+                          <Input type="number" id="phoneNumber" placeholder="Enter phone number" disabled value = {this.state.person.emp_phone}/>
                         </FormGroup>
                       </Col> 
                     </Row>     
@@ -228,7 +186,7 @@ class EditDetail extends Component {
                       <Col className="pr-md-1" md="6">
                         <FormGroup>
                           <Label htmlFor="select">Gender</Label>
-                          <Input type="select" name="emp_gender" id="select" required  onChange = {this.handleChange}>
+                          <Input type="select" name="select" id="select" required disabled>
                           <option value="0" >Please select</option>
                           <option value="1" ref ={this.gender_male}>Male</option>
                           <option value="2" ref ={this.gender_female}>Female</option>
@@ -238,14 +196,8 @@ class EditDetail extends Component {
                       </Col>
                       <Col className="pl-md-1" md="6">
                         <FormGroup>
-                          <Label htmlFor="-input">Role</Label>
-                          <Input 
-                            type="text" 
-                            id="-input" 
-                            name="emp_role"  
-                            defaultValue = {this.state.data.emp_role}
-                            onChange={this.handleChange} 
-                          />
+                          <Label htmlFor="disabled-input">Role</Label>
+                          <Input type="text" id="disabled-input" name="disabled-input" disabled value = {this.state.person.emp_role} />
                         </FormGroup>
                       </Col>
                     </Row>            
@@ -253,14 +205,7 @@ class EditDetail extends Component {
                       <Col md="12">
                         <FormGroup>
                           <Label htmlFor="street">Street</Label>
-                          <Input 
-                            type="text" 
-                            id="street" 
-                            name = "emp_street" 
-                            placeholder="Enter street name"   
-                            defaultValue = {this.state.data.emp_street}
-                            onChange={this.handleChange}
-                          />
+                          <Input type="text" id="street" placeholder="Enter street name"  disabled value = {this.state.person.emp_street}/>
                         </FormGroup>
                       </Col>
                     </Row>                    
@@ -268,40 +213,19 @@ class EditDetail extends Component {
                       <Col className="pr-md-1" md="4">
                         <FormGroup>
                           <Label htmlFor="city">City</Label>
-                          <Input 
-                            type="text" 
-                            id="city" 
-                            name = "emp_city" 
-                            placeholder="Enter your city"  
-                            defaultValue = {this.state.data.emp_city}
-                            onChange={this.handleChange}
-                          />
+                          <Input type="text" id="city" placeholder="Enter your city" disabled value = {this.state.person.emp_city}/>
                         </FormGroup>
                       </Col>
                       <Col className="px-md-1" md="4">
                         <FormGroup>
                           <Label htmlFor="country">Country</Label>
-                          <Input 
-                            type="text" 
-                            id="country" 
-                            name = "emp_country" 
-                            placeholder="Country name"  
-                            defaultValue = {this.state.data.emp_country}
-                            onChange={this.handleChange}
-                          />
+                          <Input type="text" id="country" placeholder="Country name" disabled value = {this.state.person.emp_country}/>
                         </FormGroup>
                       </Col>
                       <Col className="pl-md-1" md="4">
                         <FormGroup>
                           <Label htmlFor="postal-code">Postal Code</Label>
-                          <Input 
-                            type="text" 
-                            id="postal-code" 
-                            name = "emp_postal" 
-                            placeholder="Postal Code"  
-                            defaultValue = {this.state.data.emp_postal}
-                            onChange={this.handleChange}
-                          />
+                          <Input type="text" id="postal-code" placeholder="Postal Code" disabled value = {this.state.person.emp_postal}/>
                         </FormGroup>
                       </Col>
                     </Row>
@@ -318,28 +242,27 @@ class EditDetail extends Component {
                         <Label htmlFor="password-input">Password</Label>
                       </Col>
                       <Col xs="12" md="9">
-                        <Input type="password" id="password-input" name="password-input" placeholder="Password" autoComplete="new-password"   value = {this.state.data.person.emp_pass}/>
+                        <Input type="password" id="password-input" name="password-input" placeholder="Password" autoComplete="new-password"  disabled value = {this.state.person.emp_pass}/>
                         <FormText className="help-block">Please enter a complex password</FormText>
                       </Col>
                     </FormGroup> */}
                   </Form>
                 </CardBody>
                 <CardFooter>
-                  {/* <ButtonEdit/> */}
-                  <Row>
-                  <Col md = "4"/>
-                  <Col md = "4" className = "text-center">
-                  {/* <ButtonSubmit/> */}
-                  <Button size="lg" color="primary" onClick = {this.onSubmit}><i className="fa fa-pencil " ></i> Submit</Button>
-                  <Button type="reset" size="lg" color="danger"><i className="fa fa-ban"></i> Reset</Button>
-                  </Col>
-                  <Col md = "4"/>
-                  </Row>
+                 
+                    <Row>
+                      <Col md = "4"/>
+                      <Col md = "4" className = "text-center">
+                       <ButtonEdit/>
+                      </Col>
+                      <Col md = "4"/>
+                    </Row>                  
+                  {/* <Button type="reset" size="sm" color="danger"><i className="fa fa-ban"></i> Reset</Button> */}
                 </CardFooter>
               </Card>
               </Col>
               <Col md="4">
-              <Card className="card-user bg-dark">
+              <Card className="card-user card bg-dark">
                 <CardBody>
                   <CardText />
                   <div className="author">
@@ -351,11 +274,11 @@ class EditDetail extends Component {
                       <img
                         alt="..."
                         className="avatar"
-                        src={captain}
+                        src={iron}
                       />
-                      <h5 className="title">{this.state.data.emp_lname + ' ' + this.state.data.emp_fname}</h5>
+                      <h5 className="title" value = {this.state.person.emp_lname + ' '+ this.state.person.emp_fname}>{this.state.person.emp_lname + ' '+ this.state.person.emp_fname}</h5>
                     </a>
-                    <p className="description">{this.state.data.emp_role}</p>
+                    <p className="description">{this.state.person.emp_role}</p>
                   </div>
                   <div className="card-description">
                     “Doesn't matter what the press says. Doesn't matter what the politicians or the mobs say. 
@@ -389,9 +312,9 @@ class EditDetail extends Component {
     );
   }
 }
-const EditUserForm = compose(
+const UserDetailForm = compose(
     withRouter,
     withFirebase,
-  )(EditDetail);
-export default EditDetail;
-export {EditUserForm};
+  )(EmployeeListDetail);
+export default withFirebase(EmployeeListDetail);
+export {UserDetailForm};

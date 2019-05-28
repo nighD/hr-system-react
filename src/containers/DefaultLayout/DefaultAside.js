@@ -114,7 +114,7 @@ class DefaultAside extends Component {
                 </div> */}
               </ListGroupItem>
               <ListGroupItem action tag="a" href="#" className="list-group-item-accent-success list-group-item-divider">
-                <div><strong>Coffe Shop</strong> Meetup</div>
+                <div><strong>Coffee Shop</strong> Meetup</div>
                 <small className="text-muted mr-3"><i className="icon-calendar"></i>&nbsp; 3 - 4pm</small>
                 <small className="text-muted"><i className="icon-location-pin"></i>&nbsp; RMIT Campus</small>
               </ListGroupItem>

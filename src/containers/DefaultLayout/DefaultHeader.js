@@ -8,6 +8,7 @@ import react from '../../assets/img/brand/react.svg'
 // import sygnet from '../../assets/img/brand/sygnet.svg'
 // import userava from '../../assets/img/user.png'
 import captain from '../../assets/img/captain.png';
+import iron from '../../assets/img/iron.png';
 const propTypes = {
   children: PropTypes.node,
 };
@@ -50,7 +51,7 @@ class DefaultHeader extends Component {
                                   <img
                         alt="..."
                         className="avatar"
-                        src={captain}
+                        src={iron}
                       />
               {/* <a className= "icon-user"></a> */}
             </DropdownToggle>

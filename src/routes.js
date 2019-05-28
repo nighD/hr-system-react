@@ -20,16 +20,22 @@ export const PAYROLL_CAL = '/payroll_cal';
 // export const CHANGE_PASSWORD = '/change_password';
 
 
-const Dashboard = React.lazy(() => import('./views/Dashboard'));
+const Dashboard = React.lazy(() => import('./views/Dashboard/AdminDashboard'));
 const Users = React.lazy(() => import('./views/Users/Users'));
 const User = React.lazy(() => import('./views/Users/User'));
 const Login = React.lazy(() => import('./views/Pages/Login'));
 // const Sign_out = React.lazy(() => import('./views/Users/Users'));
-const Team_Detail = React.lazy(() => import('./views/Employee/teamView/teamInfo'));
+const Employee_List = React.lazy(() => import('./views/Admin/EmployeeList/employeeListView'));
+const Employee_List_Detail = React.lazy(() => import('./views/Admin/EmployeeList/employeeListDetail'));
+const Employee_List_EDetail = React.lazy(() => import('./views/Admin/EmployeeList/employeeListEDetail'));
+const Team_Detail = React.lazy(() => import('./views/Employee/teamView/teamInfoView'));
+const Team_List = React.lazy(() => import('./views/Admin/TeamList/teamListView'));
+const Team_List_Detail = React.lazy(() => import('./views/Admin/TeamList/teamListDetail'));
+const Team_List_EDetail = React.lazy(() => import('./views/Admin/TeamList/teamListDetail'));
 const Register = React.lazy(() => import('./views/Pages/Register'));
 const Detail = React.lazy(() => import('./views/Employee/personalInfoView/employeeDetailView'));
 const Edit_detail = React.lazy(() => import('./views/Employee/personalInfoView/employeeEDetailView'));
-const Calendar = React.lazy(() => import('./views/Employee/attendanceView/attendanceCalendarView'));
+const CalendarView = React.lazy(() => import('./views/Employee/attendanceView/attendanceCalendarView'));
 const Att_Detail = React.lazy(() => import('./views/Employee/attendanceView/attendanceDetailView'));
 const Leave_Detail = React.lazy(() => import('./views/Employee/leaveView/leaveDetailView'));
 const Leave_Request = React.lazy(() => import('./views/Employee/leaveView/requestLeaveView'));
@@ -44,10 +50,10 @@ const Payroll_Cal = React.lazy(() => import('./views/Employee/payrollView/payrol
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', exact: true, name: 'Home' },
-  { path: '/dashboard', name: 'Dashboard', component: Dashboard },
+  { path: '/admindashboard', name: 'Dashboard', component: Dashboard },
   { path: '/detail', exact: true,  name: 'User Detail', component: Detail },
   { path: '/edit_detail', exact: true, name: 'Edit User Detail', component: Edit_detail },
-  { path: '/calendar', exact: true, name: 'Attendance Calendar', component: Calendar },
+  { path: '/calendar', exact: true, name: 'Attendance Calendar', component: CalendarView },
   { path: '/att_calendar', exact: true, name: 'Attendance Detail', component: Att_Detail },
   { path: '/leave_detail', exact: true, name: 'Leave Detail', component: Leave_Detail },
   { path: '/leave_request', exact: true, name: 'Leave Request', component: Leave_Request },
@@ -59,6 +65,12 @@ const routes = [
   { path: '/payroll_cal', exact: true, name: 'Payroll Calculation', component: Payroll_Cal },
   { path: '/register', exact: true,name: 'Register', component: Register},
   { path: '/teamdetail', exact: true,name: 'Team Detail', component: Team_Detail},
+  { path: '/teamlist', exact: true,name: 'Team Detail', component: Team_List},
+  { path: '/teamlist/detail', exact: true,name: 'Team Detail', component: Team_List_Detail},
+  { path: '/teamlist/edit_detail', exact: true,name: 'Team Detail', component: Team_List_EDetail},
+  { path: '/employeelist', exact: true,name: 'Employee List', component: Employee_List},
+  { path: '/employeelist/detail', exact: true,name: 'Employee List Detail', component: Employee_List_Detail},
+  { path: '/employeelist/edit_detail', exact: true,name: 'Employee List Edit Detail', component: Employee_List_EDetail}
 ];
 
 // const routes = [

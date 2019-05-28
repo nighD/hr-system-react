@@ -8,6 +8,7 @@ import { AuthUserContext } from '../../../containers/Session';
 import * as actionService from '../../../services/actionService';
 // import { Line } from 'react-chartjs-2';
 import captain from '../../../assets/img/captain.png';
+import iron from '../../../assets/img/iron.png';
 // import * as ROUTES from '../../../routes';
 // import Widget03 from '../../Widgets/Widget03';
 // import Avatar from 'react-avatar';
@@ -28,6 +29,7 @@ import {
     Label,
     Row,
   } from 'reactstrap';
+import { timingSafeEqual } from 'crypto';
 // const UserPage = () => (
 //   <div>
 //     <UserDetail />
@@ -75,37 +77,26 @@ class Detail extends Component {
   }
 
 componentDidMount() {
-  const uid =JSON.parse(localStorage.getItem('authUser')).uid;
-  // this.props.firebase.save('admin');
-  // console.log("prorps");
-  // console.log(this.props);
-  actionService.getUserdetail(uid).then(res => {
-    const person = res.data[0];
-    
-    
-    // if (person !== undefined){
-    person.emp_dob = person.emp_dob.substring(0,10);
-    this.setState( {person} ); 
-      console.log(person.emp_dob);
-      if (this.state.person.emp_gender === 'male'){
-        this.gender_male.current.selected = true;
-      }
-      else if (this.state.person.emp_gender === 'female'){
-        this.gender_female.current.selected = true;
-      }
-      else if (this.state.person.emp_gender === 'other') {
-        this.gender_other.current.selected = true;
-      }
-      else {
-        
-      }
-      localStorage.setItem('userInfo',JSON.stringify(person));
-      console.log(person);
-    // }
-    // else {
-    //   this.state = { ...state };
-    // }
-  })
+    console.log("Personal Info")
+    const uid =JSON.parse(localStorage.getItem('authUser')).uid;
+    actionService.getUserdetail(uid).then(res => {
+      const person = res.data[0];
+      person.emp_dob = person.emp_dob.substring(0,10);
+      this.setState( {person} ); 
+        if (this.state.person.emp_gender === 'male'){
+          this.gender_male.current.selected = true;
+        }
+        else if (this.state.person.emp_gender === 'female'){
+          this.gender_female.current.selected = true;
+        }
+        else if (this.state.person.emp_gender === 'other') {
+          this.gender_other.current.selected = true;
+        }
+        else {
+          
+        }
+        localStorage.setItem('userInfo',JSON.stringify(person));
+    })
 }
 // componentWillMount(){
 
@@ -127,8 +118,8 @@ componentDidMount() {
     // emp_postal,
     // emp_country,
     // emp_uid, } = this.state;
-    console.log(this.state);
-    console.log(this.props)
+    // console.log(this.state);
+    // console.log(this.props)
     // const isInvalid = password === '' || email === '';
     // console.log(this.state.persons);
 
@@ -282,7 +273,7 @@ componentDidMount() {
                       <img
                         alt="..."
                         className="avatar"
-                        src={captain}
+                        src={iron}
                       />
                       <h5 className="title" value = {this.state.person.emp_lname + ' '+ this.state.person.emp_fname}>{this.state.person.emp_lname + ' '+ this.state.person.emp_fname}</h5>
                     </a>

@@ -22,6 +22,7 @@ import {
 // sidebar nav config
 import emp_navigation from '../../Navigation/_navEmp';
 import ad_navigation from '../../Navigation/_navAdm';
+import man_navigation from '../../Navigation/_navMan';
 // routes config
 // import * as ROUTES from '../../routes'
 import routes from '../../routes';
@@ -50,21 +51,25 @@ class DefaultLayout extends Component {
   }
   
   render(){
-    console.log(routes);
+    // console.log(routes);
     // console.log("Bao");
     // console.log(this.localStorage.getItem('authUser'));
       var isLoggedIn = false;
       if (localStorage.getItem('authUser')){
         isLoggedIn = true;
         const authUser0 = JSON.parse(localStorage.getItem('authUser'));
-        var condition = false;
+        var condition = '';
         console.log(authUser0.roles.ADMIN);
         if (authUser0.roles.ADMIN === ROLES.ADMIN){
-          condition = true;
+          condition = 'admin';
+          console.log(condition);
+        }
+        else if (authUser0.roles.ADMIN === ROLES.MANAGER) {
+          condition = 'manager';
           console.log(condition);
         }
         else {
-          condition = false;
+          condition = 'employee';
           console.log(condition);
         }
       }
@@ -90,16 +95,36 @@ class DefaultLayout extends Component {
                     <AppSidebarHeader />
                     <AppSidebarForm />
                     <Suspense>
+                      {/* {
+                        isLoggedIn && 
+                          (() => {
+                            switch(state==) {
+                              case 'info':
+                                return <Info text={text} />;
+                              case 'warning':
+                                return <Warning text={text} />;
+                              case 'error':
+                                return <Error text={text} />;
+                              default:
+                                return null;
+                            }
+                          })()
+                      
+                      } */}
                       {
-                        isLoggedIn ? (condition ? (
-                          // console.log(!!authUser0.roles.ADMIN[ROLES.ADMIN]),
-                          console.log("admin"),
-                          <AppSidebarNav navConfig={ad_navigation} {...this.props} />
-                        )  : ( 
-                          console.log("Employee"),
-                          <AppSidebarNav navConfig={emp_navigation} {...this.props} />
-                        )) : (
-                          <AppSidebarNav navConfig={ad_navigation} {...this.props}  />
+                        isLoggedIn ? (() => {
+                          switch(condition) {
+                            case 'admin':
+                              return <AppSidebarNav navConfig={ad_navigation} {...this.props}  />;
+                            case 'manager':
+                              return <AppSidebarNav navConfig={man_navigation} {...this.props}  />;
+                            case 'employee':
+                              return <AppSidebarNav navConfig={emp_navigation} {...this.props}  />;
+                            default:
+                              return null;
+                          }
+                        })() : (
+                          <AppSidebarNav navConfig={emp_navigation} {...this.props}  />
                         )
                          
                       }
@@ -142,7 +167,7 @@ class DefaultLayout extends Component {
                           )} */}
                           {/* <Route exact path={routes.DETAIL} component={Detail} /> */}
                           {/* <Route exact path={routes.DASHBOARD} component={Dashboard} /> */}
-                          <Redirect from="/" to="/dashboard" />
+                          <Redirect from="/" to="/admindashboard" />
                         </Switch>
                       </Suspense>
                     </Container>

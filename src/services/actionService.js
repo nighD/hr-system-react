@@ -16,4 +16,6 @@ export function getTeamlist() {
 export function getTeamdetail(team_id) {
     return baseService(constants.GET_METHOD, constants.baseURL + constants.teamDetail + team_id);
 }
-
+export function getAttdetail(uid) {
+    return baseService(constants.GET_METHOD, constants.baseURL + constants.emp_att_detail + uid);
+}

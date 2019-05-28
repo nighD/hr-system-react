@@ -2,7 +2,7 @@ export default {
     items: [
       {
         name: 'Dashboard',
-        url: '/dashboard',
+        url: '/admindashboard',
         icon: 'icon-speedometer',
         badge: {
         },
@@ -23,7 +23,7 @@ export default {
       },
       {
         title: true,
-        name: 'Team Information',
+        name: 'List',
         wrapper: {            // optional wrapper object
           element: '',        // required valid HTML5 element tag
           attributes: {}        // optional valid JS object with JS API naming ex: { className: "my-class", style: { fontFamily: "Verdana" }, id: "my-id"}
@@ -31,9 +31,14 @@ export default {
         class: ''             // optional class names space delimited list for title item ex: "text-center"
       },
       {
-        name: 'Team Detail',
-        url: '/teamdetail',
+        name: 'Employee List',
+        url: '/employeelist',
         icon: 'fa fa-users',
+      },
+      {
+        name: 'Team List',
+        url: '/teamlist',
+        icon: 'cui-layers',
       },
       {
         title: true,

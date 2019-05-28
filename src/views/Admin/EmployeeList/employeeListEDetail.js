@@ -81,24 +81,24 @@ class EditDetail extends Component {
 
   }
   componentDidMount() {
-    const uid =this.props.location.state.uid;
+    const uid =JSON.parse(localStorage.getItem('authUser')).uid;
+    
     actionService.getUserdetail(uid).then(res => {
-      const person = res.data[0];
-      person.emp_dob = person.emp_dob.substring(0,10);
-      this.setState( {person} ); 
-        if (this.state.person.emp_gender === 'male'){
-          this.gender_male.current.selected = true;
-        }
-        else if (this.state.person.emp_gender === 'female'){
-          this.gender_female.current.selected = true;
-        }
-        else if (this.state.person.emp_gender === 'other') {
-          this.gender_other.current.selected = true;
-        }
-        else {
-          
-        }
-        localStorage.setItem('userInfo',JSON.stringify(person));
+      const data = res.data[0];
+      data.emp_dob = data.emp_dob.substring(0,10);
+      console.log(data);
+      this.setState( {data} );
+      console.log(this.state);
+      console.log(this.state.data.emp_dob);
+      if (this.state.data.emp_gender === 'male'){
+        this.gender_male.current.selected = true;
+      }
+      else if (this.state.data.data.emp_gender == 'female'){
+        this.gender_female.current.selected = true;
+      }
+      else {
+        this.gender_other.current.selected = true;
+      }
     })
   }
   onSubmit = event => {
