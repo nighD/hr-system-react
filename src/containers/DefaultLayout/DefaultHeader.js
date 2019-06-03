@@ -23,12 +23,12 @@ class DefaultHeader extends Component {
 
     return (
       <React.Fragment>
-        {/* <AppSidebarToggler className="d-lg-none" display="md" mobile /> */}
+        <AppSidebarToggler className="d-lg-none bg-gray-300" display="md" mobile />
         <AppNavbarBrand
           full={{ src: react, width: 50, height: 50, alt: 'RMIT Logo' }}
           minimized={{ src: react, width: 30, height: 30, alt: 'RMIT Logo' }}
         />
-        <AppSidebarToggler className="d-md-down-none bg-gray-300" display="lg" />
+        <AppSidebarToggler className="d-md-down-none bg-gray-300 mr-auto" display="lg" />
 
         {/* <Nav className="d-md-down-none" navbar>
           <NavItem className="px-3">

@@ -51,7 +51,7 @@ export default {
       },
       {
         name: 'Callendar',
-        url: '/calendar',
+        url: '/admcalendar',
         icon: 'fa fa-calendar-check-o',
       },
       {

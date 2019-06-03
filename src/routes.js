@@ -7,6 +7,7 @@ export const REGISTER = '/register';
 export const DETAIL = '/detail';
 export const EDIT_DETAIL = '/edit_detail';
 export const CALENDAR = '/calendar';
+
 export const ATT_DETAIL = '/att_detail';
 export const LEAVE_DETAIL= '/leave_detail';
 export const LEAVE_REQUEST = '/leave_request';
@@ -36,6 +37,7 @@ const Register = React.lazy(() => import('./views/Pages/Register'));
 const Detail = React.lazy(() => import('./views/Employee/personalInfoView/employeeDetailView'));
 const Edit_detail = React.lazy(() => import('./views/Employee/personalInfoView/employeeEDetailView'));
 const CalendarView = React.lazy(() => import('./views/Employee/attendanceView/attendanceCalendarView'));
+const AdminCalendar = React.lazy(() => import('./views/Admin/CalendarView/calendarView'))
 const Att_Detail = React.lazy(() => import('./views/Employee/attendanceView/attendanceDetailView'));
 const Leave_Detail = React.lazy(() => import('./views/Employee/leaveView/leaveDetailView'));
 const Leave_Request = React.lazy(() => import('./views/Employee/leaveView/requestLeaveView'));
@@ -54,6 +56,7 @@ const routes = [
   { path: '/detail', exact: true,  name: 'User Detail', component: Detail },
   { path: '/edit_detail', exact: true, name: 'Edit User Detail', component: Edit_detail },
   { path: '/calendar', exact: true, name: 'Attendance Calendar', component: CalendarView },
+  { path: '/admcalendar', exact: true, name: 'Admin Calendar', component: AdminCalendar },
   { path: '/att_calendar', exact: true, name: 'Attendance Detail', component: Att_Detail },
   { path: '/leave_detail', exact: true, name: 'Leave Detail', component: Leave_Detail },
   { path: '/leave_request', exact: true, name: 'Leave Request', component: Leave_Request },
