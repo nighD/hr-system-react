@@ -3,6 +3,7 @@ import Calendar from "react-big-calendar";
 import moment from "moment";
 import {DateTimePicker} from 'react-widgets';
 import momentLocalizer from 'react-widgets-moment';
+import CreatableSelect from 'react-select/creatable';
 import { 
     Badge,
     Card, 
@@ -32,19 +33,19 @@ import * as actionService from "../../../services/actionService"
 import 'date-fns';
 // import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
 import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,
   KeyboardTimePicker,
-  KeyboardDatePicker,
 } from '@material-ui/pickers';
+import { isNull } from "util";
 
-const useStyles = makeStyles({
-  grid: {
-    width: '60%',
-  },
-});
+const promiseOptions = inputValue =>
+  new Promise(resolve => {
+    setTimeout(() => {
+      resolve(inputValue);
+    }, 1000);
+  });
 const localizer = Calendar.momentLocalizer(moment);
 // moment.locale('en')
 momentLocalizer(moment)
@@ -59,35 +60,84 @@ var data = {
   add:{
       status: false,
       dataAdd: []
-  }
+  },
+  inputValue: ''
 }
+let selectOptions = [];
+actionService.getUserlist().then(res=>{
+    let users = res.data;
+    users.map(user => {
+        const a = {
+            value: user.id,
+            label: user.emp_fname+ " " + user.emp_lname
+        };
+        selectOptions.push(a);
+    })
+})
+function AsyncMulti(props) {
+    let [inputValue,setInputValue] = useState(props.inputValue);
+    const handleInputChange = (newValue, actionMeta) => {
+        const inputValue = newValue;
+        setInputValue({...inputValue,inputValue });
+        console.log(inputValue);
+        props.selector(inputValue);
+        console.log(`action: ${actionMeta.action}`);
+        return inputValue;
+    };
+    return (
+        <CreatableSelect
+          isMulti
+          isClearable
+          onChange = {handleInputChange}
+          options={selectOptions}
+        />
+      );
+  }
 function AddEvents(props){
 
-    console.log(props);
+    // console.log(props);
     if (!props.data.status){
         return null;
     }
-    const [selectedDate, setSelectedDate] = React.useState(new Date());
     let [form, setValues] = useState({
-        title: '',
+        title: 'Event',
         date: {
             startDate: new Date(props.data.dataModal.start),
             endDate : new Date(props.data.dataModal.end)
         },
         start: new Date(props.data.dataModal.start),
         end: new Date(props.data.dataModal.end),
-        notification:''
+        notification: 5,
+        inputValue: ''
     })
     function setStartTime(date) {
+        
         setValues({
             ...form,
             start: date
         });
     }
     function setEndTime(date) {
+        let a = new moment(form.start)
+        let b = new moment(date)
+        if (a.isSame(b,'day')){
+            if (a > b){
+                console.log("aaaaaaa")
+                alert(" Please choose again: Start time > End time")
+            }
+            else {
+                setValues({
+                    ...form,
+                    end: date
+                });
+            }
+        }  
+    }
+    const selector = e => {
+        console.log("selector voo r nha");
         setValues({
             ...form,
-            end: date
+            inputValue: e
         });
     }
     const updateField = e => {
@@ -210,11 +260,28 @@ function AddEvents(props){
                         </InputGroupAddon>
                         </Col>
                         <Col md="8">
-                            <Input type="number" id="notification" name="notification" value = {form.notification} onChange ={updateField}/>        
-                            {/* <InputGroupText className="col-md-12">{props.data.dataModal.desc}</InputGroupText> */}
+                            <Input type="select" id="notification" name="notification" value = {form.notification} onChange ={updateField}>
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                            </Input>        
                         </Col> 
                         </InputGroup>
                     </FormGroup>
+                    <FormGroup row style={{marginTop:'5px',marginBottom:'5px'}}>
+                            <InputGroup>
+                                <Col md="4">
+                                    <InputGroupAddon addonType="prepend" >
+                                        <InputGroupText className="col-md-12">
+                                            Duration
+                                        </InputGroupText>
+                                    </InputGroupAddon>
+                                </Col>
+                                <Col md="8">
+                                    <AsyncMulti inputValue = {form.inputValue} selector = {selector}/>
+                                </Col> 
+                            </InputGroup>
+                        </FormGroup>
                     </Form>
         </ModalBody>
         <ModalFooter>
@@ -306,6 +373,7 @@ function ShowAttDetail(props){
                                 </Col> 
                             </InputGroup>
                         </FormGroup>
+
                     </Form>
             </ModalBody>
             <ModalFooter>
@@ -455,37 +523,10 @@ class AdminCalendar extends Component {
   saveEvent(event){
 
   }
-//   handleChange(event) {
-//       console.log(event.target)
-//     this.setState(prevState => ({
-//         data: {
-//         ...prevState.data,
-//         detail: {
-//             status: false,
-//             dataModal: event.target.value
-//         }}
-//         //  [name] : value
-//         })
-//     )
-//   }
-example = (
-    <DateTimePicker
-    //   disabled
-      defaultValue={new Date()}
-    />
-  )
-  
   render() {
-    // console.log(this.state.data.events)
     let rtl = this.state.culture === 'en'
-    // const [selectedDate, setSelectedDate] = this.useState(new Date('2014-08-18T21:11:54'));
-    // console.log("yeah")
-    // console.log(this.props.className)
     return (
         <div className="animated fadeIn">
-
-      {/* </div> */}
-      {/* <div > */}
         <Card>
             <CardBody>
                 <ShowAttDetail data = { this.state.data.detail} toggleDetail = {this.toggleDetail}/>
