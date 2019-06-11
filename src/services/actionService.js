@@ -22,3 +22,6 @@ export function getAttdetail(uid) {
 export function getEvent() {
     return baseService(constants.GET_METHOD, constants.baseURL + constants.events);
 }
+export function addEvent(data) {
+    return baseService(constants.POST_METHOD, constants.baseURL + constants.events, data);
+}

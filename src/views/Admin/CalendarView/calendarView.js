@@ -109,7 +109,7 @@ function AddEvents(props){
         end: new Date(props.data.dataModal.end),
         notification: 5,
         inputValue: ''
-    })
+    });
     function setStartTime(date) {
         
         setValues({
@@ -146,10 +146,42 @@ function AddEvents(props){
           [e.target.name]: e.target.value
         });
       };
-    const printValues = e => {
+    const sendValues = e => {
         e.preventDefault();
-        console.log(form);
+        // console.log(form)
+        let idArray = [];
+        let arrayList = form.inputValue;
+        if(arrayList ===''){
+            idArray.push('-1')
+        }
+        else {
+        arrayList.map((value,index)=> {
+            // console.log(value.id)
+            idArray.push(value.value);
+        })
+        }
+
+        let data = {
+          members: idArray,
+          date_att: [new moment(form.date.startDate).format("YYYY-MM-DD hh:mm:ss"),new moment(form.date.endDate).format("YYYY-MM-DD hh:mm:ss")],
+          title: form.title,
+          start: new moment(form.start).format("YYYY-MM-DD hh:mm:ss"),
+          end: new moment(form.end).format("YYYY-MM-DD hh:mm:ss"),
+          notification: form.notification  
+        }
+        actionService.addEvent(data);
+        console.log(form.title);
+
       };
+      function ButtonSave(props){
+        let aa = {
+            start: new moment(form.start).format("YYYY-MM-DD hh:mm:ss"),
+            end: new moment(form.end).format("YYYY-MM-DD hh:mm:ss")
+        };
+          return (
+            <Button color="primary" onClick = {(e) => {sendValues(e); props.openAdd(aa); props.regetEvent()}} >Save</Button>
+          )
+      }
     return (
         <Modal id= "test" isOpen={props.data.status} toggle={props.openAdd}
                 className={'modal-add'}>
@@ -203,11 +235,11 @@ function AddEvents(props){
                                     id="mui-pickers-time"
                                     label="Time picker"
                                     name = "start"
-                                    minDate ={form.date.startDate}
-                                    maxDate = {form.date.endDate}
+                                    // minDate ={form.date.startDate}
+                                    // maxDate = {form.date.endDate}
                                     value={form.start}
-                                    disableFuture = {true}
-                                    disablePast = {true}
+                                    // disableFuture = {true}
+                                    // disablePast = {true}
                                     // minutesStep ={120}
                                     onChange={setStartTime}
                                     KeyboardButtonProps={{
@@ -236,8 +268,8 @@ function AddEvents(props){
                                     id="mui-pickers-time"
                                     label="Time picker"
                                     name ="end"
-                                    disableFuture = {true}
-                                    disablePast = {true}
+                                    // disableFuture = {true}
+                                    // disablePast = {true}
                                     value={form.end}
                                     onChange={setEndTime}
                                     KeyboardButtonProps={{
@@ -285,7 +317,7 @@ function AddEvents(props){
                     </Form>
         </ModalBody>
         <ModalFooter>
-            <Button color="primary" onClick = {printValues} >Do Something</Button>{' '}
+            <ButtonSave openAdd = {props.openAdd} regetEvent = {props.regetEvent}/>{' '}
             <Button color="danger" onClick={props.openAdd}>Cancel</Button>
         </ModalFooter>
         </Modal>
@@ -389,6 +421,7 @@ class AdminCalendar extends Component {
     this.state = {data};
     this.toggleDetail = this.toggleDetail.bind(this);
     this.openAdd = this.openAdd.bind(this);
+    this.regetEvent = this.regetEvent.bind(this);
   }
 
   getAttendance(){
@@ -397,7 +430,6 @@ class AdminCalendar extends Component {
         let eventPromises = new Promise((resolve) => {
             let eventArray = []
             events.map((event,index)=>{
-                // console.log(event.start_time)
                 const start_time = new moment(event.start_time).format()
                 const end_time =  new moment(event.end_time).format()
                 const a = new moment(event.start_time)
@@ -405,7 +437,7 @@ class AdminCalendar extends Component {
                 const duration = b.diff(a,'minutes',true)
                 eventArray.push({
                     id: index,
-                    title: event.note,
+                    title: event.title,
                     start: new Date(start_time),
                     end: new Date(end_time),
                     desc: duration
@@ -435,11 +467,11 @@ class AdminCalendar extends Component {
                 const start_time = new moment(event.start_time).format()
                 const end_time =  new moment(event.end_time).format()
                 const a = new moment(event.start_time)
-                const b = new moment(event.end_time)
+                const b = new moment(event.end_time)``
                 const duration = a.diff(b,'hours',true)
                 attendanceArray.push({
                     id: index,
-                    title: event.note,
+                    title: event.title,
                     start: new Date(start_time),
                     end: new Date(end_time),
                     desc: duration
@@ -468,6 +500,11 @@ class AdminCalendar extends Component {
     this.getAttendance();
     this.getEvent(uid);
   }
+componentDidUpdate(prevProps, prevState){
+    if(prevState.data.events !== this.state.data.events){
+        console.log("update");
+    }
+}
   toggleDetail(event) {
     // console.log(event);
     let b = new Promise((resolve) => {
@@ -505,23 +542,42 @@ class AdminCalendar extends Component {
         }))
     }) 
   }
-  openAdd(times){
-      console.log(times.end);
+  openAdd(times,event){
+    //   console.log(times.end);
+    if (times !== undefined){
+        this.setState( prevState => ({
+            data: {
+            ...prevState.data,
+            add: {
+                status: !this.state.data.add.status,
+                dataModal:{
+                    start: times.start,
+                    end: times.end
+                }
+            }
+            }
+        }));
+    }
+    this.getEvent();
+    this.getAttendance();
+  }
+  saveEvent(event){
     this.setState( prevState => ({
         data: {
         ...prevState.data,
         add: {
             status: !this.state.data.add.status,
             dataModal:{
-                start: times.start,
-                end: times.end
+                start: '',
+                end: ''
             }
         }
         }
     }));
   }
-  saveEvent(event){
-
+  regetEvent(){
+      this.getEvent();
+      this.getAttendance();
   }
   render() {
     let rtl = this.state.culture === 'en'
@@ -530,7 +586,7 @@ class AdminCalendar extends Component {
         <Card>
             <CardBody>
                 <ShowAttDetail data = { this.state.data.detail} toggleDetail = {this.toggleDetail}/>
-                <AddEvents data = {this.state.data.add} openAdd = {this.openAdd}/>
+                <AddEvents data = {this.state.data.add} openAdd = {this.openAdd} regetEvent = {this.regetEvent}/>
                 <Calendar
                     selectable
                     localizer={localizer}
