@@ -89,7 +89,7 @@ class TeamList extends Component {
     // const team_id = JSON.parse(localStorage.getItem('userInfo')).teamid;
     actionService.getUserlist().then(res => {
 
-      const users = res.data;
+      const users = res.data.data;
       // console.log(users);
       var uidArray = [];
       users.map((user,index)=>{

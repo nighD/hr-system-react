@@ -83,7 +83,7 @@ class EditDetail extends Component {
   componentDidMount() {
     const uid =this.props.location.state.uid;
     actionService.getUserdetail(uid).then(res => {
-      const person = res.data[0];
+      const person = res.data.data;
       person.emp_dob = person.emp_dob.substring(0,10);
       this.setState( {person} ); 
         if (this.state.person.emp_gender === 'male'){

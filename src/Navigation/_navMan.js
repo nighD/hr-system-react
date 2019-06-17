@@ -65,14 +65,36 @@ export default {
         class: ''             // optional class names space delimited list for title item ex: "text-center"
       },
       {
-        name: 'Leave Detail',
-        url: '/leave_detail',
-        icon: 'fa fa-sticky-note',
-      },
-      {
-        name: 'Request Leave',
-        url: '/leave_request',
-        icon: 'fa fa-sticky-note-o',
+        name: 'List',
+        url: '/leave',
+        icon: 'fa fa-list-alt',
+        children: [
+          {
+            name: 'All',
+            url: '/leave/all',
+            icon: 'fa fa-list-alt',
+          },
+          {
+            name: 'Draft',
+            url: '/leave/draft',
+            icon: 'fa fa-list-alt',
+          },
+          {
+            name: 'In Process',
+            url: '/leave/pending',
+            icon: 'fa fa-list-alt',
+          },
+          {
+            name: 'Approved',
+            url: '/leave/approved',
+            icon: 'fa fa-list-alt',
+          },
+          {
+            name: 'Rejected',
+            url: '/leave/rejected',
+            icon: 'fa fa-list-alt',
+          },
+        ],
       },
       {
         title: true,

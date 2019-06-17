@@ -15,22 +15,13 @@ var data = {
   events: []
 }
 class CalendarView extends Component {
-  // state = {
-  //   events: [
-  //     {
-  //       start: new Date("2019-06-24"),
-  //       end: new Date("2019-06-24"),
-  //       title: "Example Calendar"
-  //     }
-  //   ]
-  // };
   constructor(props){
     super(props);
     this.state = {data};
   }
   getAttendance(){
     actionService.getEvent().then(res => {
-        const events = res.data;
+        const events = res.data.data;
         let eventPromises = new Promise((resolve) => {
             let eventArray = []
             events.map((event,index)=>{
@@ -64,7 +55,7 @@ class CalendarView extends Component {
   }
   getEvent(uid){
     actionService.getAttdetail(uid).then(res => {
-        const events = res.data;
+        const events = res.data.data;
         let attendancePromises = new Promise((resolve) => {
             let attendanceArray = []
             events.map((event,index)=>{

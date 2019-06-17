@@ -20,7 +20,7 @@ class TeamListDetail extends Component {
     // const team_id = JSON.parse(localStorage.getItem('userInfo')).teamid;
     const team_id =this.props.location.state.team_id;
     actionService.getTeamdetail(team_id).then(res => {
-      const data = res.data;
+      const data = res.data.data;
       console.log(this.props);
       this.setState({data});
       // console.log(this.state.data.User_Infos.map(user => (

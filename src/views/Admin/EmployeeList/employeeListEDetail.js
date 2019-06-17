@@ -84,7 +84,7 @@ class EditDetail extends Component {
     const uid =JSON.parse(localStorage.getItem('authUser')).uid;
     
     actionService.getUserdetail(uid).then(res => {
-      const data = res.data[0];
+      const data = res.data.data;
       data.emp_dob = data.emp_dob.substring(0,10);
       console.log(data);
       this.setState( {data} );

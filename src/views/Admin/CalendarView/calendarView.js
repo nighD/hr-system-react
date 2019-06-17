@@ -39,6 +39,7 @@ import {
   KeyboardTimePicker,
 } from '@material-ui/pickers';
 import { isNull } from "util";
+import { events } from "../../../constants/url";
 
 const promiseOptions = inputValue =>
   new Promise(resolve => {
@@ -65,7 +66,7 @@ var data = {
 }
 let selectOptions = [];
 actionService.getUserlist().then(res=>{
-    let users = res.data;
+    let users = res.data.data;
     users.map(user => {
         const a = {
             value: user.id,
@@ -148,6 +149,7 @@ function AddEvents(props){
       };
     const sendValues = e => {
         e.preventDefault();
+        console.log(e);
         // console.log(form)
         let idArray = [];
         let arrayList = form.inputValue;
@@ -171,15 +173,20 @@ function AddEvents(props){
         }
         actionService.addEvent(data);
         console.log(form.title);
-
+        console.log()
       };
       function ButtonSave(props){
         let aa = {
             start: new moment(form.start).format("YYYY-MM-DD hh:mm:ss"),
             end: new moment(form.end).format("YYYY-MM-DD hh:mm:ss")
         };
+        let event = {
+            title: form.title,
+            start: new moment(form.start).format("YYYY-MM-DD hh:mm:ss"),
+            end: new moment(form.end).format("YYYY-MM-DD hh:mm:ss")
+        }
           return (
-            <Button color="primary" onClick = {(e) => {sendValues(e); props.openAdd(aa); props.regetEvent()}} >Save</Button>
+            <Button color="primary" onClick = {(e) => {sendValues(e); props.openAdd(aa);props.refreshE(event)}} >Save</Button>
           )
       }
     return (
@@ -317,7 +324,7 @@ function AddEvents(props){
                     </Form>
         </ModalBody>
         <ModalFooter>
-            <ButtonSave openAdd = {props.openAdd} regetEvent = {props.regetEvent}/>{' '}
+            <ButtonSave openAdd = {props.openAdd} refreshE = {props.refreshE}/>{' '}
             <Button color="danger" onClick={props.openAdd}>Cancel</Button>
         </ModalFooter>
         </Modal>
@@ -421,12 +428,12 @@ class AdminCalendar extends Component {
     this.state = {data};
     this.toggleDetail = this.toggleDetail.bind(this);
     this.openAdd = this.openAdd.bind(this);
-    this.regetEvent = this.regetEvent.bind(this);
+    this.refreshE = this.refreshE.bind(this);
   }
 
   getAttendance(){
     actionService.getEvent().then(res => {
-        const events = res.data;
+        const events = res.data.data;
         let eventPromises = new Promise((resolve) => {
             let eventArray = []
             events.map((event,index)=>{
@@ -459,7 +466,7 @@ class AdminCalendar extends Component {
   }
   getEvent(uid){
     actionService.getAttdetail(uid).then(res => {
-        const events = res.data;
+        const events = res.data.data;
         let attendancePromises = new Promise((resolve) => {
             let attendanceArray = []
             events.map((event,index)=>{
@@ -500,11 +507,16 @@ class AdminCalendar extends Component {
     this.getAttendance();
     this.getEvent(uid);
   }
-componentDidUpdate(prevProps, prevState){
-    if(prevState.data.events !== this.state.data.events){
-        console.log("update");
-    }
-}
+// componentDidUpdate(prevProps, prevState){
+
+//     // console.log(prevState.data.events !== this.state.data.events);
+//     if(prevState.data.events.length !== this.state.data.events.length){
+//         // this.regetEvent();
+//         console.log(prevState.data.events);
+//         console.log(this.state.data.events);
+//         console.log("update");
+//     }
+// }
   toggleDetail(event) {
     // console.log(event);
     let b = new Promise((resolve) => {
@@ -558,8 +570,6 @@ componentDidUpdate(prevProps, prevState){
             }
         }));
     }
-    this.getEvent();
-    this.getAttendance();
   }
   saveEvent(event){
     this.setState( prevState => ({
@@ -575,10 +585,42 @@ componentDidUpdate(prevProps, prevState){
         }
     }));
   }
-  regetEvent(){
-      this.getEvent();
-      this.getAttendance();
+  refreshE(event){
+    let temp = this.state.data.events;
+    console.log(temp.length);
+    console.log(event);
+    let tempevent = {
+        id: temp.length,
+        title: event.title,
+        start: event.start,
+        end: event.end,
+        desc: null
+    }
+    temp.push(tempevent)
+    this.setState( prevState => ({
+        data: {
+            ... prevState.data,
+            events: temp
+        }
+    }));
+    console.log(this.state.data.events.length);
+    // this.setState( prevState => ({
+    //     data: {
+    //     ...prevState.data,
+    //     add: {
+    //         status: !this.state.data.add.status,
+    //         dataModal:{
+    //             start: '',
+    //             end: ''
+    //         }
+    //     }
+    //     }
+    // }));
   }
+//   regetEvent(event){
+//       this.getEvent();
+//       this.getAttendance();
+//   }
   render() {
     let rtl = this.state.culture === 'en'
     return (
@@ -586,7 +628,7 @@ componentDidUpdate(prevProps, prevState){
         <Card>
             <CardBody>
                 <ShowAttDetail data = { this.state.data.detail} toggleDetail = {this.toggleDetail}/>
-                <AddEvents data = {this.state.data.add} openAdd = {this.openAdd} regetEvent = {this.regetEvent}/>
+                <AddEvents data = {this.state.data.add} openAdd = {this.openAdd} refreshE = {this.refreshE}/>
                 <Calendar
                     selectable
                     localizer={localizer}

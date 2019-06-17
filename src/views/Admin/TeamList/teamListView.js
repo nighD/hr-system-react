@@ -55,8 +55,8 @@ class TeamList extends Component {
     
     // const team_id = JSON.parse(localStorage.getItem('userInfo')).teamid;
     actionService.getTeamlist().then(res => {
-        console.log(res.data);
-        const teams = res.data;
+        console.log(res.data.data);
+        const teams = res.data.data;
         
         console.log(teams);
         teams.map((team,index)=>{

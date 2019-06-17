@@ -80,7 +80,8 @@ componentDidMount() {
     console.log("Personal Info")
     const uid =JSON.parse(localStorage.getItem('authUser')).uid;
     actionService.getUserdetail(uid).then(res => {
-      const person = res.data[0];
+      const person = res.data.data;
+      console.log(res.data.data);
       person.emp_dob = person.emp_dob.substring(0,10);
       this.setState( {person} ); 
         if (this.state.person.emp_gender === 'male'){

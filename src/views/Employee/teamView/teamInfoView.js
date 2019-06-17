@@ -7,20 +7,7 @@ import hulk from '../../../assets/img/hulk.png';
 import thor from '../../../assets/img/thor.png';
 import spider from '../../../assets/img/spider.png';
 import ant from '../../../assets/img/ant.png';
-function MemberList(props){
-  const members = props.members;
-  const listMember = members.map((member)=>
-    <tr>
-      <td>Avram Tarasios</td>
-      <td>2012/02/01</td>
-      <td>Staff</td>
-      <td>
-        <Badge color="danger">Banned</Badge>
-      </td>
-    </tr>
-  );
-  return listMember;
-}
+
 // function teamView (props) {
 //   return ()
 // }
@@ -31,15 +18,12 @@ class TeamDetail extends Component {
   }
   componentDidMount(){
     const team_id = JSON.parse(localStorage.getItem('userInfo')).teamid;
+    console.log(team_id);
     actionService.getTeamdetail(team_id).then(res => {
-      const data = res.data;
-      console.log(this.props);
+      const data = res.data.data[0];
+      console.log(res.data.data);
       this.setState({data});
-      // console.log(this.state.data.User_Infos.map(user => (
-        // console.log(user)
-      // )));
-      // console.lof(this.props)
-      
+      console.log(this.state.data[0])
     })
   }
   render() {

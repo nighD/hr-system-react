@@ -70,14 +70,9 @@ export default {
       class: ''             // optional class names space delimited list for title item ex: "text-center"
     },
     {
-      name: 'Leave Detail',
-      url: '/leave_detail',
+      name: 'Leave List',
+      url: '/leave_emp_list',
       icon: 'fa fa-sticky-note',
-    },
-    {
-      name: 'Request Leave',
-      url: '/leave_request',
-      icon: 'fa fa-sticky-note-o',
     },
     {
       title: true,
