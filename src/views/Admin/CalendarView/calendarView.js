@@ -93,7 +93,7 @@ function AsyncMulti(props) {
           options={selectOptions}
         />
       );
-  }
+}
 function AddEvents(props){
 
     // console.log(props);
@@ -312,7 +312,7 @@ function AddEvents(props){
                                 <Col md="4">
                                     <InputGroupAddon addonType="prepend" >
                                         <InputGroupText className="col-md-12">
-                                            Duration
+                                            Attendees
                                         </InputGroupText>
                                     </InputGroupAddon>
                                 </Col>
@@ -403,7 +403,7 @@ function ShowAttDetail(props){
                                 <Col md="4">
                                     <InputGroupAddon addonType="prepend" >
                                         <InputGroupText className="col-md-12">
-                                            Duration
+                                            Attendees
                                         </InputGroupText>
                                     </InputGroupAddon>
                                 </Col>
@@ -504,8 +504,8 @@ class AdminCalendar extends Component {
   }
   componentDidMount(){
     const uid =JSON.parse(localStorage.getItem('authUser')).uid;
-    this.getAttendance();
-    this.getEvent(uid);
+    // this.getAttendance();
+    // this.getEvent(uid);
   }
 // componentDidUpdate(prevProps, prevState){
 

@@ -149,6 +149,7 @@ class EditDetail extends Component {
                               type="text" 
                               id="emp_fname" 
                               name ="emp_fname" 
+                              autoComplete
                               placeholder="Enter your first name"  
                               defaultValue = {this.state.data.emp_fname}
                               onChange={this.handleChange}
@@ -163,6 +164,7 @@ class EditDetail extends Component {
                             id="emp_lname" 
                             name="emp_lname" 
                             placeholder="Enter your last name"  
+                            autoComplete
                             defaultValue = {this.state.data.emp_lname}
                             onChange={this.handleChange}
                           />
@@ -192,7 +194,8 @@ class EditDetail extends Component {
                           type="date" 
                           id="date-input" 
                           name="emp_dob" 
-                          placeholder="date"  
+                          placeholder="date"
+                          autoComplete  
                           defaultValue = {this.state.data.emp_dob}
                           onChange={this.handleChange} 
                         />
@@ -205,6 +208,7 @@ class EditDetail extends Component {
                               type="text" 
                               id="-input1" 
                               name="emp_status"  
+                              autoComplete
                               defaultValue = {this.state.data.emp_status}
                               onChange={this.handleChange} 
                             />
@@ -217,7 +221,8 @@ class EditDetail extends Component {
                             type="number" 
                             id="phoneNumber" 
                             name = "emp_phone" 
-                            placeholder="Enter phone number"  
+                            placeholder="Enter phone number" 
+                            autoComplete 
                             defaultValue = {this.state.data.emp_phone}
                             onChange={this.handleChange}
                           />
@@ -228,7 +233,7 @@ class EditDetail extends Component {
                       <Col className="pr-md-1" md="6">
                         <FormGroup>
                           <Label htmlFor="select">Gender</Label>
-                          <Input type="select" name="emp_gender" id="select" required  onChange = {this.handleChange}>
+                          <Input autoComplete type="select" name="emp_gender" id="select" required  onChange = {this.handleChange}>
                           <option value="0" >Please select</option>
                           <option value="1" ref ={this.gender_male}>Male</option>
                           <option value="2" ref ={this.gender_female}>Female</option>
@@ -243,6 +248,7 @@ class EditDetail extends Component {
                             type="text" 
                             id="-input" 
                             name="emp_role"  
+                            autoComplete
                             defaultValue = {this.state.data.emp_role}
                             onChange={this.handleChange} 
                           />
@@ -257,6 +263,7 @@ class EditDetail extends Component {
                             type="text" 
                             id="street" 
                             name = "emp_street" 
+                            autoComplete
                             placeholder="Enter street name"   
                             defaultValue = {this.state.data.emp_street}
                             onChange={this.handleChange}
@@ -272,7 +279,8 @@ class EditDetail extends Component {
                             type="text" 
                             id="city" 
                             name = "emp_city" 
-                            placeholder="Enter your city"  
+                            placeholder="Enter your city"
+                            autoComplete  
                             defaultValue = {this.state.data.emp_city}
                             onChange={this.handleChange}
                           />
@@ -285,7 +293,8 @@ class EditDetail extends Component {
                             type="text" 
                             id="country" 
                             name = "emp_country" 
-                            placeholder="Country name"  
+                            placeholder="Country name" 
+                            autoComplete 
                             defaultValue = {this.state.data.emp_country}
                             onChange={this.handleChange}
                           />
@@ -299,6 +308,7 @@ class EditDetail extends Component {
                             id="postal-code" 
                             name = "emp_postal" 
                             placeholder="Postal Code"  
+                            autoComplete
                             defaultValue = {this.state.data.emp_postal}
                             onChange={this.handleChange}
                           />

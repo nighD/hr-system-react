@@ -162,11 +162,7 @@ function FormDialog() {
             a.then(() => {
                 getManagers();
             })
-            // console.log("during");
-            // getManagers();
-            // console.log("end");
         })
-        // getManagers();
     }
     function getManagers(){
         actionService.getManagers().then(res => {
@@ -182,9 +178,6 @@ function FormDialog() {
                 })
               }
           })
-          console.log(arrays)
-        //   setValues({ ...values, approver: data.User_Infos[0].emp_fname+ " " + data.User_Infos[0].emp_lname });
-        //   console.log(res.data.data)
         })
     }
     const handleChange = name => event => {
@@ -523,14 +516,6 @@ class Leave_Emp_List extends Component {
         <Card>
         <CardBody>
         <FormDialog></FormDialog>
-        {/* <ShowForm data = { this.state.formModal} toggleForm = {this.toggleForm}/> */}
-        {/* <Pagination size="md">
-            <PaginationItem >
-                <PaginationLink tag="button" onClick = {this.toggleForm}>
-                    + New Request
-                </PaginationLink> 
-            </PaginationItem>
-        </Pagination> */}
         <Row className="align-items-center mt-3">
             <Col col="2" sm="4" md="2" xl className="mb-3 mb-xl-0">
                 <Button block color={this.state.colors.all} className ="btn-pill" onClick ={this.checkTable.bind(this,0)} >All</Button>

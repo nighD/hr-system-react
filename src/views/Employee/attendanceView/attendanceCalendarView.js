@@ -93,8 +93,8 @@ class CalendarView extends Component {
   }
   componentDidMount(){
     const uid =JSON.parse(localStorage.getItem('authUser')).uid;
-    this.getAttendance();
-    this.getEvent(uid);
+    // this.getAttendance();
+    // this.getEvent(uid);
     // console.log(newArray)
   }
 

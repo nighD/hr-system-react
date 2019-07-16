@@ -48,6 +48,7 @@ const Perfor_Update = React.lazy(() => import('./views/Employee/performanceView/
 const Payroll_Sum = React.lazy(() => import('./views/Employee/payrollView/payrollSummaryView'));
 const Payroll_Detail = React.lazy(() => import('./views/Employee/payrollView/payrollDetailView'));
 const Payroll_Cal = React.lazy(() => import('./views/Employee/payrollView/payrollCalculationView'));
+const Data_Report = React.lazy(() => import('./views/Admin/DataVisualization/dataReport'));
 // const Reset_Password = React.lazy(() => import('./views/Users/User'));
 // const Change_Password = React.lazy(() => import('./views/Users/User'));
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
@@ -60,7 +61,7 @@ const routes = [
   { path: '/admcalendar', exact: true, name: 'Admin Calendar', component: AdminCalendar },
   { path: '/att_calendar', exact: true, name: 'Attendance Detail', component: Att_Detail },
   { path: '/leave_emp_list', exact: true, name: 'Leave List', component: Leave_Emp_List },
-  // { path: '/leave_request', exact: true, name: 'Leave Request', component: Leave_Request },
+  { path: '/data_report', exact: true, name: 'Data Report', component: Data_Report },
   { path: '/perfor_list', exact: true, name: 'Performance List', component: Perfor_List },
   { path: '/perfor_detail', exact: true, name: 'Performance Detail', component: Perfor_Detail },
   { path: '/perfor_update', exact: true, name: 'Performance Update', component: Perfor_Update },

@@ -40,3 +40,70 @@ export function getLeavesStatus(status) {
 export function getEmpLeaveList(id) {
     return baseService(constants.GET_METHOD, constants.baseURL + constants.leaves + id);
 }
+export function getColumnsName(){
+    return baseService(constants.GET_METHOD,constants.baseURL_data + constants.columns_name);
+}
+export function getData(){
+    return baseService(constants.GET_METHOD,constants.baseURL_data + constants.get_data);
+}
+export function getDataReport(id){
+    switch(id) {
+        case 1:
+            return baseService(constants.GET_METHOD,constants.baseURL_data + constants.age_distribution);
+        case 2:
+            return baseService(constants.GET_METHOD,constants.baseURL_data + constants.education_field);
+        case 3:
+            return baseService(constants.GET_METHOD,constants.baseURL_data + constants.gender_distribution);
+        case 4:
+            return baseService(constants.GET_METHOD,constants.baseURL_data + constants.marital_distribution);
+        case 5:
+            return baseService(constants.GET_METHOD,constants.baseURL_data + constants.distance_distribution);
+        case 6:
+            return baseService(constants.GET_METHOD,constants.baseURL_data + constants.department);
+        case 7:
+            return baseService(constants.GET_METHOD,constants.baseURL_data + constants.business_travel);
+        case 8:
+            return baseService(constants.GET_METHOD,constants.baseURL_data + constants.job_role);
+        case 9:
+            return baseService(constants.GET_METHOD,constants.baseURL_data + constants.job_level);
+        case 10:
+            return baseService(constants.GET_METHOD,constants.baseURL_data + constants.job_involve);
+        case 11:
+            return baseService(constants.GET_METHOD,constants.baseURL_data + constants.training_last_year);
+        case 12:
+            return baseService(constants.GET_METHOD,constants.baseURL_data + constants.companies_worked);
+        case 13:
+            return baseService(constants.GET_METHOD,constants.baseURL_data + constants.years_at_company);
+        case 14:
+            return baseService(constants.GET_METHOD,constants.baseURL_data + constants.years_in_current_role);
+        case 15:
+            return baseService(constants.GET_METHOD,constants.baseURL_data + constants.years_in_last_promotion);
+        case 16:
+            return baseService(constants.GET_METHOD,constants.baseURL_data + constants.total_work_years);
+        case 17:
+            return baseService(constants.GET_METHOD,constants.baseURL_data + constants.years_with_curr_manager);
+        case 18:
+            return baseService(constants.GET_METHOD,constants.baseURL_data + constants.work_life_balance);
+        case 19:
+            return baseService(constants.GET_METHOD,constants.baseURL_data + constants.over_time);
+        case 20:
+            return baseService(constants.GET_METHOD,constants.baseURL_data + constants.monthly_income);
+        case 21:
+            return baseService(constants.GET_METHOD,constants.baseURL_data + constants.percent_salary_hike);
+        case 22:
+            return baseService(constants.GET_METHOD,constants.baseURL_data + constants.stock_option_level);
+        case 23:
+            return baseService(constants.GET_METHOD,constants.baseURL_data + constants.env_satis);
+        case 24:
+            return baseService(constants.GET_METHOD,constants.baseURL_data + constants.job_satis);
+        case 25:
+            return baseService(constants.GET_METHOD,constants.baseURL_data + constants.relationship_satis);
+        case 26:
+            return baseService(constants.GET_METHOD,constants.baseURL_data + constants.performance_rating);
+        default: 
+
+
+    }
+
+     
+}
