@@ -7,6 +7,11 @@ export function getUserlist() {
 export function getUserdetail(uid) {
     return baseService(constants.GET_METHOD, constants.baseURL + constants.userDetail + uid);
 }
+
+export function findUserByName(name){
+    return baseService(constants.GET_METHOD,constants.baseURL + constants.userName + name)
+}
+
 export function getManagers() {
     return baseService(constants.GET_METHOD, constants.baseURL + constants.userManager);
 }
@@ -40,6 +45,23 @@ export function getLeavesStatus(status) {
 export function getEmpLeaveList(id) {
     return baseService(constants.GET_METHOD, constants.baseURL + constants.leaves + id);
 }
+
+export function getGoalList(id){
+    return baseService(constants.GET_METHOD,constants.baseURL + constants.goalListEmp + id)
+}
+
+export function getGoalID(id){
+    return baseService(constants.GET_METHOD,constants.baseURL + constants.goalListID + id)
+}
+
+export function updateGoalID(id,goal){
+    return baseService(constants.PUT_METHOD, constants.baseURL + constants.goalUpdateID + id,goal)
+}
+
+
+
+
+
 export function getColumnsName(){
     return baseService(constants.GET_METHOD,constants.baseURL_data + constants.columns_name);
 }

@@ -40,8 +40,8 @@ import {
 //   </div>
 // );
 
-let statea = {
-  
+const state = {
+  person : {
     id:'',
     emp_lname: '',
     emp_fname: '',
@@ -57,7 +57,7 @@ let statea = {
     emp_postal: '',
     emp_country:'',
     emp_uid:'',
-  
+  }
 }
 const ButtonSubmit = withRouter(({ history }) => (
   <Button type="button" 
@@ -77,51 +77,51 @@ class EditDetail extends Component {
       this.gender_female = React.createRef();
       this.gender_other = React.createRef();
       this.handleChange = this.handleChange.bind(this);
-      this.state = { data : [] };
+      this.state = { ...state };
 
   }
   componentDidMount() {
-    const uid =this.props.location.state.uid;
+    const uid =JSON.parse(localStorage.getItem('authUser')).uid;
+    console.log(uid);
     actionService.getUserdetail(uid).then(res => {
       const person = res.data.data;
+      console.log(person);
       person.emp_dob = person.emp_dob.substring(0,10);
       this.setState( {person} ); 
-        if (this.state.person.emp_gender === 'male'){
-          this.gender_male.current.selected = true;
-        }
-        else if (this.state.person.emp_gender === 'female'){
-          this.gender_female.current.selected = true;
-        }
-        else if (this.state.person.emp_gender === 'other') {
-          this.gender_other.current.selected = true;
-        }
-        else {
+      if (this.state.person.emp_gender === 'male'){
+        this.gender_male.current.selected = true;
+      }
+      else if (this.state.person.emp_gender === 'female'){
+        this.gender_female.current.selected = true;
+      }
+      else if (this.state.person.emp_gender === 'other') {
+        this.gender_other.current.selected = true;
+      }
+      else {
           
-        }
-        localStorage.setItem('userInfo',JSON.stringify(person));
+      }
+      console.log(this.state);
+      localStorage.setItem('userInfo',JSON.stringify(person));
     })
+
   }
   onSubmit = event => {
     event.preventDefault();
-    console.log(this.state.data);
+    console.log(this.state.person);
     const uid =JSON.parse(localStorage.getItem('authUser')).uid;
-    actionService.updateUserdetail(uid,this.state.data);
+    actionService.updateUserdetail(uid,this.state.person);
     this.props.history.push(ROUTES.DETAIL);
   };
 
   handleChange = (event) => {
     const {name, value} = event.target
-    // let data = {...this.state.data}
+    // let data = {...this.state.person}
     // data. = value
     // console.log(data.(name))
      this.setState( prevState => ({
-       data: {
-        ...prevState.data,
+        ...prevState.person,
         [name] : value
-       }
-     })
-      
-      );
+     }));
   };
 
   render() {
@@ -151,7 +151,7 @@ class EditDetail extends Component {
                               name ="emp_fname" 
                               autoComplete
                               placeholder="Enter your first name"  
-                              defaultValue = {this.state.data.emp_fname}
+                              defaultValue = {this.state.person.emp_fname}
                               onChange={this.handleChange}
                             />
                         </FormGroup>
@@ -165,7 +165,7 @@ class EditDetail extends Component {
                             name="emp_lname" 
                             placeholder="Enter your last name"  
                             autoComplete
-                            defaultValue = {this.state.data.emp_lname}
+                            defaultValue = {this.state.person.emp_lname}
                             onChange={this.handleChange}
                           />
                         </FormGroup>
@@ -179,7 +179,7 @@ class EditDetail extends Component {
                             name="emp_email" 
                             placeholder="Enter Email" 
                             autoComplete="email"  
-                            defaultValue = {this.state.data.emp_email}
+                            defaultValue = {this.state.person.emp_email}
                             onChange={this.handleChange}
                           />
                           <FormText className="help-block">Please enter your email</FormText>
@@ -196,7 +196,7 @@ class EditDetail extends Component {
                           name="emp_dob" 
                           placeholder="date"
                           autoComplete  
-                          defaultValue = {this.state.data.emp_dob}
+                          defaultValue = {this.state.person.emp_dob}
                           onChange={this.handleChange} 
                         />
                         </FormGroup>
@@ -209,7 +209,7 @@ class EditDetail extends Component {
                               id="-input1" 
                               name="emp_status"  
                               autoComplete
-                              defaultValue = {this.state.data.emp_status}
+                              defaultValue = {this.state.person.emp_status}
                               onChange={this.handleChange} 
                             />
                         </FormGroup>
@@ -223,7 +223,7 @@ class EditDetail extends Component {
                             name = "emp_phone" 
                             placeholder="Enter phone number" 
                             autoComplete 
-                            defaultValue = {this.state.data.emp_phone}
+                            defaultValue = {this.state.person.emp_phone}
                             onChange={this.handleChange}
                           />
                         </FormGroup>
@@ -249,7 +249,7 @@ class EditDetail extends Component {
                             id="-input" 
                             name="emp_role"  
                             autoComplete
-                            defaultValue = {this.state.data.emp_role}
+                            defaultValue = {this.state.person.emp_role}
                             onChange={this.handleChange} 
                           />
                         </FormGroup>
@@ -265,7 +265,7 @@ class EditDetail extends Component {
                             name = "emp_street" 
                             autoComplete
                             placeholder="Enter street name"   
-                            defaultValue = {this.state.data.emp_street}
+                            defaultValue = {this.state.person.emp_street}
                             onChange={this.handleChange}
                           />
                         </FormGroup>
@@ -281,7 +281,7 @@ class EditDetail extends Component {
                             name = "emp_city" 
                             placeholder="Enter your city"
                             autoComplete  
-                            defaultValue = {this.state.data.emp_city}
+                            defaultValue = {this.state.person.emp_city}
                             onChange={this.handleChange}
                           />
                         </FormGroup>
@@ -295,7 +295,7 @@ class EditDetail extends Component {
                             name = "emp_country" 
                             placeholder="Country name" 
                             autoComplete 
-                            defaultValue = {this.state.data.emp_country}
+                            defaultValue = {this.state.person.emp_country}
                             onChange={this.handleChange}
                           />
                         </FormGroup>
@@ -309,7 +309,7 @@ class EditDetail extends Component {
                             name = "emp_postal" 
                             placeholder="Postal Code"  
                             autoComplete
-                            defaultValue = {this.state.data.emp_postal}
+                            defaultValue = {this.state.person.emp_postal}
                             onChange={this.handleChange}
                           />
                         </FormGroup>
@@ -328,7 +328,7 @@ class EditDetail extends Component {
                         <Label htmlFor="password-input">Password</Label>
                       </Col>
                       <Col xs="12" md="9">
-                        <Input type="password" id="password-input" name="password-input" placeholder="Password" autoComplete="new-password"   value = {this.state.data.person.emp_pass}/>
+                        <Input type="password" id="password-input" name="password-input" placeholder="Password" autoComplete="new-password"   value = {this.state.person.person.emp_pass}/>
                         <FormText className="help-block">Please enter a complex password</FormText>
                       </Col>
                     </FormGroup> */}
@@ -363,9 +363,9 @@ class EditDetail extends Component {
                         className="avatar"
                         src={captain}
                       />
-                      <h5 className="title">{this.state.data.emp_lname + ' ' + this.state.data.emp_fname}</h5>
+                      <h5 className="title">{this.state.person.emp_lname + ' ' + this.state.person.emp_fname}</h5>
                     </a>
-                    <p className="description">{this.state.data.emp_role}</p>
+                    <p className="description">{this.state.person.emp_role}</p>
                   </div>
                   <div className="card-description">
                     “Doesn't matter what the press says. Doesn't matter what the politicians or the mobs say. 

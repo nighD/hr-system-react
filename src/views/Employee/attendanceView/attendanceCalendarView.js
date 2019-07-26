@@ -108,7 +108,7 @@ class CalendarView extends Component {
                 <Calendar
                     localizer={localizer}
                     defaultDate={new Date()}
-                    defaultView={Calendar.Views.WEEK}
+                    defaultView={Calendar.Views.MONTH}
                     timeslots={8}
                     step={15}
                     rtl = {rtl}

@@ -1,10 +1,15 @@
 export const GET_METHOD = 'GET'
 export const POST_METHOD = 'POST'
 export const PUT_METHOD = 'PUT'
+
+
+
+// HR database
 export const baseURL = 'http://localhost:3000/'
 export const userList = 'api/users/'
 export const userDetail = 'api/users/'
 export const userManager = 'api/users/manager/'
+export const userName = 'api/users/name/'
 export const teamList = 'api/teams/'
 export const teamDetail = 'api/teams/'
 export const teamManager = 'api/teams/manager/'
@@ -12,8 +17,13 @@ export const emp_att_detail = 'api/emp_att_detail/'
 export const events = 'api/events/'
 export const leaves = 'api/leaves/'
 export const leaves_status = 'api/leaves/status/'
+export const goalListEmp = 'api/goals/emp/'
+export const goalListID = 'api/goals/'
+export const goalUpdateID = 'api/goals/'
+
+
+// Machine Learning
 export const baseURL_data = 'http://127.0.0.1:5000/'
-// export const data_report = 'data_report'
 export const age_distribution ='age_distribution'
 export const education_field ='education_field'
 export const gender_distribution ='gender_distribution'
@@ -42,3 +52,4 @@ export const relationship_satis ='relationship_satis'
 export const performance_rating ='performance_rating'
 export const columns_name ='get_columns_name'
 export const get_data ='get_data'
+

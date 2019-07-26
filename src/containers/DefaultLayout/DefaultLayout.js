@@ -51,26 +51,19 @@ class DefaultLayout extends Component {
   }
   
   render(){
-    // console.log(routes);
-    // console.log("Bao");
-    // console.log(this.localStorage.getItem('authUser'));
       var isLoggedIn = false;
       if (localStorage.getItem('authUser')){
         isLoggedIn = true;
         const authUser0 = JSON.parse(localStorage.getItem('authUser'));
         var condition = '';
-        console.log(authUser0.roles.ADMIN);
         if (authUser0.roles.ADMIN === ROLES.ADMIN){
           condition = 'admin';
-          console.log(condition);
         }
         else if (authUser0.roles.ADMIN === ROLES.MANAGER) {
           condition = 'manager';
-          console.log(condition);
         }
         else {
           condition = 'employee';
-          console.log(condition);
         }
       }
       else {
@@ -81,9 +74,6 @@ class DefaultLayout extends Component {
       <AuthUserContext.Consumer>
           {authUser =>
             authUser ? (
-  //          3. '.sidebar-off-canvas'		- Off Canvas Sidebar
-  // 4. '.sidebar-minimized'			- Minimized Sidebar (Only icons)
-  // 5. '.sidebar-compact'			  - Compact Sidebar
             <div className="app">
                 <AppHeader fixed className="bg-gray-400">
                   <Suspense  fallback={this.loading()}>

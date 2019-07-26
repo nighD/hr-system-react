@@ -251,13 +251,6 @@ class LeaveList extends Component {
         <div className="animated fadeIn">
         <Card>
         <CardBody>
-        <Pagination size="md">
-            <PaginationItem >
-                <PaginationLink tag="button">
-                    + New Request
-                </PaginationLink> 
-            </PaginationItem>
-        </Pagination>
         <Row className="align-items-center mt-3">
             <Col col="2" sm="4" md="2" xl className="mb-3 mb-xl-0">
                 <Button block color={this.state.colors.all} className ="btn-pill" onClick ={this.checkTable.bind(this,0)} >All</Button>

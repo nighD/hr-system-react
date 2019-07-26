@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Badge, Card, CardBody, CardHeader, Col, CardText,CardFooter, Row, Table, Pagination, PaginationItem, PaginationLink } from 'reactstrap';
+import React, { Component,useState } from 'react';
+import { Badge, Card, CardBody, CardHeader, Col, CardText,CardFooter, Row, Table, Pagination, PaginationItem, PaginationLink,    Label } from 'reactstrap';
 import * as actionService from '../../../services/actionService';
 import { MDBDataTable,MDBBtn,MDBTableHead,MDBTableBody,MDBTable } from 'mdbreact';
 import {Button} from 'reactstrap';
@@ -13,6 +13,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import MenuItem from '@material-ui/core/MenuItem';
+import AsyncSelect from 'react-select/async';
 var data = {
     columns:[
         {
@@ -80,13 +81,8 @@ const useStyles = makeStyles(theme => ({
       marginRight: 100,
       width: 644
   },
-  dense: {
-    marginTop: 19,
-  },
-  menu: {
-    width: 200,
-  },
 }));
+let selectOptionsEmployee = [];
 const progress = [
   {
     value: '0%',
@@ -115,6 +111,39 @@ const status = [
     value: 'Complete',
   },
 ];
+const unique = (value, index, self) => {
+    return self.indexOf(value) === index
+  }
+async function optionsForEmployee(search) {
+    let response = await actionService.findUserByName(search);
+    let data = await response.data.data;
+    selectOptionsEmployee = []
+    data.map((element,index) => {
+        let dropDownEle = { label: element.emp_fname + " " + element.emp_lname, value: element.emp_uid };
+        selectOptionsEmployee.push(dropDownEle);
+    });
+    return selectOptionsEmployee;
+}
+function AsyncMultiEmployee(props) {
+    let [inputEmployee,setInputEmployee] = useState(props.inputEmployee);
+    const handleInputChange = async (newValue, actionMeta) => {
+        await optionsForEmployee();
+        const inputEmployee = newValue;
+        setInputEmployee({...inputEmployee,inputEmployee });
+        props.selectorEmployee(inputEmployee);
+
+        return inputEmployee;
+    };
+    return (
+        <AsyncSelect
+          isClearable
+          onChange = {handleInputChange}
+        //   defaultOptions
+          loadOptions={optionsForEmployee}
+        //   cacheOptions
+        />
+      );
+}
 function FormDialog(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -158,12 +187,12 @@ function FormDialog(props) {
     setOpen(false);
   }
 
-  function saveUpdate(e){
+  async function saveUpdate(e){
     e.preventDefault();
-    actionService.updateGoalID(props.id,values).then(()=>{
+    await actionService.updateGoalID(props.id,values).then(()=>{
       console.log(" Update Successful!");
     }).then(()=>{
-      props.loadData();
+      props.loadData(props.uid);
     })
     setOpen(false);
   }
@@ -179,7 +208,6 @@ function FormDialog(props) {
             id="goal_name"
             label="Goal Name"
             value={values.goal_name}
-            disabled
             onChange={handleChange('goal_name')}
             className={classes.textField}
             margin="normal"
@@ -209,7 +237,6 @@ function FormDialog(props) {
             id="criteria"
             label="Criteria"
             value={values.criteria}
-            disabled
             onChange={handleChange('criteria')}
             className={classes.textFull}
             margin="normal"
@@ -241,7 +268,6 @@ function FormDialog(props) {
             id="start_date"
             label="Start Date"
             type= "date"
-            disabled
             value={values.start_date}
             onChange={handleChange('start_date')}
             className={classes.textF}
@@ -267,7 +293,6 @@ function FormDialog(props) {
             id="priority"
             label="Priority"
             value={values.priority}
-            disabled
             onChange={handleChange('priority')}
             className={classes.textField}
             margin="normal"
@@ -276,7 +301,6 @@ function FormDialog(props) {
             id="deadline"
             label="Deadline"
             type= "date"
-            disabled
             value={values.deadline}
             onChange={handleChange('deadline')}
             className={classes.textF}
@@ -314,24 +338,38 @@ function FormDialog(props) {
 class LeaveList extends Component {
   constructor(props){
     super(props);
-    this.state = { teams: [],data,formModal};
+    this.state = { teams: [],data,formModal,result: false, inputEmployee:[]};
     this.viewClick = this.viewClick.bind(this);
     this.editClick = this.editClick.bind(this);
     this.loadData = this.loadData.bind(this);
+    this.selectorEmployee = this.selectorEmployee.bind(this);
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  async selectorEmployee(e) {
+    await this.setState({inputEmployee:e});
+    // console.log(this.state.inputEmployee);
+    const input = this.state.inputEmployee;
+    if(input != null){
+      this.loadData(this.state.inputEmployee.value);
+    }
+    else {
+      this.setState({result:false});
+    }
+    
   }
   componentDidMount(){
-    this.loadData();
+    // this.loadData();
   }
-  loadData(){
-    const uid =JSON.parse(localStorage.getItem('authUser')).uid;
+  async loadData(uid){
     let goals = [];
+    console.log(uid)
     actionService.getGoalList(uid).then((res)=>{
       const goal_list = res.data.data;
       goal_list.map((value,index)=>{
         const ButtonTable = (
           <div>
-            <FormDialog id = {value.id} index = {index} loadData = {this.loadData}></FormDialog>
-
+            <FormDialog id = {value.id} index = {index} loadData = {this.loadData} uid = {uid}></FormDialog>
           </div>
         );
         let star;
@@ -400,6 +438,8 @@ class LeaveList extends Component {
         }
       })
       )
+    }).then(res => {
+      this.setState({result:true})
     })
   }
   viewClick = id => {
@@ -408,17 +448,31 @@ class LeaveList extends Component {
   editClick = id => {
     console.log(id)
   }
+  handleChange= e => {
+      console.log(e);
+  }
   render() {
+    // const classes = useStyles();
     return (
         <div className="animated fadeIn">
         <Card>
         <CardBody>
-        <MDBDataTable
-            data={this.state.data}
-            striped
-            borderless
-            small            
-        />
+          <Row  style={{marginBottom: 20}}>
+            <Col className = "col-2">
+              <Label>Employee</Label>    
+            </Col>
+            <Col className = "col-5">
+              <AsyncMultiEmployee inputEmployee = {this.state.inputEmployee} selectorEmployee = {this.selectorEmployee}/>
+            </Col>
+          </Row>
+       
+            { this.state.result ? 
+              <MDBDataTable
+              data={this.state.data}
+              striped
+              borderless
+              small            
+            /> : null }
         </CardBody>
         </Card>
         </div>

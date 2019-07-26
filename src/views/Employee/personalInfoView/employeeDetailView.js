@@ -77,7 +77,6 @@ class Detail extends Component {
   }
 
 componentDidMount() {
-    console.log("Personal Info")
     const uid =JSON.parse(localStorage.getItem('authUser')).uid;
     actionService.getUserdetail(uid).then(res => {
       const person = res.data.data;

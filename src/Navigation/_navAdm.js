@@ -90,19 +90,9 @@ export default {
         class: ''             // optional class names space delimited list for title item ex: "text-center"
       },
       {
-        name: 'List',
-        url: '/perfor_list',
-        icon: 'fa fa-list-alt',
-      },
-      {
-        name: 'Detail',
-        url: '/perfor_detail',
-        icon: 'cui-list',
-      },
-      {
-        name: 'Update Process',
-        url: '/perfor_update',
-        icon: 'fa fa-pencil',
+        name: 'Search',
+        url: '/perfor_search',
+        icon: 'fa fa-search',
       },
       {
         title: true,
@@ -115,7 +105,7 @@ export default {
       },
       {
         name: 'Summary',
-        url: '/payroll_sum',
+        url: '/run_payroll',
         icon: 'icon-wallet',
       },
       {

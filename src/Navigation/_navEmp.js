@@ -88,16 +88,16 @@ export default {
       url: '/perfor_list',
       icon: 'fa fa-list-alt',
     },
-    {
-      name: 'Detail',
-      url: '/perfor_detail',
-      icon: 'cui-list',
-    },
-    {
-      name: 'Update Process',
-      url: '/perfor_update',
-      icon: 'fa fa-pencil',
-    },
+    // {
+    //   name: 'Detail',
+    //   url: '/perfor_detail',
+    //   icon: 'cui-list',
+    // },
+    // {
+    //   name: 'Update Process',
+    //   url: '/perfor_update',
+    //   icon: 'fa fa-pencil',
+    // },
     {
       title: true,
       name: 'Payroll',

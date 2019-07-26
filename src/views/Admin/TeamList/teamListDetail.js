@@ -11,29 +11,28 @@ import ant from '../../../assets/img/ant.png';
 // function teamView (props) {
 //   return ()
 // }
+let members;
 class TeamListDetail extends Component {
   constructor(props){
     super(props);
     this.state = { data: []};
+    this.getTeamDetail = this.getTeamDetail.bind(this);
   }
   componentDidMount(){
     // const team_id = JSON.parse(localStorage.getItem('userInfo')).teamid;
+    this.getTeamDetail();
+  }
+
+  async getTeamDetail(){
     const team_id =this.props.location.state.team_id;
-    actionService.getTeamdetail(team_id).then(res => {
+    console.log(team_id);
+    await actionService.getTeamdetail(team_id).then(res => {
       const data = res.data.data;
-      console.log(this.props);
       this.setState({data});
-      // console.log(this.state.data.User_Infos.map(user => (
-        // console.log(user)
-      // )));
-      // console.lof(this.props)
-      
+      members = this.state.data[0].User_Infos;
     })
   }
   render() {
-    const members = this.state.data.User_Infos;
-    // console.log(this.state.data.User_Infos.)
-    // console.log("hi :)");
     const avengers = [thor,hulk,captain,spider,ant]
     return (
       <div className="animated fadeIn">
