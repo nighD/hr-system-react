@@ -1,7 +1,7 @@
 import * as constants from '../constants/url'
 import baseService from './baseService'
 
-export function getUserlist() {
+export function getUserList() {
     return baseService(constants.GET_METHOD, constants.baseURL + constants.userList);
 }
 export function getUserdetail(uid) {

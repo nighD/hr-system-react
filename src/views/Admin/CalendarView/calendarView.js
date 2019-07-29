@@ -65,7 +65,7 @@ var data = {
   inputValue: ''
 }
 let selectOptions = [];
-actionService.getUserlist().then(res=>{
+actionService.getUserList().then(res=>{
     let users = res.data.data;
     users.map(user => {
         const a = {
