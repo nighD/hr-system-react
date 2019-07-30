@@ -119,9 +119,7 @@ class EditDetail extends Component {
         ...prevState.data,
         [name] : value
        }
-     })
-      
-      );
+     }));
   };
 
   render() {

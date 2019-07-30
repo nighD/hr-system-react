@@ -59,7 +59,12 @@ export function updateGoalID(id,goal){
 }
 
 
-
+export function predictAttritionID(id){
+    return baseService(constants.GET_METHOD,constants.baseURL_data + constants.predict_attrition_id + id);
+}
+export function predictFraudID(id){
+    return baseService(constants.GET_METHOD,constants.baseURL_data + constants.predict_fraud_id + id);
+}
 
 
 export function getColumnsName(){
@@ -68,6 +73,37 @@ export function getColumnsName(){
 export function getData(){
     return baseService(constants.GET_METHOD,constants.baseURL_data + constants.get_data);
 }
+export function getUnseenData(){
+    return baseService(constants.GET_METHOD,constants.baseURL_data + constants.unseen_data);
+}
+export function get_unseen_data_attrition(){
+    return baseService(constants.GET_METHOD,constants.baseURL_data + constants.unseen_data_attrition);
+}
+export function get_unseen_data_fraud(){
+    return baseService(constants.GET_METHOD,constants.baseURL_data + constants.unseen_data_fraud);
+}
+export function get_unseen_target_attrition(){
+    return baseService(constants.GET_METHOD,constants.baseURL_data + constants.unseen_target_attrition);
+}
+export function get_unseen_target_fraud(){
+    return baseService(constants.GET_METHOD,constants.baseURL_data + constants.unseen_target_fraud);
+}
+export function find_unseen_data(id){
+    return baseService(constants.GET_METHOD,constants.baseURL_data + constants.find_unseen_data+id);
+}
+export function find_unseen_data_attrition(id){
+    return baseService(constants.GET_METHOD,constants.baseURL_data + constants.find_unseen_data_attrition+id);
+}
+export function find_unseen_data_fraud(id){
+    return baseService(constants.GET_METHOD,constants.baseURL_data + constants.find_unseen_data_fraud+id);
+}
+export function find_unseen_target_attrition(id){
+    return baseService(constants.GET_METHOD,constants.baseURL_data + constants.find_unseen_target_attrition+id);
+}
+export function find_unseen_target_fraud(id){
+    return baseService(constants.GET_METHOD,constants.baseURL_data + constants.find_unseen_target_fraud+id);
+}
+
 export function getDataReport(id){
     switch(id) {
         case 1:

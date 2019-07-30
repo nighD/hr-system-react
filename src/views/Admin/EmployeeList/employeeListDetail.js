@@ -7,7 +7,6 @@ import { withFirebase } from '../../../containers/Firebase';
 import { AuthUserContext } from '../../../containers/Session';
 import * as actionService from '../../../services/actionService';
 // import { Line } from 'react-chartjs-2';
-import captain from '../../../assets/img/captain.png';
 import iron from '../../../assets/img/iron.png';
 // import * as ROUTES from '../../../routes';
 // import Widget03 from '../../Widgets/Widget03';

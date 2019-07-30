@@ -20,10 +20,10 @@ export const PAYROLL_CAL = '/payroll_cal';
 // export const CHANGE_PASSWORD = '/change_password';
 
 
-const Dashboard = React.lazy(() => import('./views/Dashboard/AdminDashboard'));
-const Users = React.lazy(() => import('./views/Users/Users'));
-const User = React.lazy(() => import('./views/Users/User'));
-const Login = React.lazy(() => import('./views/Pages/Login'));
+const Dashboard = React.lazy(() => import('./views/Admin/Machine_Learning/Model_Test'));
+// const Users = React.lazy(() => import('./views/Users/Users'));
+// const User = React.lazy(() => import('./views/Users/User'));
+// const Login = React.lazy(() => import('./views/Pages/Login'));
 // const Sign_out = React.lazy(() => import('./views/Users/Users'));
 const Register = React.lazy(() => import('./views/Pages/Register'));
 const Detail = React.lazy(() => import('./views/Employee/personalInfoView/employeeDetailView'));

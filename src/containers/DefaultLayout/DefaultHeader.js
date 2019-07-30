@@ -7,7 +7,6 @@ import { AppAsideToggler, AppHeaderDropdown, AppNavbarBrand, AppSidebarToggler }
 import react from '../../assets/img/brand/react.svg'
 // import sygnet from '../../assets/img/brand/sygnet.svg'
 // import userava from '../../assets/img/user.png'
-import captain from '../../assets/img/captain.png';
 import iron from '../../assets/img/iron.png';
 const propTypes = {
   children: PropTypes.node,

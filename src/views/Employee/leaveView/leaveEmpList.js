@@ -1,25 +1,12 @@
 import React, { Component } from 'react';
-import { Badge,
+import { 
     Card,
     CardBody,
-    CardHeader, 
     Col, 
-    CardText,
-    CardFooter, 
     Row, 
-    Table, 
     Pagination, 
     PaginationItem, 
     PaginationLink,
-    Modal, 
-    ModalBody, 
-    ModalFooter, 
-    ModalHeader,    
-    Form,
-    FormGroup,
-    FormText,
-    Input,
-    Label,
     Button  } from 'reactstrap';
 import { makeStyles } from '@material-ui/core/styles';
 // import Button from '@material-ui/core/Button';
@@ -31,7 +18,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import MenuItem from '@material-ui/core/MenuItem';
 import * as actionService from '../../../services/actionService';
-import { MDBDataTable,MDBBtn,MDBTableHead,MDBTableBody,MDBTable } from 'mdbreact';
+import { MDBDataTable} from 'mdbreact';
 
 var data = {
     columns:[
@@ -168,7 +155,7 @@ function FormDialog() {
         actionService.getManagers().then(res => {
           const datas = res.data.data;
           var arrays = [];
-          datas.map((manager,index)=> {
+          datas.map( manager => {
               console.log(manager.emp_uid);
               console.log(values.approver);
               if (manager.emp_uid !== values.approver.emp_uid){
@@ -349,9 +336,8 @@ class Leave_Emp_List extends Component {
     actionService.getEmpLeaveList(uid).then(res => {
       const leaves = res.data.data;
       var leaveArray = [];
-      var leaveStatus = [];
       let statusColor;
-      leaves.map((leave,index) => {
+      leaves.map((leave) => {
         switch(leave.status){
           case 'Pending':
             statusColor = (

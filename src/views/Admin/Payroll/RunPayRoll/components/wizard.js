@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component} from 'react';
 import StepWizard from 'react-step-wizard';
 import Nav from './nav';
 import {withStyles } from '@material-ui/core/styles';
-import { Badge,Button,Jumbotron, Card, CardBody, CardHeader, Col, CardText,CardFooter, Row, Table, Pagination, PaginationItem, PaginationLink,    Label } from 'reactstrap';
+import { Button,Jumbotron,Col } from 'reactstrap';
 import StepOne from '../StepOne';
 // import StepTwo from '../StepTwo`';
 // import StepThree from '../StepThree';

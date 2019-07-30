@@ -24,6 +24,21 @@ export const goalUpdateID = 'api/goals/'
 
 // Machine Learning
 export const baseURL_data = 'http://127.0.0.1:5000/'
+
+export const predict_attrition_id = 'predict_attrition/'
+export const predict_fraud_id = 'predict_fraud/'
+
+export const unseen_data ='unseen_data'
+export const unseen_data_attrition ='unseen_data_attrition'
+export const unseen_data_fraud ='unseen_data_fraud'
+export const unseen_target_attrition ='unseen_target_attrition'
+export const unseen_target_fraud ='unseen_target_fraud'
+export const find_unseen_data ='find_unseen_data/'
+export const find_unseen_data_attrition ='find_unseen_data_attrition/'
+export const find_unseen_data_fraud ='find_unseen_data_fraud/'
+export const find_unseen_target_attrition ='find_unseen_target_attrition/'
+export const find_unseen_target_fraud ='find_unseen_target_fraud/'
+
 export const age_distribution ='age_distribution'
 export const education_field ='education_field'
 export const gender_distribution ='gender_distribution'

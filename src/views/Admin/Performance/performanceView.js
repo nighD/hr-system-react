@@ -1,16 +1,14 @@
 import React, { Component,useState } from 'react';
-import { Badge, Card, CardBody, CardHeader, Col, CardText,CardFooter, Row, Table, Pagination, PaginationItem, PaginationLink,    Label } from 'reactstrap';
+import { Card, CardBody, Col, Row, Table, Pagination, PaginationItem, PaginationLink,    Label } from 'reactstrap';
 import * as actionService from '../../../services/actionService';
-import { MDBDataTable,MDBBtn,MDBTableHead,MDBTableBody,MDBTable } from 'mdbreact';
+import { MDBDataTable,MDBBtn} from 'mdbreact';
 import {Button} from 'reactstrap';
-import { companies_worked } from '../../../constants/url';
 import { makeStyles } from '@material-ui/core/styles';
 // import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import MenuItem from '@material-ui/core/MenuItem';
 import AsyncSelect from 'react-select/async';

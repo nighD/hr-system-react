@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import { compose } from 'recompose';
+// import { withRouter } from 'react-router-dom';
+// import { compose } from 'recompose';
 import { withFirebase } from '../../../containers/Firebase';
-import { AuthUserContext } from '../../../containers/Session';
+// import { AuthUserContext } from '../../../containers/Session';
 import * as actionService from '../../../services/actionService';
 // import { Responsive as ResponsiveGridLayout } from 'react-grid-layout';
 import RGL, { WidthProvider } from "react-grid-layout";
@@ -11,54 +11,35 @@ import { SortablePane, Pane } from 'react-sortable-pane';
 // import React from "react";
 // import Plot from "react-plotly.js";
 import Plotly from "plotly.js-basic-dist";
-import { textStyle, paneStyle,dataStyle } from './style';
+import {paneStyle} from './style';
 import createPlotlyComponent from "react-plotly.js/factory";
-import DataTable from 'react-data-table-component';
 import axios from 'axios';
-import { MDBDataTable,MDBBtn,MDBTableHead,MDBTableBody,MDBTable,MDBCard, MDBCardHeader, MDBCardBody, MDBTableEditable } from 'mdbreact';
+import { MDBDataTable} from 'mdbreact';
 import {
-    // Badge,,
     Container,
-    Button,
     Card,
-    CardBody,
-    CardFooter,
-    CardHeader,
-    CardColumns,
-    CardText,
-    Col,
-    Form,
-    FormGroup,
-    FormText,
-    Input,
-    Label,
-    Pagination,
-    PaginationItem,
-    PaginationLink,
-    Row, Nav, NavItem, NavLink,TabContent, TabPane
+
   } from 'reactstrap';
-const ReactGridLayout = WidthProvider(RGL);
 const Plot = createPlotlyComponent(Plotly);
 let columns = [];
-let rows = [];
 let data = [];
-function dataTable(props){
-    return (
-        <Card>
-        <MDBDataTable 
-            scrollX 
-            // scrollY 
-            btn
-            striped
-            borderless
-            small
-            data={props.data}
-            // hover
+// function dataTable(props){
+//     return (
+//         <Card>
+//         <MDBDataTable 
+//             scrollX 
+//             // scrollY 
+//             btn
+//             striped
+//             borderless
+//             small
+//             data={props.data}
+//             // hover
             
-        />
-     </Card>
-    )
-}
+//         />
+//      </Card>
+//     )
+// }
 class DataReport extends Component {
   constructor(props) {
     super(props);
