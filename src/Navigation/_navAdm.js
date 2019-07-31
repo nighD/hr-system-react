@@ -1,8 +1,24 @@
 export default {
     items: [
       {
+        title: true,
         name: 'Dashboard',
-        url: '/admindashboard',
+        wrapper: {            // optional wrapper object
+          element: '',        // required valid HTML5 element tag
+          attributes: {}        // optional valid JS object with JS API naming ex: { className: "my-class", style: { fontFamily: "Verdana" }, id: "my-id"}
+        },
+        class: ''             // optional class names space delimited list for title item ex: "text-center"
+      },
+      {
+        name: 'Data Visualization',
+        url: '/data_visualization',
+        icon: 'icon-speedometer',
+        badge: {
+        },
+      },
+      {
+        name: 'Data Report',
+        url: '/data_report',
         icon: 'icon-speedometer',
         badge: {
         },

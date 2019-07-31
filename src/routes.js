@@ -20,7 +20,8 @@ export const PAYROLL_CAL = '/payroll_cal';
 // export const CHANGE_PASSWORD = '/change_password';
 
 
-const Dashboard = React.lazy(() => import('./views/Admin/Machine_Learning/Model_Test'));
+const Data_Report = React.lazy(() => import('./views/Admin/Machine_Learning/Model_Test'));
+const Data_Visualization = React.lazy(() => import('./views/Admin/DataVisualization/dataReport'));
 // const Users = React.lazy(() => import('./views/Users/Users'));
 // const User = React.lazy(() => import('./views/Users/User'));
 // const Login = React.lazy(() => import('./views/Pages/Login'));
@@ -49,20 +50,20 @@ const Payroll_Run = React.lazy(() => import('./views/Admin/Payroll/RunPayRoll/Ru
 const Payroll_Detail = React.lazy(() => import('./views/Employee/payrollView/payrollDetailView'));
 const Payroll_Cal = React.lazy(() => import('./views/Employee/payrollView/payrollCalculationView'));
 // const Data_Report = React.lazy(() => import('./views/Admin/DataVisualization/dataReport'));
-const Data_Report = React.lazy(() => import('./views/Admin/DataVisualization/dataReport'));
+
 // const Reset_Password = React.lazy(() => import('./views/Users/User'));
 // const Change_Password = React.lazy(() => import('./views/Users/User'));
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', exact: true, name: 'Home' },
-  { path: '/admindashboard', name: 'Dashboard', component: Dashboard },
+  { path: '/data_report', name: 'Dashboard', component: Data_Report },
   { path: '/detail', exact: true,  name: 'User Detail', component: Detail },
   { path: '/edit_detail', exact: true, name: 'Edit User Detail', component: Edit_detail },
   { path: '/calendar', exact: true, name: 'Attendance Calendar', component: CalendarView },
   { path: '/admcalendar', exact: true, name: 'Admin Calendar', component: AdminCalendar },
   { path: '/att_calendar', exact: true, name: 'Attendance Detail', component: Att_Detail },
   { path: '/leave_emp_list', exact: true, name: 'Leave List', component: Leave_Emp_List },
-  { path: '/data_report', exact: true, name: 'Data Report', component: Data_Report },
+  { path: '/data_visualization', exact: true, name: 'Data Report', component: Data_Visualization },
   { path: '/perfor_list', exact: true, name: 'Performance List', component: Perfor_List },
   { path: '/perfor_detail', exact: true, name: 'Performance Detail', component: Perfor_Detail },
   { path: '/perfor_update', exact: true, name: 'Performance Update', component: Perfor_Update },

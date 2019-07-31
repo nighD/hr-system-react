@@ -28,6 +28,9 @@ export const baseURL_data = 'http://127.0.0.1:5000/'
 export const predict_attrition_id = 'predict_attrition/'
 export const predict_fraud_id = 'predict_fraud/'
 
+export const comparision_target_attrition = 'comparision_target_attrition'
+export const comparision_target_fraud = 'comparision_target_fraud'
+
 export const unseen_data ='unseen_data'
 export const unseen_data_attrition ='unseen_data_attrition'
 export const unseen_data_fraud ='unseen_data_fraud'

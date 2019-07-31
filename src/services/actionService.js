@@ -63,8 +63,14 @@ export function predictAttritionID(id){
     return baseService(constants.GET_METHOD,constants.baseURL_data + constants.predict_attrition_id + id);
 }
 export function predictFraudID(id){
-    console.log(constants.GET_METHOD,constants.baseURL_data + constants.predict_fraud_id + id)
     return baseService(constants.GET_METHOD,constants.baseURL_data + constants.predict_fraud_id + id);
+}
+
+export function comparision_attrition(){
+    return baseService(constants.GET_METHOD,constants.baseURL_data + constants.comparision_target_attrition);
+}
+export function comparision_fraud(){
+    return baseService(constants.GET_METHOD,constants.baseURL_data + constants.comparision_target_fraud);
 }
 
 

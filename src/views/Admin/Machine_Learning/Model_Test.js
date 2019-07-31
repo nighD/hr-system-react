@@ -2,6 +2,7 @@ import React, { Component,useState } from 'react';
 import {Card, 
   CardHeader,
   CardBody,
+  CardFooter,
   Col,
   Row,
   Label,
@@ -13,6 +14,9 @@ import {Card,
   InputGroupText, 
 } from 'reactstrap';
 import * as actionService from '../../../services/actionService';
+import {FullsizePicture} from 'react-responsive-picture';
+import a from '../../../assets/img/aaaa.png'
+import { MDBDataTable,MDBBtn} from 'mdbreact';
 import {Button} from 'reactstrap';
 import AsyncSelect from 'react-select/async';
 let selectOptionsEmployee = [];
@@ -47,6 +51,7 @@ function AsyncMultiEmployee(props) {
           isClearable
           onChange = {handleInputChange}
           defaultOptions
+          value={inputEmployee}
           loadOptions={optionsForPrediction}
           cacheOptions
         />
@@ -66,24 +71,130 @@ var searchResult = {
   attrition:false,
   fraud:false
 }
+var data_fraud = {
+  columns:[
+      {
+          label: 'Type',
+          field: 'type',
+          sort: 'asc'
+      },
+      {
+          label: 'Large Steal',
+          field: 'large',
+          sort: 'asc'
+      },
+      {
+          label: 'Medium Steal',
+          field: 'medium',
+          sort: 'asc'
+      },
+      {
+          label: 'Small Steal',
+          field: 'small',
+          sort: 'asc'
+      },
+      {
+          label: 'No Steal',
+          field: 'nosteal',
+          sort: 'asc'
+      }
+  ],
+  rows: [
+
+
+  ],
+}
+var data_attrition = {
+  columns:[
+      {
+          label: 'Type',
+          field: 'type',
+          sort: 'asc'
+      },
+      {
+          label: 'Yes',
+          field: 'yes',
+          sort: 'asc'
+      },
+      {
+          label: 'No',
+          field: 'no',
+          sort: 'asc'
+      }
+  ],
+  rows: [
+  ],
+}
 class Model_Test extends Component {
   constructor(props){
     super(props);
-    this.state = { employee:{},searchResult, inputEmployee:[],predict:"",actual: "",bgColor:"secondary",colors,area};
+    this.state = { employee:{},searchResult, inputEmployee:[],predict:"",actual: "",bgColor:"secondary",colors,area,data_fraud,data_attrition};
     this.predict_attrition = this.predict_attrition.bind(this);
     this.predict_fraud = this.predict_fraud.bind(this);
     this.loadData = this.loadData.bind(this);
     this.selectorEmployee = this.selectorEmployee.bind(this);
     this.checkTable = this.checkTable.bind(this);
+    this.getAttritionComparision = this.getAttritionComparision.bind(this);
+    this.getFraudComparision = this.getFraudComparision.bind(this);
   }
 
+  componentDidMount(){
+    // this.loadData();
+    this.getAttritionComparision();
+    this.getFraudComparision();
+    this.checkTable(0);
+  }
+  async getAttritionComparision(){
+    let target;
+    let frequency;
+    await actionService.comparision_attrition().then((res)=>{
+      target = res.data.target;
+      frequency = res.data.frequency;
+
+    })
+    this.setState( prevState => ({
+      data_attrition: {
+       ...prevState.data_attrition,
+       rows : [{
+        "type":"Actual Result",
+        "no":frequency[1],
+        "yes":frequency[0],
+       }]
+      }
+    }));
+  }
+  async getFraudComparision(){
+    let target;
+    let frequency;
+    await actionService.comparision_fraud().then((res)=>{
+      target = res.data.target;
+      frequency = res.data.frequency;
+
+    })
+    console.log(target);
+
+    this.setState( prevState => ({
+      data_fraud: {
+       ...prevState.data_fraud,
+       rows : [{
+         "type":
+        // "type":"Actual Result",
+        // "no":frequency[1],
+        // "yes":frequency[0],
+       }]
+      }
+    }));
+  }
   async selectorEmployee(e) {
+    // console.log(e);
     await this.setState({inputEmployee:e});
+    console.log(this.state.inputEmployee)
     const input = this.state.inputEmployee;
     if(input != null){
       this.loadData(input.value);
     }
     else {
+      console.log("set null");
       this.setState( prevState => ({
         searchResult: {
          ...prevState.searchResult,
@@ -93,10 +204,6 @@ class Model_Test extends Component {
       }));
     }
     
-  }
-  componentDidMount(){
-    // this.loadData();
-    this.checkTable(0);
   }
   async loadData(id){
     await actionService.find_unseen_data(id).then(res=>{
@@ -133,8 +240,19 @@ class Model_Test extends Component {
       else {
         this.setState({bgColor:"success"})
       }
-      
-      this.setState({actual:result["Actual Result"],predict:result["Predict Result"]})
+      if (result["Actual Result"] == 1){
+        this.setState({actual:"Yes"})
+      }
+      else {
+        this.setState({actual:"No"})
+      }
+      if (result["Predict Result"] == 1){
+        this.setState({predict:"Yes"})
+      }
+      else {
+        this.setState({predict:"No"})
+      }
+      // this.setState({actual:result["Actual Result"],predict:result["Predict Result"]})
     })
   }
   async predict_fraud (id) {
@@ -173,6 +291,8 @@ class Model_Test extends Component {
           },inputEmployee:[]
         }));
         selectOptionsEmployee = []
+        this.selectorEmployee(null);
+        this.setState({predict:"",actual: "",bgColor:"secondary"});
         break;
       case 1:
         colors.attrition = 'danger';
@@ -190,6 +310,8 @@ class Model_Test extends Component {
           },inputEmployee:[]
         }));
         selectOptionsEmployee = []
+        this.selectorEmployee(null);
+        this.setState({predict:"",actual: "",bgColor:"secondary"});
         break;
       case 2:
         colors.fraud = 'danger';
@@ -208,6 +330,8 @@ class Model_Test extends Component {
           inputEmployee:[]
         }));
         selectOptionsEmployee = []
+        this.selectorEmployee(null);
+        this.setState({predict:"",actual: "",bgColor:"secondary"});
         break;
       default:
     }
@@ -252,7 +376,60 @@ class Model_Test extends Component {
             </Col>
           </Row>
           </Card>
-          : null}
+          :
+          <div>
+          <Row>
+            <Col xs="12" sm="8">
+              <Card  >
+                <CardHeader> Fraud Comparision Report</CardHeader>
+                    <CardBody>
+                        <MDBDataTable 
+                            btn
+                            striped
+                            borderless
+                            small
+                            data={this.state.data_fraud}
+                        />
+                    </CardBody>
+              </Card>
+            </Col>
+            <Col xs="12" sm="4">
+                <Card  >
+                  <CardHeader>Confusion Matrix</CardHeader>
+                  <img src={a} style={{width:'100%',height:'100%'}}/>
+                  <CardFooter>
+                    Accuracy : 
+                  </CardFooter>
+                </Card>
+            </Col>
+          </Row>
+          <Row>
+          <Col xs="12" sm="8">
+            <Card  >
+              <CardHeader> Attrition Comparision Report</CardHeader>
+                  <CardBody>
+                      <MDBDataTable 
+                          btn
+                          striped
+                          borderless
+                          small
+                          data={this.state.data_attrition}
+                      />
+                  </CardBody>
+            </Card>
+          </Col>
+          <Col xs="12" sm="4">
+              <Card  >
+                <CardHeader>Confusion Matrix</CardHeader>
+                <img src={a} style={{width:'100%',height:'100%'}}/>
+                <CardFooter>
+                  Accuracy : 
+                </CardFooter>
+              </Card>
+          </Col>
+        </Row>
+        </div>          
+          }
             { this.state.searchResult.attrition ? 
             <Row>
               <Col xs="12" sm="4">
