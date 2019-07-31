@@ -72,7 +72,19 @@ export function comparision_attrition(){
 export function comparision_fraud(){
     return baseService(constants.GET_METHOD,constants.baseURL_data + constants.comparision_target_fraud);
 }
+export function comparision_predict_attrition(){
+    return baseService(constants.GET_METHOD,constants.baseURL_data + constants.comparision_predict_attrition);
+}
+export function comparision_predict_fraud(){
+    return baseService(constants.GET_METHOD,constants.baseURL_data + constants.comparision_predict_fraud);
+}
 
+export function resultAttrition(){
+    return baseService(constants.GET_METHOD,constants.baseURL_data + constants.result_attrition);
+}
+export function resultFraud(){
+    return baseService(constants.GET_METHOD,constants.baseURL_data + constants.result_fraud);
+}
 
 export function getColumnsName(){
     return baseService(constants.GET_METHOD,constants.baseURL_data + constants.columns_name);

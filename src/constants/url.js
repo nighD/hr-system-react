@@ -29,7 +29,13 @@ export const predict_attrition_id = 'predict_attrition/'
 export const predict_fraud_id = 'predict_fraud/'
 
 export const comparision_target_attrition = 'comparision_target_attrition'
+export const comparision_predict_attrition = 'comparision_predict_attrition'
 export const comparision_target_fraud = 'comparision_target_fraud'
+export const comparision_predict_fraud = 'comparision_predict_fraud'
+
+export const result_attrition = 'result_attrition'
+export const result_fraud = 'result_fraud'
+
 
 export const unseen_data ='unseen_data'
 export const unseen_data_attrition ='unseen_data_attrition'

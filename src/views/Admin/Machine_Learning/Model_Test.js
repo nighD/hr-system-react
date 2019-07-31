@@ -71,6 +71,10 @@ var searchResult = {
   attrition:false,
   fraud:false
 }
+var accuracy_report = {
+  attrition:"",
+  fraud:""
+}
 var data_fraud = {
   columns:[
       {
@@ -128,7 +132,7 @@ var data_attrition = {
 class Model_Test extends Component {
   constructor(props){
     super(props);
-    this.state = { employee:{},searchResult, inputEmployee:[],predict:"",actual: "",bgColor:"secondary",colors,area,data_fraud,data_attrition};
+    this.state = { employee:{},searchResult, inputEmployee:[],predict:"",actual: "",bgColor:"secondary",colors,area,data_fraud,data_attrition,accuracy_report};
     this.predict_attrition = this.predict_attrition.bind(this);
     this.predict_fraud = this.predict_fraud.bind(this);
     this.loadData = this.loadData.bind(this);
@@ -136,52 +140,93 @@ class Model_Test extends Component {
     this.checkTable = this.checkTable.bind(this);
     this.getAttritionComparision = this.getAttritionComparision.bind(this);
     this.getFraudComparision = this.getFraudComparision.bind(this);
+    this.getAccuracyReport = this.getAccuracyReport.bind(this);
   }
 
   componentDidMount(){
     // this.loadData();
+    this.getAccuracyReport();
     this.getAttritionComparision();
     this.getFraudComparision();
     this.checkTable(0);
   }
-  async getAttritionComparision(){
-    let target;
-    let frequency;
-    await actionService.comparision_attrition().then((res)=>{
-      target = res.data.target;
-      frequency = res.data.frequency;
+  async getAccuracyReport(){
+    let attrition_result;
+    let fraud_result;
+    await actionService.resultAttrition().then((res)=>{
+      attrition_result = res.data;
+    })
+    await actionService.resultFraud().then((res)=>{
+      fraud_result = res.data;
+    })
+    this.setState({
+      accuracy_report:{
+        attrition: attrition_result,
+        fraud : fraud_result
+      }
+    });
 
+  }
+  async getAttritionComparision(){
+    let target_attrition;
+    let frequency_attrition;
+    let predict_attrition;
+    let frequency_predict_attrition;
+    await actionService.comparision_attrition().then((res)=>{
+      target_attrition = res.data.target;
+      frequency_attrition = res.data.frequency;
+    })
+    await actionService.comparision_predict_attrition().then((res)=>{
+      predict_attrition = res.data.target;
+      frequency_predict_attrition = res.data.frequency;
     })
     this.setState( prevState => ({
       data_attrition: {
        ...prevState.data_attrition,
        rows : [{
         "type":"Actual Result",
-        "no":frequency[1],
-        "yes":frequency[0],
+        "no":frequency_attrition[1],
+        "yes":frequency_attrition[0],
+       },{
+        "type":"Predict Result",
+        "no":frequency_predict_attrition[1],
+        "yes":frequency_predict_attrition[0],
        }]
       }
     }));
   }
   async getFraudComparision(){
-    let target;
-    let frequency;
+    let target_fraud;
+    let frequency_fraud;
+    let predict_fraud;
+    let frequency_predict_fraud;
     await actionService.comparision_fraud().then((res)=>{
-      target = res.data.target;
-      frequency = res.data.frequency;
+      target_fraud = res.data.target;
+      frequency_fraud = res.data.frequency;
 
     })
-    console.log(target);
+    await actionService.comparision_predict_fraud().then((res)=>{
+      predict_fraud = res.data.target;
+      frequency_predict_fraud = res.data.frequency;
 
+    })
     this.setState( prevState => ({
       data_fraud: {
        ...prevState.data_fraud,
        rows : [{
-         "type":
-        // "type":"Actual Result",
-        // "no":frequency[1],
-        // "yes":frequency[0],
-       }]
+         "type": "Predict Result",
+         "large":frequency_fraud[3],
+         "medium":frequency_fraud[0],
+         "small":frequency_fraud[2],
+         "nosteal":frequency_fraud[1]
+       },
+       {
+        "type": "Predict Result",
+        "large":frequency_predict_fraud[3],
+        "medium":frequency_predict_fraud[0],
+        "small":frequency_predict_fraud[2],
+        "nosteal":frequency_predict_fraud[1]
+      }]
       }
     }));
   }
@@ -388,6 +433,9 @@ class Model_Test extends Component {
                             striped
                             borderless
                             small
+                            pagination={false}
+                            sorting={false}
+                            searching={false}
                             data={this.state.data_fraud}
                         />
                     </CardBody>
@@ -398,7 +446,7 @@ class Model_Test extends Component {
                   <CardHeader>Confusion Matrix</CardHeader>
                   <img src={a} style={{width:'100%',height:'100%'}}/>
                   <CardFooter>
-                    Accuracy : 
+                    Accuracy : {this.state.accuracy_report.fraud.toString().substring(0,5)}
                   </CardFooter>
                 </Card>
             </Col>
@@ -413,6 +461,9 @@ class Model_Test extends Component {
                           striped
                           borderless
                           small
+                          pagination={false}
+                          sorting={false}
+                          searching={false}
                           data={this.state.data_attrition}
                       />
                   </CardBody>
@@ -423,7 +474,7 @@ class Model_Test extends Component {
                 <CardHeader>Confusion Matrix</CardHeader>
                 <img src={a} style={{width:'100%',height:'100%'}}/>
                 <CardFooter>
-                  Accuracy : 
+                  Accuracy : {this.state.accuracy_report.attrition.toString().substring(0,5)}
                 </CardFooter>
               </Card>
           </Col>
