@@ -68,6 +68,9 @@ class Firebase {
 
   doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
 
+  doPasswordUpdate = password =>
+  this.auth.currentUser.updatePassword(password);
+
   doSendEmailVerification = () =>
     this.auth.currentUser.sendEmailVerification({
       url: process.env.REACT_APP_CONFIRMATION_EMAIL_REDIRECT,

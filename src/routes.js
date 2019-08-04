@@ -16,8 +16,8 @@ export const PERFOR_UPDATE = '/perfor_update';
 export const PAYROLL_SUM = '/payroll_sum';
 export const PAYROLL_DETAIL = '/payroll_detail';
 export const PAYROLL_CAL = '/payroll_cal';
-// export const RESET_PASSWORD = '/reset_password';
-// export const CHANGE_PASSWORD = '/change_password';
+export const PASSWORD_FORGET = '/password_forget';
+export const CHANGE_PASSWORD = '/change_password';
 
 
 const Data_Report = React.lazy(() => import('./views/Admin/Machine_Learning/Model_Test'));
@@ -27,6 +27,7 @@ const Data_Visualization = React.lazy(() => import('./views/Admin/DataVisualizat
 // const Login = React.lazy(() => import('./views/Pages/Login'));
 // const Sign_out = React.lazy(() => import('./views/Users/Users'));
 const Register = React.lazy(() => import('./views/Pages/Register'));
+// const Password_Forget = React.lazy(() => import('./views/Pages/PasswordForget'));
 const Detail = React.lazy(() => import('./views/Employee/personalInfoView/employeeDetailView'));
 const Edit_detail = React.lazy(() => import('./views/Employee/personalInfoView/employeeEDetailView'));
 const Employee_List = React.lazy(() => import('./views/Admin/EmployeeList/employeeListView'));

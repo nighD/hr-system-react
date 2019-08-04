@@ -138,16 +138,16 @@ class Model_Test extends Component {
     this.loadData = this.loadData.bind(this);
     this.selectorEmployee = this.selectorEmployee.bind(this);
     this.checkTable = this.checkTable.bind(this);
-    this.getAttritionComparision = this.getAttritionComparision.bind(this);
-    this.getFraudComparision = this.getFraudComparision.bind(this);
+    this.getAttritionComparison = this.getAttritionComparison.bind(this);
+    this.getFraudComparison = this.getFraudComparison.bind(this);
     this.getAccuracyReport = this.getAccuracyReport.bind(this);
   }
 
   componentDidMount(){
     // this.loadData();
     this.getAccuracyReport();
-    this.getAttritionComparision();
-    this.getFraudComparision();
+    this.getAttritionComparison();
+    this.getFraudComparison();
     this.checkTable(0);
   }
   async getAccuracyReport(){
@@ -167,16 +167,16 @@ class Model_Test extends Component {
     });
 
   }
-  async getAttritionComparision(){
+  async getAttritionComparison(){
     let target_attrition;
     let frequency_attrition;
     let predict_attrition;
     let frequency_predict_attrition;
-    await actionService.comparision_attrition().then((res)=>{
+    await actionService.comparison_attrition().then((res)=>{
       target_attrition = res.data.target;
       frequency_attrition = res.data.frequency;
     })
-    await actionService.comparision_predict_attrition().then((res)=>{
+    await actionService.comparison_predict_attrition().then((res)=>{
       predict_attrition = res.data.target;
       frequency_predict_attrition = res.data.frequency;
     })
@@ -195,17 +195,17 @@ class Model_Test extends Component {
       }
     }));
   }
-  async getFraudComparision(){
+  async getFraudComparison(){
     let target_fraud;
     let frequency_fraud;
     let predict_fraud;
     let frequency_predict_fraud;
-    await actionService.comparision_fraud().then((res)=>{
+    await actionService.comparison_fraud().then((res)=>{
       target_fraud = res.data.target;
       frequency_fraud = res.data.frequency;
 
     })
-    await actionService.comparision_predict_fraud().then((res)=>{
+    await actionService.comparison_predict_fraud().then((res)=>{
       predict_fraud = res.data.target;
       frequency_predict_fraud = res.data.frequency;
 
@@ -214,7 +214,7 @@ class Model_Test extends Component {
       data_fraud: {
        ...prevState.data_fraud,
        rows : [{
-         "type": "Predict Result",
+         "type": "Actual Result",
          "large":frequency_fraud[3],
          "medium":frequency_fraud[0],
          "small":frequency_fraud[2],
@@ -309,8 +309,37 @@ class Model_Test extends Component {
       else {
         this.setState({bgColor:"success"})
       }
-      
-      this.setState({actual:result["Actual Result"],predict:result["Predict Result"]})
+      let actual;
+      let predict;
+      switch(result['Actual Result']){
+        case 0:
+          actual = 'No Steal';
+          break;
+        case 1:
+          actual = "Small Steal";
+          break;
+        case 2:
+          actual = "Medium Steal";
+          break;
+        case 3:
+          actual = "Large Steal";
+        default :
+      }
+      switch(result['Predict Result']){
+        case 0:
+          predict = 'No Steal';
+          break;
+        case 1:
+          predict = "Small Steal";
+          break;
+        case 2:
+          predict = "Medium Steal";
+          break;
+        case 3:
+          predict = "Large Steal";
+        default :
+      }
+      this.setState({actual:actual,predict:predict})
     })
   }
   checkTable(a){
@@ -422,11 +451,11 @@ class Model_Test extends Component {
           </Row>
           </Card>
           :
-          <div>
+          <div style={{marginTop:20}}>
           <Row>
             <Col xs="12" sm="8">
               <Card  >
-                <CardHeader> Fraud Comparision Report</CardHeader>
+                <CardHeader> Fraud Comparison Report</CardHeader>
                     <CardBody>
                         <MDBDataTable 
                             btn
@@ -454,7 +483,7 @@ class Model_Test extends Component {
           <Row>
           <Col xs="12" sm="8">
             <Card  >
-              <CardHeader> Attrition Comparision Report</CardHeader>
+              <CardHeader> Attrition Comparison Report</CardHeader>
                   <CardBody>
                       <MDBDataTable 
                           btn

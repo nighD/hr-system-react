@@ -66,17 +66,17 @@ export function predictFraudID(id){
     return baseService(constants.GET_METHOD,constants.baseURL_data + constants.predict_fraud_id + id);
 }
 
-export function comparision_attrition(){
-    return baseService(constants.GET_METHOD,constants.baseURL_data + constants.comparision_target_attrition);
+export function comparison_attrition(){
+    return baseService(constants.GET_METHOD,constants.baseURL_data + constants.comparison_target_attrition);
 }
-export function comparision_fraud(){
-    return baseService(constants.GET_METHOD,constants.baseURL_data + constants.comparision_target_fraud);
+export function comparison_fraud(){
+    return baseService(constants.GET_METHOD,constants.baseURL_data + constants.comparison_target_fraud);
 }
-export function comparision_predict_attrition(){
-    return baseService(constants.GET_METHOD,constants.baseURL_data + constants.comparision_predict_attrition);
+export function comparison_predict_attrition(){
+    return baseService(constants.GET_METHOD,constants.baseURL_data + constants.comparison_predict_attrition);
 }
-export function comparision_predict_fraud(){
-    return baseService(constants.GET_METHOD,constants.baseURL_data + constants.comparision_predict_fraud);
+export function comparison_predict_fraud(){
+    return baseService(constants.GET_METHOD,constants.baseURL_data + constants.comparison_predict_fraud);
 }
 
 export function resultAttrition(){

@@ -57,8 +57,13 @@ export default {
         icon: 'cui-layers',
       },
       {
+        name: 'Leave List',
+        url: '/leavelist',
+        icon: 'fa fa-list-alt',
+      },
+      {
         title: true,
-        name: 'Attendance',
+        name: 'Calendar',
         wrapper: {
           element: '',
           attributes: {},
@@ -66,35 +71,9 @@ export default {
         class: ''
       },
       {
-        name: 'Callendar',
+        name: 'Event',
         url: '/admcalendar',
         icon: 'fa fa-calendar-check-o',
-      },
-      {
-        name: 'Detail',
-        url: '/att_calendar',
-        icon: 'fa fa-calendar-o',
-      },
-      {
-        title: true,
-        name: 'Leave',
-        wrapper: {            // optional wrapper object
-          element: '',        // required valid HTML5 element tag
-          attributes: {}        // optional valid JS object with JS API naming ex: { className: "my-class", style: { fontFamily: "Verdana" }, id: "my-id"}
-        },
-        class: ''             // optional class names space delimited list for title item ex: "text-center"
-      },
-      {
-        name: 'List',
-        url: '/leave',
-        icon: 'fa fa-list-alt',
-        children: [
-          {
-            name: 'All',
-            url: '/leavelist',
-            icon: 'fa fa-list-alt',
-          }
-        ],
       },
       {
         title: true,

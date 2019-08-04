@@ -157,7 +157,7 @@ class DefaultLayout extends Component {
                           )} */}
                           {/* <Route exact path={routes.DETAIL} component={Detail} /> */}
                           {/* <Route exact path={routes.DASHBOARD} component={Dashboard} /> */}
-                          <Redirect from="/" to="/admindashboard" />
+                          <Redirect from="/" to="/data_report" />
                         </Switch>
                       </Suspense>
                     </Container>
@@ -176,58 +176,7 @@ class DefaultLayout extends Component {
               </div>
               
             ) : (
-                      <div className="app">
-                  <AppHeader fixed>
-                    <Suspense  fallback={this.loading()}>
-                      <DefaultHeader onLogout={e=>this.signOut(e)}/>
-                    </Suspense>
-                  </AppHeader>
-                  <div className="app-body">
-                    <AppSidebar fixed display="lg">
-                      <AppSidebarHeader />
-                      <AppSidebarForm />
-                      <Suspense>
-                      <AppSidebarNav navConfig={emp_navigation} {...this.props} />
-                      </Suspense>
-                      <AppSidebarFooter />
-                      <AppSidebarMinimizer />
-                    </AppSidebar>
-                    <main className="main">
-                      <AppBreadcrumb appRoutes={routes}/>
-                      <Container fluid>
-                        <Suspense fallback={this.loading()}>
-                          <Switch>
-                            {/* {routes.map((route, idx) => {
-                              return route.component ? (
-                                <Route
-                                  key={idx}
-                                  path={route.path}
-                                  exact={route.exact}
-                                  name={route.name}
-                                  render={props => (
-                                    <route.component {...props} />
-                                  )} />
-                              ) : (null);
-                            })} */}
-                            <Route exact path={routes.LOGIN} component={SignInPage} />
-                            {/* <Redirect from="/" to="/dashboard" /> */}
-                          </Switch>
-                        </Suspense>
-                      </Container>
-                    </main>
-                    <AppAside fixed>
-                      <Suspense fallback={this.loading()}>
-                        <DefaultAside />
-                      </Suspense>
-                    </AppAside>
-                  </div>
-                  <AppFooter>
-                    <Suspense fallback={this.loading()}>
-                      <DefaultFooter />
-                    </Suspense>
-                  </AppFooter>
-                </div>
-                
+              <Route exact path={routes.LOGIN} component={SignInPage} />
             )
           }
         </AuthUserContext.Consumer>
