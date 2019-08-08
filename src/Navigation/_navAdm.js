@@ -10,9 +10,16 @@ export default {
         class: ''             // optional class names space delimited list for title item ex: "text-center"
       },
       {
-        name: 'Data Visualization',
-        url: '/data_visualization',
-        icon: 'icon-speedometer',
+        name: 'Attrition Visualization',
+        url: '/data_visualization_attrition',
+        icon: 'fa fa-area-chart',
+        badge: {
+        },
+      },
+      {
+        name: 'Fraud Visualization',
+        url: '/data_visualization_fraud',
+        icon: 'fa fa-line-chart',
         badge: {
         },
       },

@@ -21,7 +21,8 @@ export const CHANGE_PASSWORD = '/change_password';
 
 
 const Data_Report = React.lazy(() => import('./views/Admin/Machine_Learning/Model_Test'));
-const Data_Visualization = React.lazy(() => import('./views/Admin/DataVisualization/dataReport'));
+const Data_Visualization_Attrition = React.lazy(() => import('./views/Admin/DataVisualization/dataReport_Attrition'));
+const Data_Visualization_Fraud = React.lazy(() => import('./views/Admin/DataVisualization/dataReport_Fraud'));
 // const Users = React.lazy(() => import('./views/Users/Users'));
 // const User = React.lazy(() => import('./views/Users/User'));
 // const Login = React.lazy(() => import('./views/Pages/Login'));
@@ -64,7 +65,8 @@ const routes = [
   { path: '/admcalendar', exact: true, name: 'Admin Calendar', component: AdminCalendar },
   { path: '/att_calendar', exact: true, name: 'Attendance Detail', component: Att_Detail },
   { path: '/leave_emp_list', exact: true, name: 'Leave List', component: Leave_Emp_List },
-  { path: '/data_visualization', exact: true, name: 'Data Report', component: Data_Visualization },
+  { path: '/data_visualization_attrition', exact: true, name: 'Data Report Attrition', component: Data_Visualization_Attrition },
+  { path: '/data_visualization_fraud', exact: true, name: 'Data Report Fraud', component: Data_Visualization_Fraud },
   { path: '/perfor_list', exact: true, name: 'Performance List', component: Perfor_List },
   { path: '/perfor_detail', exact: true, name: 'Performance Detail', component: Perfor_Detail },
   { path: '/perfor_update', exact: true, name: 'Performance Update', component: Perfor_Update },

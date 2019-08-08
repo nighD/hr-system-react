@@ -207,34 +207,74 @@ async updateData() {
     return (
           <div className="animated fadeIn">
           <Row>
-            <Col xs="12" sm="6" lg="3">
+            <Col xs="12" sm="6" lg="4">
               <Card>
-                <iframe width="100%" height="300" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/74.embed"></iframe>
+                <CardHeader>
+                  Over Time vs Attrition
+                </CardHeader>
+                <CardBody>
+                  <iframe width="100%" height="300" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/74.embed?show_link=false&autosize=true&logo=false&height=100%"></iframe>
+                </CardBody>
               </Card>
             </Col>
 
-            <Col xs="12" sm="6" lg="6">
+            <Col xs="12" sm="6" lg="4">
               <Card >
-                <iframe width="100%" height="300" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/72.embed"></iframe>
+                <CardHeader>
+                  Work Life Balance vs Attrition
+                </CardHeader>
+                <CardBody>
+                  <iframe width="100%" height="300" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/72.embed?show_link=false&autosize=true"></iframe>
+                </CardBody>
               </Card>
             </Col>
 
-            <Col xs="12" sm="6" lg="3">
+            <Col xs="12" sm="6" lg="4">
               <Card >
-                <iframe width="100%" height="300" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/56.embed"></iframe>
+                <CardHeader>
+                  Gender vs Attrition
+                </CardHeader>
+                <CardBody>
+                  <iframe width="100%" height="300" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/56.embed?show_link=false&autosize=true"></iframe>
+                </CardBody>
               </Card>
             </Col>
           </Row>
+          <Row>
+            <Col xs="12" md="6" lg="7">
+              <Card>
+                <iframe width="100%" height="627" frameborder="0" scrolling="no" src="//plot.ly/~baole16/1.embed?show_link=false&autosize=true"></iframe>
+              </Card>
+            </Col>
+
+            <Col xs="12" md="6" lg="5">
+              <Row>
+                <Col xs="12" md="6" lg="12">
+                  <Card>
+                    <iframe width="100%" height="300" frameborder="0" scrolling="no" src="//plot.ly/~baole16/5.embed?show_link=false&autosize=true"></iframe>
+                  </Card>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs="12" md="6" lg="12">
+                  <Card>
+                    <iframe width="100%" height="300" frameborder="0" scrolling="no" src="//plot.ly/~nightD/70.embed?show_link=false&autosize=true"></iframe>
+                  </Card>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+
           <Row>
             <Col>
               <Card>
                 <CardBody>
                   <Row>
                   <Col xs="12" sm="6" lg="6">
-                    <iframe width="100%" height="400" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/49.embed"></iframe>
+                    <iframe width="100%" height="400" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/49.embed?show_link=false&autosize=true&height=100%"></iframe>
                   </Col>
                   <Col xs="12" sm="6" lg="6">
-                    <iframe width="100%" height="400" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/33.embed"></iframe>
+                    <iframe width="100%" height="400" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/33.embed?show_link=false&autosize=true&height=100%"></iframe>
                   </Col>
                   </Row>
                 </CardBody>
@@ -243,27 +283,6 @@ async updateData() {
             </Col>
           </Row>
 
-          <Row>
-            <Col xs="6" sm="6" lg="3">
-
-            </Col>
-
-            <Col xs="6" sm="6" lg="3">
-
-            </Col>
-
-            <Col xs="6" sm="6" lg="3">
-              
-                
-              
-            </Col>
-
-            <Col xs="6" sm="6" lg="3">
-              
-                
-              
-            </Col>
-          </Row>
 
           <Row>
             <Col>
@@ -276,9 +295,9 @@ async updateData() {
                     <Col xs="12" md="6" xl="6">
                       <Row>
                         <Col sm="12">
-                          <iframe margin="0" width="100%" height="280" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/80.embed"></iframe>
-                          <iframe margin="0" width="100%" height="280" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/78.embed"></iframe>
-                          <iframe margin="0" width="100%" height="280" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/82.embed"></iframe>
+                          <iframe margin="0" width="100%" height="280" display="block" frameborder="0" scrolling="no" src="//plot.ly/~baole16/7.embed?show_link=false&autosize=true&height=100%"></iframe>
+                          <iframe margin="0" width="100%" height="280" display="block" frameborder="0" scrolling="no" src="//plot.ly/~baole16/9.embed?show_link=false&autosize=true&height=100%"></iframe>
+                          <iframe margin="0" width="100%" height="280" display="block" frameborder="0" scrolling="no" src="//plot.ly/~baole16/11.embed?show_link=false&autosize=true&height=100%"></iframe>
                         </Col>
 
                       </Row>
@@ -287,9 +306,9 @@ async updateData() {
                     <Col xs="12" md="6" xl="6">
                       <Row>
                         <Col sm="12">
-                          <iframe margin="0" width="100%" height="280" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/54.embed"></iframe>
-                          <iframe margin="0" width="100%" height="280" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/64.embed"></iframe>
-                          <iframe margin="0" width="100%" height="280" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/62.embed"></iframe>
+                          <iframe margin="0" width="100%" height="280" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/54.embed?show_link=false&autosize=true&height=100%"></iframe>
+                          <iframe margin="0" width="100%" height="280" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/64.embed?show_link=false&autosize=true&height=100%"></iframe>
+                          <iframe margin="0" width="100%" height="280" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/62.embed?show_link=false&autosize=true&height=100%"></iframe>
                         </Col>
                         {/* <Col sm="6">
                           
