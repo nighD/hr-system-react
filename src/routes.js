@@ -76,7 +76,7 @@ const routes = [
   { path: '/payroll_cal', exact: true, name: 'Payroll Calculation', component: Payroll_Cal },
   { path: '/register', exact: true,name: 'Register', component: Register},
   { path: '/teamdetail', exact: true,name: 'Team Detail', component: Team_Detail},
-  { path: '/teamlist', exact: true,name: 'Team Detail', component: Team_List},
+  { path: '/teamlist', exact: true,name: 'Team List', component: Team_List},
   { path: '/teamlist/detail', exact: true,name: 'Team Detail', component: Team_List_Detail},
   { path: '/teamlist/edit_detail', exact: true,name: 'Team Detail', component: Team_List_EDetail},
   { path: '/employeelist', exact: true,name: 'Employee List', component: Employee_List},

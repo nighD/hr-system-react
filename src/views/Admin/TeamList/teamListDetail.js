@@ -27,9 +27,10 @@ class TeamListDetail extends Component {
     const team_id =this.props.location.state.team_id;
     console.log(team_id);
     await actionService.getTeamdetail(team_id).then(res => {
-      const data = res.data.data;
+      const data = res.data.data[0];
       this.setState({data});
-      members = this.state.data[0].User_Infos;
+      console.log(data.team_dis);
+      members = this.state.data.User_Infos;
     })
   }
   render() {

@@ -42,10 +42,10 @@ render() {
           <Widget04 icon="icon-user-follow" color="warning" header="214" value="214" invert>Large Steals Culprit</Widget04>
             </Col>
         <Col sm="6" md="3">
-            <Widget04 icon="icon-basket-loaded" color="success" header="454" value="454" invert>Normal Behaviours</Widget04>
+            <Widget04 icon="icon-user-following" color="success" header="454" value="454" invert>Normal Behaviours</Widget04>
         </Col>
         <Col sm="6" md="3">
-            <Widget04 icon="icon-pie-chart" color="primary" header="90%" value="90%" invert>Accuracy</Widget04>
+            <Widget04 icon="icon-fire" color="primary" header="90%" value="90%" invert>Accuracy</Widget04>
         </Col>
       </Row>
         <Row>

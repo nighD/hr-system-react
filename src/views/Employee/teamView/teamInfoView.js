@@ -21,7 +21,6 @@ class TeamDetail extends Component {
     console.log(team_id);
     actionService.getTeamdetail(team_id).then(res => {
       const data = res.data.data[0];
-      console.log(res.data.data);
       this.setState({data});
       console.log(this.state.data[0])
     })
@@ -57,7 +56,6 @@ class TeamDetail extends Component {
                       <td>{member.emp_role}</td>
                       <td>
                       {(() => {
-                        console.log(index);
                         switch(member.emp_status){
                           case 'active':
                             return <Badge color="success">Active</Badge>;

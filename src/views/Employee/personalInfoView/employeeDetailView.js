@@ -96,31 +96,7 @@ componentDidMount() {
         localStorage.setItem('userInfo',JSON.stringify(person));
     })
 }
-// componentWillMount(){
-
-// }
-
   render() {
-    // const {     id,
-    // emp_lname,
-    // emp_fname,
-    // emp_gender,
-    // emp_email,
-    // emp_role,
-    // emp_status,
-    // emp_dob,
-    // emp_pass,
-    // emp_street,
-    // emp_phone,
-    // emp_city,
-    // emp_postal,
-    // emp_country,
-    // emp_uid, } = this.state;
-    // console.log(this.state);
-    // console.log(this.props)
-    // const isInvalid = password === '' || email === '';
-    // console.log(this.state.persons);
-
     return (
       <AuthUserContext.Consumer>
       {authUser =>

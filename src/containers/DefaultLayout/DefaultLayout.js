@@ -103,12 +103,14 @@ class DefaultLayout extends Component {
                       } */}
                       {
                         isLoggedIn ? (() => {
+                          console.log(condition);
                           switch(condition) {
                             case 'admin':
                               return <AppSidebarNav navConfig={ad_navigation} {...this.props}  />;
                             case 'manager':
                               return <AppSidebarNav navConfig={man_navigation} {...this.props}  />;
                             case 'employee':
+                              console.log("EMPLOYEE");
                               return <AppSidebarNav navConfig={emp_navigation} {...this.props}  />;
                             default:
                               return null;
@@ -157,7 +159,7 @@ class DefaultLayout extends Component {
                           )} */}
                           {/* <Route exact path={routes.DETAIL} component={Detail} /> */}
                           {/* <Route exact path={routes.DASHBOARD} component={Dashboard} /> */}
-                          <Redirect from="/" to="/data_report" />
+                          <Redirect from="/" to="/detail" />
                         </Switch>
                       </Suspense>
                     </Container>

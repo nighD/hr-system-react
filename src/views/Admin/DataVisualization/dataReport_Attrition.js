@@ -3,14 +3,14 @@ import React, { Component, Suspense } from 'react';
 import { withFirebase } from '../../../containers/Firebase';
 import * as actionService from '../../../services/actionService';
 // import PivotTableUI from 'react-pivottable/PivotTableUI';
-import 'react-pivottable/pivottable.css';
+// import 'react-pivottable/pivottable.css';
 // import TableRenderers from 'react-pivottable/TableRenderers';
 // import createPlotlyComponent from 'react-plotly.js/factory';
 // import createPlotlyRenderers from 'react-pivottable/PlotlyRenderers';
 import axios from 'axios'
-import Plot from 'react-plotly.js';
-import Iframe from 'react-iframe'
-import Papa from 'papaparse';
+// import Plot from 'react-plotly.js';
+// import Iframe from 'react-iframe'
+// import Papa from 'papaparse';
 import {
   Badge,
   Button,
@@ -31,9 +31,9 @@ import {
   Row,
   Table,
 } from 'reactstrap';
-var excelll = '../../../../WA_Fn-UseC_-HR-Employee-Attrition.csv';
+// var excelll = '../../../../WA_Fn-UseC_-HR-Employee-Attrition.csv';
 // const Plot = createPlotlyComponent(Plotly);
-let columns = [];
+// let columns = [];
 // let data = [];
 // const Plot = createPlotlyComponent(window.Plotly);
 // create Plotly React component via dependency injection
