@@ -1,5 +1,6 @@
 import React from 'react';
 // import styles from './nav.less';
+import { Button} from 'reactstrap';
 import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
     nav: {
@@ -30,26 +31,26 @@ const Nav = (props) => {
     const classes = useStyles();
     for (let i = 1; i <= props.totalSteps; i += 1) {
         const isActive = props.currentStep === i;
+        var a;
+        if(i == 1){
+            a = "HOURS & EARNINGS"
+        }
+        else if (i ==2) {
+            a = "VACATION & SICK DAYS"
+        }
+        else if (i==3){
+            a = "REVIEW & SUBMIT"
+        }
+        else if (i==4){
+            a = "CONFIRMATION"
+        }
+        
         dots.push((
-            <i key={`step-${i}`}><span
+            <i key={`step-${i}`} onClick={() => props.goToStep(i)}><span
                 key={`step-${i}`}
                 className={`${classes.dot} ${isActive ? classes.active : ''}`}
-                onClick={() => props.goToStep(i)}
-            >&bull;</span>{(() =>{
-                switch(i){
-                    case 1:
-                        console.log('yeah');
-                        return <label key={i}>Yeah 1</label>;
-                    case 2:
-                        return <label key={i}>Yeah 1</label>;
-                    case 3:
-                        return <label key={i}>Yeah 1</label>;
-                    default:
-                        return null;
-                }
-            })
-
-            }</i>     
+                
+            >&bull;</span><Button color="ghost-primary">{a}</Button></i>     
         ));
     }
 

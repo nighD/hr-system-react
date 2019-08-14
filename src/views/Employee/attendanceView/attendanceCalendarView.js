@@ -19,9 +19,11 @@ class CalendarView extends Component {
     super(props);
     this.state = {data};
   }
-  getAttendance(){
-    actionService.getEvent().then(res => {
-        const events = res.data.data;
+  async getAttendance(){
+    const uid =JSON.parse(localStorage.getItem('authUser')).uid;
+    await actionService.getAttdetail(uid).then(res => {
+        console.log(res.data);
+        const events = res.data;
         let eventPromises = new Promise((resolve) => {
             let eventArray = []
             events.map((event,index)=>{
@@ -93,7 +95,7 @@ class CalendarView extends Component {
   }
   componentDidMount(){
     const uid =JSON.parse(localStorage.getItem('authUser')).uid;
-    // this.getAttendance();
+    this.getAttendance();
     // this.getEvent(uid);
     // console.log(newArray)
   }

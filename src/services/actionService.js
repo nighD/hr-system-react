@@ -54,6 +54,10 @@ export function getGoalID(id){
     return baseService(constants.GET_METHOD,constants.baseURL + constants.goalListID + id)
 }
 
+export function getEmp_Worked_Hours(data){
+    return baseService(constants.POST_METHOD,constants.baseURL + constants.getWorkedHour,data)
+}
+
 export function updateGoalID(id,goal){
     return baseService(constants.PUT_METHOD, constants.baseURL + constants.goalUpdateID + id,goal)
 }

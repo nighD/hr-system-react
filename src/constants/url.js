@@ -20,8 +20,7 @@ export const leaves_status = 'api/leaves/status/'
 export const goalListEmp = 'api/goals/emp/'
 export const goalListID = 'api/goals/'
 export const goalUpdateID = 'api/goals/'
-
-
+export const getWorkedHour = 'api/payroll_types/getHours/Worked'
 // Machine Learning
 export const baseURL_data = 'http://127.0.0.1:5000/'
 

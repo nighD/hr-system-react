@@ -115,8 +115,8 @@ class Wizard extends Component {
         };
         return (
             <div className="animated fadeIn">
-                    <Jumbotron>
-                        <Col className={`col-sm-10 offset-sm-1`} style = {{minHeight: '1000px !important'}}>
+                    <Jumbotron style = {{padding:0}}>
+                        <Col  style = {{minHeight: '1000px !important'}}>
                             <StepWizard
                                 onStepChange={this.onStepChange}
                                 isHashEnabled
