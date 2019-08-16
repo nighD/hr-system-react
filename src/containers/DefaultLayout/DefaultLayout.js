@@ -103,7 +103,6 @@ class DefaultLayout extends Component {
                       } */}
                       {
                         isLoggedIn ? (() => {
-                          console.log(condition);
                           switch(condition) {
                             case 'admin':
                               return <AppSidebarNav navConfig={ad_navigation} {...this.props}  />;

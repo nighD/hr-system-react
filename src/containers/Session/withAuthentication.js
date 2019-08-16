@@ -19,7 +19,6 @@ const withAuthentication = Component => {
           localStorage.setItem('authUser', JSON.stringify(authUser));
           actionService.getUserdetail(authUser.uid).then(res => {
             const person = res.data.data;
-            console.log(res.data.data);
             person.emp_dob = person.emp_dob.substring(0,10);
             localStorage.setItem('userInfo',JSON.stringify(person));
           })

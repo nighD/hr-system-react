@@ -4,6 +4,7 @@ import Nav from './nav';
 import {withStyles } from '@material-ui/core/styles';
 import { Button,Jumbotron,Col } from 'reactstrap';
 import StepOne from '../StepOne';
+import StepTwo from '../StepTwo';
 // import StepTwo from '../StepTwo`';
 // import StepThree from '../StepThree';
 // import StepFour from '../StepFour';
@@ -125,9 +126,7 @@ class Wizard extends Component {
                                 instance={this.setInstance}
                             >
                                 <StepOne Stats = {Stats}/>
-                                <First hashKey={'FirstStep'} update={this.updateForm} />
-                                <Second form={this.state.form} />
-                                <Last hashKey={'TheEnd!'} />
+                                <StepTwo Stats = {Stats}/>
                             </StepWizard>
                             </Col>
                     </Jumbotron>
@@ -142,7 +141,11 @@ const Stats = ({
     previousStep,
     totalSteps,
     step,
-}) => (
+    data
+}) => {
+  console.log(data);
+  
+  return (
     <div style={{textAlign:"center"}}>
         <hr />
         { step < totalSteps ?
@@ -155,7 +158,7 @@ const Stats = ({
         }
         <hr />
     </div>
-);
+)};
 
 class First extends Component {
     update = (e) => {
