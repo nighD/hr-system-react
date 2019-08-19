@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-
-import { withFirebase } from '../Firebase';
-
+import { withFirebase } from '../../../containers/Firebase';
+import * as ROUTES from '../../../routes';
 const INITIAL_STATE = {
   passwordOne: '',
   passwordTwo: '',

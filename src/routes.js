@@ -53,7 +53,7 @@ const Payroll_Detail = React.lazy(() => import('./views/Employee/payrollView/pay
 const Payroll_Cal = React.lazy(() => import('./views/Employee/payrollView/payrollCalculationView'));
 // const Data_Report = React.lazy(() => import('./views/Admin/DataVisualization/dataReport'));
 
-// const Reset_Password = React.lazy(() => import('./views/Users/User'));
+// const Reset_Password = React.lazy(() => import('./views/'));
 // const Change_Password = React.lazy(() => import('./views/Users/User'));
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [

@@ -33,16 +33,16 @@ const Nav = (props) => {
         const isActive = props.currentStep === i;
         var a;
         if(i == 1){
-            a = "HOURS & EARNINGS"
+            a = " 1. Hours & Earnings"
         }
         else if (i ==2) {
-            a = "VACATION & SICK DAYS"
+            a = "2. Time Off"
         }
         else if (i==3){
-            a = "REVIEW & SUBMIT"
+            a = "3. Review & Submit"
         }
         else if (i==4){
-            a = "CONFIRMATION"
+            a = "4. Confirmation"
         }
         
         dots.push((

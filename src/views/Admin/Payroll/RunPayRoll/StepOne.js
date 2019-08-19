@@ -96,7 +96,7 @@ export default class StepOne extends Component {
           moneyTrigger: !this.state.money.moneyTrigger
         }
       },()=>{
-
+        this.props.updateData(this.state.money);
       });
       
 
@@ -142,6 +142,7 @@ export default class StepOne extends Component {
             moneyTrigger: !this.state.money.moneyTrigger
           }
       },()=>{
+        this.props.updateData(this.state.money);
          console.log(this.state.money);
        });
     } else if (label == 'OverTime') {
@@ -155,6 +156,7 @@ export default class StepOne extends Component {
             moneyTrigger: !this.state.money.moneyTrigger
           }
       },()=>{
+        this.props.updateData(this.state.money);
        });
     }
     else{
@@ -181,7 +183,7 @@ export default class StepOne extends Component {
             moneyTrigger: !this.state.money.moneyTrigger
           }
       },()=>{
-
+        this.props.updateData(this.state.money);
        });
     }
 
@@ -193,6 +195,7 @@ export default class StepOne extends Component {
     const data = res.data.data;
     var a = [];
     return Promise.all(data.map(async (element,index)=>{
+      // console.log(element);
       if(element.emp_role != 'admin'){
         var data_Sent = {
           "id":element.emp_uid,
@@ -238,7 +241,9 @@ export default class StepOne extends Component {
           gp : gp,
           emp_fname:element.emp_fname,
           emp_lname:element.emp_lname,
-          emp_role : element.emp_role
+          emp_role : element.emp_role,
+          pod: Payroll_Type.paid_off_day,
+          sod: Payroll_Type.sick_off_day
         });
         
         return moneyArray;

@@ -5,8 +5,7 @@ import {withStyles } from '@material-ui/core/styles';
 import { Button,Jumbotron,Col } from 'reactstrap';
 import StepOne from '../StepOne';
 import StepTwo from '../StepTwo';
-// import StepTwo from '../StepTwo`';
-// import StepThree from '../StepThree';
+import StepThree from '../StepThree';
 // import StepFour from '../StepFour';
 const useStyles ={
     animated:  {
@@ -88,19 +87,27 @@ class Wizard extends Component {
     constructor(props) {
         super(props);
         this.state = {
+          data:[],
+          dataOff:[],
+          trigger:false,
+          triggerOff: false,
         };
+        // this.updateData = this.updateData.bind(this);
     }
 
-    updateForm = (key, value) => {
-        const { form } = this.state;
-
-        form[key] = value;
-        this.setState({ form });
+    updateData = (value) => {
+      this.setState({ data:value ,trigger:true},()=>{
+      });
+    }
+    updateDataOff = (value) => {
+      console.log("updateDataOff");
+      this.setState({ dataOff:value ,triggerOff:true},()=>{
+      });
     }
 
     // Do something on step change
     onStepChange = (stats) => {
-        // console.log(stats)
+
     }
 
     setInstance = SW => this.setState({ SW })
@@ -125,8 +132,22 @@ class Wizard extends Component {
                                 nav={<Nav />}
                                 instance={this.setInstance}
                             >
-                                <StepOne Stats = {Stats}/>
-                                <StepTwo Stats = {Stats}/>
+                            
+                                <StepOne Stats = {Stats} updateData = {this.updateData}/>
+                                {this.state.trigger ? 
+                                  <StepTwo Stats = {Stats} data = {this.state.data} updateDataOff = {this.updateDataOff}/>
+                                  : 
+                                  <h1>updating</h1>
+                                }    
+                                {this.state.trigger ? 
+                                  (this.state.triggerOff ? (
+                                    <StepThree Stats = {Stats} data = {this.state.data} dataOff ={this.state.dataOff}/>
+                                  ):(
+                                    <h1>updating</h1>
+                                  ))
+                                 : 
+                                  <h1>updating</h1>
+                                }                                
                             </StepWizard>
                             </Col>
                     </Jumbotron>
@@ -143,7 +164,7 @@ const Stats = ({
     step,
     data
 }) => {
-  console.log(data);
+  
   
   return (
     <div style={{textAlign:"center"}}>
