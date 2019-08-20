@@ -6,7 +6,7 @@ import { Button,Jumbotron,Col } from 'reactstrap';
 import StepOne from '../StepOne';
 import StepTwo from '../StepTwo';
 import StepThree from '../StepThree';
-// import StepFour from '../StepFour';
+import StepFour from '../StepFour';
 const useStyles ={
     animated:  {
         animationDuration: '.8192s',
@@ -147,7 +147,8 @@ class Wizard extends Component {
                                   ))
                                  : 
                                   <h1>updating</h1>
-                                }                                
+                                }         
+                                <StepFour Stats = {Stats}/>                      
                             </StepWizard>
                             </Col>
                     </Jumbotron>
@@ -169,14 +170,21 @@ const Stats = ({
   return (
     <div style={{textAlign:"center"}}>
         <hr />
-        { step < totalSteps ?
-            <Button style = {{marginLeft:'5px',marginRight:'5px'}}color='primary' onClick={nextStep}>Continue</Button>
-            :
-            <Button style = {{marginLeft:'5px',marginRight:'5px'}}color='success' onClick={nextStep}>Finish</Button>
-        }
         { step > 1 &&
             <Button style = {{marginLeft:'5px',marginRight:'5px'}}color='danger' onClick={previousStep}>Go Back</Button>
         }
+        {/* { step < totalSteps &&
+            
+        } */}
+        { step == 3 ? 
+          <Button style = {{marginLeft:'5px',marginRight:'5px'}}color='success' onClick={nextStep}>Submit Payroll</Button>
+          : (step == 2 || step ==1) &&
+          <Button style = {{marginLeft:'5px',marginRight:'5px'}}color='primary' onClick={nextStep}>Continue</Button>
+        }
+        { step == totalSteps && 
+          <Button style = {{marginLeft:'5px',marginRight:'5px'}}color='success' onClick={nextStep}>Back To Dashboard</Button>
+        }
+
         <hr />
     </div>
 )};

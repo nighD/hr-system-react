@@ -201,8 +201,10 @@ export default class StepOne extends Component {
           "id":element.emp_uid,
           "month":6
         };
+        
         let data_response = await actionService.getEmp_Worked_Hours(data_Sent);
         let hour = data_response.data.data[0][0].count*4+0;
+        console.log("hour :" + hour);
         let OverTime =0;
         let hours_worked = hour;
         var Payroll_Type = element.Payroll_Type;

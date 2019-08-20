@@ -8,7 +8,59 @@ InputGroupText,} from 'reactstrap';
 // import * as actionService from '../../../services/actionService';
 import { MDBDataTable,MDBBtn,MDBTableHead,MDBTableBody,MDBTable } from 'mdbreact';
 import * as actionService from '../../../../services/actionService';
-
+var dataHour = {
+  columns: [
+    {
+      label:'Employee',
+      field: 'emp_name',
+      sort: 'asc',
+      width:'10%'
+    },
+    {
+      label:'Compensation Type',
+      field: 'type',
+      sort: 'asc',
+      width:'10%'
+    },
+    {
+      label:'Regular Hours',
+      field: 'rh',
+      sort: 'asc',
+      width:'10%'
+    },
+    {
+      label:'OverTime',
+      field: 'ot',
+      sort: 'asc',
+      width:'10%'
+    },
+    {
+      label:'Vacation',
+      field: 'vacation',
+      sort: 'asc',
+      width:'10%'
+    },
+    {
+      label:'Sick',
+      field: 'sick',
+      sort: 'asc',
+      width:'10%'
+    },
+    {
+      label:'Holiday',
+      field: 'holiday',
+      sort: 'asc',
+      width:'10%'
+    },
+    {
+      label:'Total Hours',
+      field: 'total',
+      sort: 'asc',
+      width:'10%'
+    },
+  ],
+  rows:[]
+}
 var data = {
     columns:[
         {
@@ -24,8 +76,8 @@ var data = {
             width: "20%"
         },
         {
-            label: 'Reimbursements',
-            field: 'reimbursements',
+            label: 'Refund',
+            field: 're',
             sort: 'asc',
             width: "10%"
         },
@@ -52,13 +104,21 @@ const trigger = false;
 export default class StepThree extends Component {
   constructor(props){
     super(props);
-    this.state = {data:data,dataPayroll : this.props.data,trigger, accordion: [true, false, false],dataOff: this.props.dataOff};
+    this.state = {data:data,dataPayroll : this.props.data,trigger, accordion: [true, false, false],dataOff: this.props.dataOff,dataHour:dataHour};
     this.createTable = this.createTable.bind(this);
+    this.createTableHours = this.createTableHours.bind(this);
     this.toggleAccordion = this.toggleAccordion.bind(this);
   }
   async componentDidMount(){
-    // this.createTable();
-    console.log(this.state.dataHour);
+    
+    await this.createTableHours().then(async(res)=>{
+      this.setState({
+        dataHour:{
+          columns: this.state.dataHour.columns,
+          rows: res
+        }
+      })
+    });
     await this.createTable().then(async(res) => {
     //   console.log(res);
       this.setState({
@@ -67,7 +127,6 @@ export default class StepThree extends Component {
           rows: res
         }, trigger: true
       },()=>{
-        // console.log(this.state.data);
       })
     }).catch(error => {
       console.log(error);
@@ -87,15 +146,45 @@ export default class StepThree extends Component {
       
       await a.push({
         emp_name: element[0].emp_fname + " " + element[0].emp_lname,
-        gp:element[0].gp,
-        reimbursements : element[0].reimbursement+0,
-        tax:tax,
-        st:sub
+        gp: "$"+element[0].gp,
+        reimbursements : "$"+element[0].reimbursement+0,
+        tax:"$"+tax,
+        st:"$"+sub
       })
 
 
     })
     return a;
+  }
+  async createTableHours(){
+    const data = this.state.dataOff.data;
+    console.log(data);
+    var a = [];
+    data.map(async (element,index)=>{
+      const total = element.sod + element.pod + element.over_time + element.hours_worked + element.holiday;
+      var type;
+      console.log(element.type);
+      if ( element.type == "monthly"){
+        type = " Permanent"
+      }
+      else {
+        type = "Temporary"
+      }
+      await a.push({
+        emp_name: element.emp_name,
+        type:type,
+        rh: element.hours_worked + " hrs",
+        over_time:element.over_time + " hrs",
+        pod: element.pod + " hrs",
+        sod: element.sod + " hrs",
+        holiday:0 + " hrs",
+        total:total + " hrs"
+
+      })
+    })
+    console.log(a);
+    return a;
+    // return a;
   }
   toggleAccordion(tab) {
     const prevState = this.state.accordion;
@@ -125,7 +214,7 @@ export default class StepThree extends Component {
                   <Card className="mb-0">
                     <CardHeader id="headingOne">
                       <Button block color="link" className="text-left m-0 p-0" onClick={() => this.toggleAccordion(0)} aria-expanded={this.state.accordion[0]} aria-controls="collapseOne">
-                        <h5 className="m-0 p-0">Collapsible Group Item #1</h5>
+                        <h5 className="m-0 p-0">Payroll Summary</h5>
                       </Button>
                     </CardHeader>
                     <Collapse isOpen={this.state.accordion[0]} data-parent="#accordion" id="collapseOne" aria-labelledby="headingOne">
@@ -147,16 +236,17 @@ export default class StepThree extends Component {
                   <Card className="mb-0">
                     <CardHeader id="headingTwo">
                       <Button block color="link" className="text-left m-0 p-0" onClick={() => this.toggleAccordion(1)} aria-expanded={this.state.accordion[1]} aria-controls="collapseTwo">
-                        <h5 className="m-0 p-0">Collapsible Group Item #2</h5>
+                        <h5 className="m-0 p-0">Time Off Paid</h5>
                       </Button>
                     </CardHeader>
                     <Collapse isOpen={this.state.accordion[1]} data-parent="#accordion" id="collapseTwo">
                       <CardBody>
-                        2. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non
-                        cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
-                        on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-                        nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft
-                        beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        <MDBDataTable
+                                data={this.state.dataHour}
+                                striped
+                                borderless
+                                small
+                            />
                       </CardBody>
                     </Collapse>
                   </Card>

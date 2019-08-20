@@ -75,7 +75,7 @@ class DefaultLayout extends Component {
           {authUser =>
             authUser ? (
             <div className="app">
-                <AppHeader fixed className="bg-gray-400">
+                <AppHeader fixed style={{ background: `rgb(103, 115, 129)`}}>
                   <Suspense  fallback={this.loading()}>
                     <DefaultHeader onLogout={e=>this.signOut(e)}/>
                   </Suspense>

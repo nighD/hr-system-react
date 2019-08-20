@@ -8,6 +8,7 @@ import { Badge,Label, Card, CardBody, CardHeader, Col, CardText,CardFooter, Row,
 // import * as actionService from '../../../services/actionService';
 import { MDBDataTable,MDBBtn,MDBTableHead,MDBTableBody,MDBTable } from 'mdbreact';
 import * as actionService from '../../../../services/actionService';
+import { elementType } from 'prop-types';
 
 var data = {
     columns:[
@@ -56,10 +57,9 @@ export default class StepTwo extends Component {
       this.setState({
         dataHour:{
           data:res,
-          trigger:true
+          trigger: !this.state.dataHour.trigger
         }
       },()=>{
-        console.log(this.state.dataHour);
         this.props.updateDataOff(this.state.dataHour);
       });
     }).catch(error => {
@@ -88,21 +88,27 @@ export default class StepTwo extends Component {
     data.map(async (element,index)=>{
       await a.push({
         emp_uid:element[0].emp_uid,
+        emp_name : element[0].emp_fname + " "+element[0].emp_lname,
+        over_time: element[0].OverTime,
+        hours_worked: element[0].hours_worked,
+        type: element[0].type,
+        holiday:0,
         pod:0,
-        sod:0
+        sod:0,
+        pod_limit:element[0].pod,
+        sod_limit:element[0].sod
       })
     })
     return a;
   }
   async handleChange  (event)  {
     let {name,value} = event.target;
-    
     const a = name.toString();
     const number = a.charAt(a.length - 1);
     const label = a.slice(0,a.length-1);
     var dataHours = this.state.dataHour.data.slice();
-
-    var limit = this.state.dataPayroll.data[number][0][label];
+    var limit = dataHours[number][label+"_limit"];
+    console.log(limit - value);
     if (value < limit){
       dataHours[number][label] = Math.round(value);
     } else {
@@ -115,7 +121,7 @@ export default class StepTwo extends Component {
         }
     },()=>{
       console.log(this.state.dataHour);
-      this.props.updateData(this.state.dataHour);
+      this.props.updateDataOff(this.state.dataHour);
      });
 
   };

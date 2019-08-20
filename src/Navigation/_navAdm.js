@@ -109,17 +109,7 @@ export default {
         name: 'Summary',
         url: '/run_payroll',
         icon: 'icon-wallet',
-      },
-      {
-        name: 'Detail',
-        url: '/payroll_detail',
-        icon: 'fa fa-money',
-      },
-      {
-        name: 'Calculation',
-        url: '/payroll_cal',
-        icon: 'fa fa-calculator',
-      },
+      }
     ],
   };
   
