@@ -40,7 +40,7 @@ class DataReport extends Component {
     this.state = {persons:[]}
   }
 
-componentDidMount() {
+async componentDidMount() {
     // this.getDataa();
     // var csvFilePath = require("../../../WA_Fn-UseC_-HR-Employee-Attrition.csv");
     // var Papa = require("papaparse/papaparse.min.js");
@@ -77,7 +77,7 @@ componentDidMount() {
     //     console.log(persons)
     //     this.setState({ persons });
     // });
-    this.updateData();
+    await this.updateData();
     // let columns_info = [];
     // actionService.getColumnsName().then((res) => {
     //     columns_info = res.data;
@@ -120,7 +120,7 @@ async updateData() {
     const persons = res.data;
    
     this.setState({ persons });
-    console.log(this.state)
+    // console.log(this.state)
 });
     // const data = result.data;
     // // Here this is available and we can call this.setState (since it's binded in the constructor)

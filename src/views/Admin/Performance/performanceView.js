@@ -190,7 +190,7 @@ function FormDialog(props) {
   async function saveUpdate(e){
     e.preventDefault();
     await actionService.updateGoalID(props.id,values).then(()=>{
-      console.log(" Update Successful!");
+      //console.log(" Update Successful!");
     }).then(()=>{
       props.loadData(props.uid);
     })
@@ -363,7 +363,7 @@ class LeaveList extends Component {
   }
   async loadData(uid){
     let goals = [];
-    console.log(uid)
+    //console.log(uid)
     actionService.getGoalList(uid).then((res)=>{
       const goal_list = res.data.data;
       goal_list.map((value,index)=>{
@@ -444,13 +444,13 @@ class LeaveList extends Component {
     })
   }
   viewClick = id => {
-    console.log(id)
+    //console.log(id)
   }
   editClick = id => {
-    console.log(id)
+    //console.log(id)
   }
   handleChange= e => {
-      console.log(e);
+      //console.log(e);
   }
   render() {
     // const classes = useStyles();

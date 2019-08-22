@@ -180,7 +180,7 @@ const ERROR_MSG_ACCOUNT_EXISTS = `
 class RegisterFormBase extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props);
+    //console.log(this.props);
     this.state = { ...INITIAL_STATE };
   }
 
@@ -232,7 +232,7 @@ class RegisterFormBase extends Component {
   };
 
   render() {
-    console.log(this.props);
+    //console.log(this.props);
     const {
       email,
       passwordOne,
@@ -252,7 +252,6 @@ class RegisterFormBase extends Component {
 
        
       <div className="app flex-row align-items-center">
-        {console.log(this.props)}
         <Container>
           <Row className="justify-content-center">
             <Col md="9" lg="7" xl="6">

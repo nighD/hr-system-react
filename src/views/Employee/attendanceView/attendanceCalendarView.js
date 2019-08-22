@@ -22,6 +22,7 @@ class CalendarView extends Component {
   async getAttendance(){
     console.log("getAttendance");
     const uid =JSON.parse(localStorage.getItem('authUser')).uid;
+    console.log(uid);
     await actionService.getAttdetail(uid).then(res => {
         console.log(res.data);
         const events = res.data;
@@ -45,9 +46,9 @@ class CalendarView extends Component {
             })
             resolve(eventArray)
         });
-        eventPromises.then((results) => {
-            console.log(results);
-            this.setState( prevState => ({
+        eventPromises.then(async (results) => {
+            //console.log(results);
+            await this.setState( prevState => ({
                 data: {
                 ...prevState.data,
                 events: results
@@ -60,7 +61,7 @@ class CalendarView extends Component {
   getEvent(uid){
     console.log("get Event");
     actionService.getAttdetail(uid).then(res => {
-        const events = res.data.data;
+        const events = res.data;
         let attendancePromises = new Promise((resolve) => {
             let attendanceArray = []
             events.map((event,index)=>{
@@ -82,7 +83,7 @@ class CalendarView extends Component {
             resolve(attendanceArray)
         });
         attendancePromises.then((results) => {
-            console.log(results);
+            //console.log(results);
             let a =this.state.data.events;
             results.map((item,index)=>{
                 a.push(item);
@@ -98,9 +99,9 @@ class CalendarView extends Component {
         })
     });
   }
-  componentDidMount(){
+  async componentDidMount(){
     // const uid =JSON.parse(localStorage.getItem('authUser')).uid;
-    this.getAttendance();
+    await this.getAttendance();
     // this.getEvent(uid);
     // console.log(newArray)
   }

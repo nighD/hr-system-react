@@ -159,7 +159,7 @@ function FormDialog(props) {
   function saveUpdate(e){
     e.preventDefault();
     actionService.updateGoalID(props.id,values).then(()=>{
-      console.log(" Update Successful!");
+      //console.log(" Update Successful!");
     }).then(()=>{
       props.loadData();
     })
@@ -402,10 +402,10 @@ class LeaveList extends Component {
     })
   }
   viewClick = id => {
-    console.log(id)
+    //console.log(id)
   }
   editClick = id => {
-    console.log(id)
+    //console.log(id)
   }
   render() {
     return (

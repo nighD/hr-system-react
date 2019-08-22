@@ -104,7 +104,7 @@ export default class StepOne extends Component {
       
 
     }).catch(error => {
-      console.log(error);
+      // console.log(error);
     })
 
   
@@ -146,7 +146,7 @@ export default class StepOne extends Component {
           }
       },()=>{
         this.props.updateData(this.state.money);
-         console.log(this.state.money);
+        //  console.log(this.state.money);
        });
     } else if (label === 'OverTime') {
 
@@ -207,7 +207,7 @@ export default class StepOne extends Component {
         
         let data_response = await actionService.getEmp_Worked_Hours(data_Sent);
         let hour = data_response.data.data[0][0].count*4+0;
-        console.log("hour :" + hour);
+        // console.log("hour :" + hour);
         let OverTime =0;
         // let hours_worked = hour;
         var Payroll_Type = element.Payroll_Type;

@@ -18,23 +18,29 @@ class TeamListDetail extends Component {
     this.state = { data: []};
     this.getTeamDetail = this.getTeamDetail.bind(this);
   }
-  componentDidMount(){
+  async componentDidMount(){
     // const team_id = JSON.parse(localStorage.getItem('userInfo')).teamid;
-    this.getTeamDetail();
+    await this.getTeamDetail();
   }
 
   async getTeamDetail(){
     const team_id =this.props.location.state.team_id;
-    console.log(team_id);
+    // console.log(team_id);
     await actionService.getTeamdetail(team_id).then(res => {
+      // console.log(team_id);
+
       const data = res.data.data[0];
-      this.setState({data});
-      console.log(data.team_dis);
-      members = this.state.data.User_Infos;
+      this.setState({data},()=>{
+        // console.log(data);
+        
+      });
+
+
     })
   }
   render() {
     const avengers = [thor,hulk,iron,spider,ant]
+    members = this.state.data.User_Infos;
     return (
       <div className="animated fadeIn">
       <Row>
@@ -60,13 +66,13 @@ class TeamListDetail extends Component {
                   </thead>
                   <tbody>
                   {members && members.map((member,index)=>(
-                    <tr>
-                      <td>{member.emp_lname} {member.emp_fname}</td>
-                      <td>{member.emp_email}</td>
-                      <td>{member.emp_role}</td>
-                      <td>
+                    <tr key={index}>
+                      <td key={"name"+index}>{member.emp_lname} {member.emp_fname}</td>
+                      <td key={"email"+index}>{member.emp_email}</td>
+                      <td key={"role"+index}>{member.emp_role}</td>
+                      <td key={"status"+index}>
                       {(() => {
-                        console.log(index);
+                        // console.log(index);
                         switch(member.emp_status){
                           case 'active':
                             return <Badge color="success">Active</Badge>;
@@ -76,12 +82,12 @@ class TeamListDetail extends Component {
                             return null;
                       }} )()}
                       </td>
-                      <td><Button size="sm" color="danger" className="fa fa-remove "    style={{marginLeft:'10px'}}></Button></td>
+                      <td key={"button"+index}><Button size="sm" color="danger" className="fa fa-remove "    style={{marginLeft:'10px'}}></Button></td>
                     </tr>                    
                   ))}
-                  <td></td>
+                  {/* <td></td> */}
                   {/* <td><Button color="link" size="lg" style={{margin:'auto'}} block>Block level button</Button></td> */}
-                  <td></td>
+                  {/* <td></td> */}
                   </tbody>
                 </Table>
               </CardBody>
@@ -107,7 +113,7 @@ class TeamListDetail extends Component {
                       switch(member.emp_role){
                         case 'manager':
                           return (
-                          <a href="#pablo" onClick={e => e.preventDefault()}>
+                          <a key={"a"} href="#pablo" onClick={e => e.preventDefault()}>
                             <img
                               alt="..."
                               className="avatar"
@@ -132,11 +138,11 @@ class TeamListDetail extends Component {
                     
                      
                       (() => {
-                        console.log(member);
+                        // console.log(member);
                         switch(member.emp_role){
                           case 'employee':
                             return (
-                            <Col md ="3">
+                            <Col key={index} md ="3">
                             <a href="#pablo" onClick={e => e.preventDefault()}>
                               <img
                                 alt="..."

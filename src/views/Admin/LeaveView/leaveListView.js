@@ -69,21 +69,21 @@ class LeaveList extends Component {
     
   }
   viewClick = id => {
-    console.log(id)
+    // console.log(id)
     this.props.history.push({
       pathname: '/teamlist/detail',
       state: {team_id: id}
     })
   }
   editClick = id => {
-    console.log(id)
+    // console.log(id)
     this.props.history.push({
       pathname:  '/teamlist/edit_detail',
       state: {team_id: id}
     })
   }
   viewTeamDetail = (param,event) => {
-    console.log(param);
+    // console.log(param);
   };
 //   handleLeaveList = (e) => {
 //     // let a = this.state.le
@@ -91,7 +91,7 @@ class LeaveList extends Component {
   getAllLeaves = () => {
     actionService.getLeaveList().then(res => {
       const leaves = res.data.data;
-      console.log(leaves);
+      // console.log(leaves);
       var leaveArray = [];
       // var leaveStatus = [];
       let statusColor;
@@ -247,7 +247,7 @@ class LeaveList extends Component {
       default:
     }
     this.setState({colors: colors});
-    console.log(this.state.colors.all);
+    // console.log(this.state.colors.all);
   }
   render() {
     return (

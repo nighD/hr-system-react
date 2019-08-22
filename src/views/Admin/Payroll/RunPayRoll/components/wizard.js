@@ -100,7 +100,7 @@ class Wizard extends Component {
       });
     }
     updateDataOff = (value) => {
-      console.log("updateDataOff");
+      // console.log("updateDataOff");
       this.setState({ dataOff:value ,triggerOff:true},()=>{
       });
     }

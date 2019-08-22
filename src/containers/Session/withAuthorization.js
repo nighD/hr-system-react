@@ -24,7 +24,7 @@ const withAuthorization = condition => Component => {
     }
 
     render() {
-      console.log("user pass authentication");
+      // console.log("user pass authentication");
       return (
         <AuthUserContext.Consumer>
           {authUser =>

@@ -132,7 +132,7 @@ function FormDialog() {
         const team_id = JSON.parse(localStorage.getItem('userInfo')).teamid;
         actionService.getTeamManager(team_id).then(res => {
             const data = res.data.data[0];
-            console.log("start");
+            //console.log("start");
             const a = new Promise((res,rej)=> {
                 res(setValues({ ...values, 
                     approver:{
@@ -317,21 +317,21 @@ class Leave_Emp_List extends Component {
     this.checkTable(0);
   }
   viewClick = id => {
-    console.log(id)
+    //console.log(id)
     this.props.history.push({
       pathname: '/teamlist/detail',
       state: {team_id: id}
     })
   }
   editClick = id => {
-    console.log(id)
+    //console.log(id)
     this.props.history.push({
       pathname:  '/teamlist/edit_detail',
       state: {team_id: id}
     })
   }
   viewTeamDetail = (param,event) => {
-    console.log(param);
+    //console.log(param);
   };
   getAllLeaves = () => {
     const uid =JSON.parse(localStorage.getItem('authUser')).uid;

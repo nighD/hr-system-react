@@ -234,13 +234,13 @@ class Model_Test extends Component {
   async selectorEmployee(e) {
     // console.log(e);
     await this.setState({inputEmployee:e});
-    console.log(this.state.inputEmployee)
+    // console.log(this.state.inputEmployee)
     const input = this.state.inputEmployee;
     if(input != null){
       this.loadData(input.value);
     }
     else {
-      console.log("set null");
+      // console.log("set null");
       this.setState( prevState => ({
         searchResult: {
          ...prevState.searchResult,

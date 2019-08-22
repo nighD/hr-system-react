@@ -46,7 +46,7 @@ class Firebase {
           }
           
           this.user(authUser.uid).set(data).then(()=>{
-            console.log("success");
+            // console.log("success");
           });
       }
 
@@ -91,7 +91,7 @@ class Firebase {
           }
           
           this.user(authUser.uid).update(data).then(()=>{
-            console.log("success");
+            // console.log("success");
           });
       }
 

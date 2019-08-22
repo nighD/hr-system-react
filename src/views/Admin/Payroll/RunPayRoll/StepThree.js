@@ -133,7 +133,7 @@ export default class StepThree extends Component {
       },()=>{
       })
     }).catch(error => {
-      console.log(error);
+      // console.log(error);
     })
 
   }
@@ -162,12 +162,12 @@ export default class StepThree extends Component {
   }
   async createTableHours(){
     const data = this.state.dataOff.data;
-    console.log(data);
+    // console.log(data);
     var a = [];
     data.map(async (element,index)=>{
       const total = element.sod + element.pod + element.over_time + element.hours_worked + element.holiday;
       var type;
-      console.log(element.type);
+      // console.log(element.type);
       if ( element.type === "monthly"){
         type = " Permanent"
       }
@@ -186,7 +186,7 @@ export default class StepThree extends Component {
 
       })
     })
-    console.log(a);
+    // console.log(a);
     return a;
     // return a;
   }

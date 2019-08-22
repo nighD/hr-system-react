@@ -81,15 +81,12 @@ class EditDetail extends Component {
 
   }
   componentDidMount() {
-    const uid =JSON.parse(localStorage.getItem('authUser')).uid;
-    
+    // const uid =JSON.parse(localStorage.getItem('authUser')).uid;
+    const uid =this.props.location.state.uid;
     actionService.getUserdetail(uid).then(res => {
       const data = res.data.data;
       data.emp_dob = data.emp_dob.substring(0,10);
-      console.log(data);
       this.setState( {data} );
-      console.log(this.state);
-      console.log(this.state.data.emp_dob);
       if (this.state.data.emp_gender === 'male'){
         this.gender_male.current.selected = true;
       }
@@ -103,7 +100,7 @@ class EditDetail extends Component {
   }
   onSubmit = event => {
     event.preventDefault();
-    console.log(this.state.data);
+    // console.log(this.state.data);
     const uid =JSON.parse(localStorage.getItem('authUser')).uid;
     actionService.updateUserdetail(uid,this.state.data);
     this.props.history.push(ROUTES.DETAIL);
@@ -353,15 +350,9 @@ class EditDetail extends Component {
                       />
                       <h5 className="title">{this.state.data.emp_lname + ' ' + this.state.data.emp_fname}</h5>
                     </a>
-                    <p className="description">{this.state.data.emp_role}</p>
+
                   </div>
-                  <div className="card-description">
-                    “Doesn't matter what the press says. Doesn't matter what the politicians or the mobs say. 
-                    Doesn't matter if the whole country decides that something wrong is something right. 
-                    This nation was founded on one principle above all else: The requirement that we stand up for what we believe, 
-                    no matter the odds or the consequences. When the mob and the press and the whole world tell you to move, 
-                    your job is to plant yourself like a tree beside the river of truth, and tell the whole world -- "No, YOU move.” 
-                  </div>
+
                 </CardBody>
                 <CardFooter>
                   {/* <div className="button-container">

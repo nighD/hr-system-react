@@ -49,7 +49,7 @@ class Widget03 extends Component {
     const classCardHeader = classNames(`${classCard}-header`, back);
     const classCardBody = classNames(`${classCard}-body`);
     const classes = mapToCssModules(classNames(classCard, className), cssModule);
-    console.log(Object.values(data));
+    //console.log(Object.values(data));
     return (
       <div className={classes}>
         <div className={classCardHeader}>

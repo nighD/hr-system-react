@@ -18,11 +18,11 @@ class TeamDetail extends Component {
   }
   componentDidMount(){
     const team_id = JSON.parse(localStorage.getItem('userInfo')).teamid;
-    console.log(team_id);
+    //console.log(team_id);
     actionService.getTeamdetail(team_id).then(res => {
       const data = res.data.data[0];
       this.setState({data});
-      console.log(this.state.data[0])
+      //console.log(this.state.data[0])
     })
   }
   render() {
@@ -117,7 +117,7 @@ class TeamDetail extends Component {
                     
                      
                       (() => {
-                        console.log(member);
+                        //console.log(member);
                         switch(member.emp_role){
                           case 'employee':
                             return (

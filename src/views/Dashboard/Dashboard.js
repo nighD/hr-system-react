@@ -63,11 +63,11 @@ class Dashboard extends Component {
       <div>
       {
         condition1 ? (
-          console.log(!!authUser0.roles.ADMIN[ROLES.ADMIN]),
-          console.log("admin"),
+          //console.log(!!authUser0.roles.ADMIN[ROLES.ADMIN]),
+          //console.log("admin"),
           <UserPage/>
         )  : ( 
-          console.log("Employee"),
+          //console.log("Employee"),
           <UserPage/>
         )
       }

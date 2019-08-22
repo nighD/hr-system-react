@@ -55,7 +55,7 @@ export default class StepTwo extends Component {
 
   }
   async componentDidMount(){
-    // console.log(this.state.dataPayroll);
+    // //console.log(this.state.dataPayroll);
     await this.prepareHour().then(res=>{
       this.setState({
         dataHour:{
@@ -66,7 +66,7 @@ export default class StepTwo extends Component {
         this.props.updateDataOff(this.state.dataHour);
       });
     }).catch(error => {
-      console.log(error);
+      ////console.log(error);
     });
 
 
@@ -111,11 +111,11 @@ export default class StepTwo extends Component {
     const label = a.slice(0,a.length-1);
     var dataHours = this.state.dataHour.data.slice();
     var limit = dataHours[number][label+"_limit"];
-    console.log(limit - value);
+    //console.log(limit - value);
     if (value < limit){
       dataHours[number][label] = Math.round(value);
     } else {
-      console.log("out limit");
+      //console.log("out limit");
     }
     await this.setState({
         dataHour:{
@@ -123,7 +123,7 @@ export default class StepTwo extends Component {
           trigger: !this.state.dataHour.trigger
         }
     },()=>{
-      console.log(this.state.dataHour);
+      //console.log(this.state.dataHour);
       this.props.updateDataOff(this.state.dataHour);
      });
 

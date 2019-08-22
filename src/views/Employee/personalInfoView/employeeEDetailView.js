@@ -82,10 +82,10 @@ class EditDetail extends Component {
   }
   componentDidMount() {
     const uid =JSON.parse(localStorage.getItem('authUser')).uid;
-    console.log(uid);
+    //console.log(uid);
     actionService.getUserdetail(uid).then(res => {
       const person = res.data.data;
-      console.log(person);
+      //console.log(person);
       person.emp_dob = person.emp_dob.substring(0,10);
       this.setState( {person} ); 
       if (this.state.person.emp_gender === 'male'){
@@ -100,16 +100,16 @@ class EditDetail extends Component {
       else {
           
       }
-      console.log(this.state);
+      //console.log(this.state);
       localStorage.setItem('userInfo',JSON.stringify(person));
     })
 
   }
   onSubmit = event => {
     event.preventDefault();
-    console.log(this.state.person);
+    //console.log(this.state.person);
     const uid =JSON.parse(localStorage.getItem('authUser')).uid;
-    console.log(this.state.person);
+    //console.log(this.state.person);
     actionService.updateUserdetail(uid,this.state.person);
     this.props.history.push(ROUTES.DETAIL);
   };
@@ -119,7 +119,7 @@ class EditDetail extends Component {
     // let data = {...this.state.person}
     // data. = value
     // console.log(data.(name))
-    console.log(value);
+    //console.log(value);
      this.setState( prevState => ({
         ...prevState.person,
         [name] : value

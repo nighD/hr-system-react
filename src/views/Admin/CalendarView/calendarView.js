@@ -130,7 +130,7 @@ function AddEvents(props){
         // }  
     }
     const selector = e => {
-        console.log("selector voo r nha");
+        // console.log("selector voo r nha");
         setValues({
             ...form,
             inputValue: e
@@ -144,7 +144,7 @@ function AddEvents(props){
       };
     const sendValues = e => {
         e.preventDefault();
-        console.log(e);
+        // console.log(e);
         // console.log(form)
         let idArray = [];
         let arrayList = form.inputValue;
@@ -168,8 +168,8 @@ function AddEvents(props){
           notification: form.notification  
         }
         actionService.addEvent(data);
-        console.log(form.title);
-        console.log()
+        // console.log(form.title);
+        // console.log()
       };
       function ButtonSave(props){
         let aa = {
@@ -428,9 +428,10 @@ class AdminCalendar extends Component {
   }
 
   getAttendance(){
-      console.log("get Attendance");
+    //   console.log("get Attendance");
     actionService.getEvent().then(res => {
-        const events = res.data.data;
+        const events = res.data;
+        console.log(res);
         let eventPromises = new Promise((resolve) => {
             let eventArray = []
             events.map((event,index)=>{
@@ -463,7 +464,7 @@ class AdminCalendar extends Component {
     });
   }
   getEvent(uid){
-      console.log("getEvent");
+    //   console.log("getEvent");
     actionService.getAttdetail(uid).then(res => {
         const events = res.data.data;
         let attendancePromises = new Promise((resolve) => {
@@ -505,8 +506,9 @@ class AdminCalendar extends Component {
   }
   componentDidMount(){
     // const uid =JSON.parse(localStorage.getItem('authUser')).uid;
-    // this.getAttendance();
-    // this.getEvent(uid);
+    // console.log(uid);
+    this.getAttendance();
+    // this.getEvent();
   }
 // componentDidUpdate(prevProps, prevState){
 
@@ -588,8 +590,8 @@ class AdminCalendar extends Component {
   }
   refreshE(event){
     let temp = this.state.data.events;
-    console.log(temp.length);
-    console.log(event);
+    // console.log(temp.length);
+    // console.log(event);
     let tempevent = {
         id: temp.length,
         title: event.title,
@@ -604,7 +606,7 @@ class AdminCalendar extends Component {
             events: temp
         }
     }));
-    console.log(this.state.data.events.length);
+    // console.log(this.state.data.events.length);
     // this.setState( prevState => ({
     //     data: {
     //     ...prevState.data,

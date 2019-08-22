@@ -49,17 +49,17 @@ class TeamList extends Component {
     
     // const team_id = JSON.parse(localStorage.getItem('userInfo')).teamid;
     actionService.getTeamlist().then(res => {
-        console.log(res.data.data);
+        // console.log(res.data.data);
         const teams = res.data.data;
         
-        console.log(teams);
+        // console.log(teams);
         teams.map((team,index)=>{
             var newArray = this.state.data.rows.slice();
-            console.log(team.team_id);
+            // console.log(team.team_id);
             const ButtonTable = (
               <div>
-              <MDBBtn size="sm" color="primary" className="fa fa-pencil "   onClick = {this.editClick.bind(this,team.id)}   style={{marginLeft:'20px',}}></MDBBtn>
-              {/* <MDBBtn size="sm" color="success" className="fa fa-search-plus "   onClick = {this.viewClick.bind(this,team.id)} ></MDBBtn> */}
+              {/* <MDBBtn size="sm" color="primary" className="fa fa-pencil "   onClick = {this.editClick.bind(this,team.id)}   style={{marginLeft:'20px',}}></MDBBtn> */}
+              <MDBBtn size="sm" color="success" className="fa fa-search-plus "   onClick = {this.viewClick.bind(this,team.id)} ></MDBBtn>
               </div>
             );
             newArray.push({
@@ -80,7 +80,7 @@ class TeamList extends Component {
           return true;
       })
       this.setState({teams});
-      console.log(this.state);
+      // console.log(this.state);
     });
   }
   viewClick = id => {
@@ -91,14 +91,14 @@ class TeamList extends Component {
     })
   }
   editClick = id => {
-    console.log(id)
+    // console.log(id)
     this.props.history.push({
       pathname:  '/teamlist/edit_detail',
       state: {team_id: id}
     })
   }
   viewTeamDetail = (param,event) => {
-    console.log(param);
+    // console.log(param);
   };
   render() {
     // const avengers = [captain,hulk,thor,spider,ant]

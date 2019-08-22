@@ -61,28 +61,28 @@ class TeamList extends Component {
     // this.editClick = this.editClick.bind(this);
   }
   viewClick = uid => {
-    console.log(uid)
+    // console.log(uid)
     this.props.history.push({
       pathname: '/employeelist/detail',
       state: {uid: uid}
     })
   }
   editClick = uid => {
-    console.log(uid)
+    // console.log(uid)
     this.props.history.push({
       pathname:  '/employeelist/edit_detail',
       state: {uid: uid}
     })
   }
-  componentDidMount(){
+  async componentDidMount(){
    
     // const team_id = JSON.parse(localStorage.getItem('userInfo')).teamid;
-    actionService.getUserList().then(res => {
+    await actionService.getUserList().then(async res => {
 
       const users = res.data.data;
       // console.log(users);
       var uidArray = [];
-      users.map((user,index)=>{
+      await users.map(async (user,index)=>{
         // const Edit =  <td><MDBBtn size="sm" color="primary"  onClick = {this.editClick.bind(this,user.emp_uid)} ><i className="fa fa-pencil " ></i></MDBBtn></td>;
         // const View =  <td><MDBBtn key = {index} size="sm" color="success"  onClick = {this.viewClick.bind(this,user.emp_uid)} ><i className="fa fa-search-plus " ></i></MDBBtn></td>;
         const ButtonTable = (
@@ -111,7 +111,7 @@ class TeamList extends Component {
         // console.log(user.emp_uid)
         uidArray.push(user.emp_uid);
         
-        this.setState( prevState => ({
+        await this.setState( prevState => ({
           data: {
            ...prevState.data,
            rows: newArray
@@ -128,7 +128,7 @@ class TeamList extends Component {
         }
       }))
       // this.setState({uidArray})
-      console.log(this.state);
+      // console.log(this.state);
       // this.setState({users});
     })
   }
