@@ -1,33 +1,23 @@
 import React, { Component,useState } from "react";
 import Calendar from "react-big-calendar";
 import moment from "moment";
-import {DateTimePicker} from 'react-widgets';
 import momentLocalizer from 'react-widgets-moment';
 import CreatableSelect from 'react-select/creatable';
 import { 
-    Badge,
     Card, 
     CardBody, 
-    CardHeader, 
     Col, 
     Modal, 
     ModalBody, 
     ModalFooter, 
     ModalHeader, 
     Button, 
-    Row, 
-    CardText,
-    Table,
     Form,
     FormGroup,
-    FormText,
-    FormFeedback,
     Input,
     InputGroup,
     InputGroupAddon,
-    InputGroupButtonDropdown,
-    InputGroupText,
-    Label } from 'reactstrap';
+    InputGroupText, } from 'reactstrap';
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import * as actionService from "../../../services/actionService"
 import 'date-fns';
@@ -38,15 +28,14 @@ import {
   MuiPickersUtilsProvider,
   KeyboardTimePicker,
 } from '@material-ui/pickers';
-import { isNull } from "util";
-import { events } from "../../../constants/url";
 
-const promiseOptions = inputValue =>
-  new Promise(resolve => {
-    setTimeout(() => {
-      resolve(inputValue);
-    }, 1000);
-  });
+
+// const promiseOptions = inputValue =>
+//   new Promise(resolve => {
+//     setTimeout(() => {
+//       resolve(inputValue);
+//     }, 1000);
+//   });
 const localizer = Calendar.momentLocalizer(moment);
 // moment.locale('en')
 momentLocalizer(moment)
@@ -73,16 +62,16 @@ actionService.getUserList().then(res=>{
             label: user.emp_fname+ " " + user.emp_lname
         };
         selectOptions.push(a);
+        return true;
     })
 })
 function AsyncMulti(props) {
     let [inputValue,setInputValue] = useState(props.inputValue);
+    console.log(inputValue);
     const handleInputChange = (newValue, actionMeta) => {
         const inputValue = newValue;
         setInputValue({...inputValue,inputValue });
-        console.log(inputValue);
         props.selector(inputValue);
-        console.log(`action: ${actionMeta.action}`);
         return inputValue;
     };
     return (
@@ -119,20 +108,26 @@ function AddEvents(props){
         });
     }
     function setEndTime(date) {
-        let a = new moment(form.start)
-        let b = new moment(date)
-        if (a.isSame(b,'day')){
-            if (a > b){
-                console.log("aaaaaaa")
-                alert(" Please choose again: Start time > End time")
-            }
-            else {
-                setValues({
-                    ...form,
-                    end: date
-                });
-            }
-        }  
+        setValues({
+            ...form,
+            end: date
+        });
+        // let a = new moment(form.start)
+        // let b = new moment(date)
+        // console.log(a.isSame(b,'day'));
+        // console.log(a);
+        // console.log(b);
+        // if (a.isSame(b,'day')){
+        //     if (a > b){
+        //         alert(" Please choose again: Start time > End time")
+        //     }
+        //     else {
+        //         setValues({
+        //             ...form,
+        //             end: date
+        //         });
+        //     }
+        // }  
     }
     const selector = e => {
         console.log("selector voo r nha");
@@ -160,6 +155,7 @@ function AddEvents(props){
         arrayList.map((value,index)=> {
             // console.log(value.id)
             idArray.push(value.value);
+            return true;
         })
         }
 
@@ -432,6 +428,7 @@ class AdminCalendar extends Component {
   }
 
   getAttendance(){
+      console.log("get Attendance");
     actionService.getEvent().then(res => {
         const events = res.data.data;
         let eventPromises = new Promise((resolve) => {
@@ -449,6 +446,7 @@ class AdminCalendar extends Component {
                     end: new Date(end_time),
                     desc: duration
                 });
+                return true;
             })
             resolve(eventArray)
         });
@@ -465,6 +463,7 @@ class AdminCalendar extends Component {
     });
   }
   getEvent(uid){
+      console.log("getEvent");
     actionService.getAttdetail(uid).then(res => {
         const events = res.data.data;
         let attendancePromises = new Promise((resolve) => {
@@ -483,6 +482,7 @@ class AdminCalendar extends Component {
                     end: new Date(end_time),
                     desc: duration
                 });
+                return true;
             })
             resolve(attendanceArray)
         });
@@ -491,6 +491,7 @@ class AdminCalendar extends Component {
             let a =this.state.data.events;
             results.map((item,index)=>{
                 a.push(item);
+                return true;
             })
             this.setState( prevState => ({
                 data: {
@@ -503,7 +504,7 @@ class AdminCalendar extends Component {
     });
   }
   componentDidMount(){
-    const uid =JSON.parse(localStorage.getItem('authUser')).uid;
+    // const uid =JSON.parse(localStorage.getItem('authUser')).uid;
     // this.getAttendance();
     // this.getEvent(uid);
   }
@@ -599,7 +600,7 @@ class AdminCalendar extends Component {
     temp.push(tempevent)
     this.setState( prevState => ({
         data: {
-            ... prevState.data,
+            ...prevState.data,
             events: temp
         }
     }));

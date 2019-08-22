@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-import { Badge,Label, Card, CardBody, CardHeader, Col, CardText,CardFooter, Row, Table,Button,Input,
-  Collapse,
+import { Label,
+  Card, 
+  CardBody, 
+  Col,  
+  Row,
+  Input,
   InputGroup,
   InputGroupAddon,
-  InputGroupButtonDropdown,
   InputGroupText,} from 'reactstrap';
 // import * as actionService from '../../../services/actionService';
-import { MDBDataTable,MDBBtn,MDBTableHead,MDBTableBody,MDBTable } from 'mdbreact';
-import * as actionService from '../../../../services/actionService';
-import { elementType } from 'prop-types';
+import { MDBDataTable} from 'mdbreact';
+// import * as actionService from '../../../../services/actionService';
+// import { elementType } from 'prop-types';
 
 var data = {
     columns:[
@@ -69,7 +72,7 @@ export default class StepTwo extends Component {
 
   }
   componentDidUpdate(prevProps,prevState){
-    if (prevState.dataHour.trigger != this.state.dataHour.trigger){
+    if (prevState.dataHour.trigger !== this.state.dataHour.trigger){
       this.createTable().then(async res=>{
         await this.setState({
           data:{

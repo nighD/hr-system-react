@@ -16,7 +16,7 @@ export function getManagers() {
     return baseService(constants.GET_METHOD, constants.baseURL + constants.userManager);
 }
 export function updateUserdetail(uid,data) {
-    return baseService(constants.POST_METHOD, constants.baseURL + constants.userDetail + uid,data);
+    return baseService(constants.PUT_METHOD, constants.baseURL + constants.userDetail + uid,data);
 }
 export function getTeamlist() {
     return baseService(constants.GET_METHOD, constants.baseURL + constants.teamList);

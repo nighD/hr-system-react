@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
-import { Badge,Label, Card, CardBody, CardHeader, Col, CardText,CardFooter, Row, Table,Button,Input,
-Collapse,
-InputGroup,
-InputGroupAddon,
-InputGroupButtonDropdown,
-InputGroupText,} from 'reactstrap';
+import { 
+  Label, 
+  Card, 
+  CardBody, 
+  CardHeader, 
+  Col, 
+  Row, 
+  Button,
+  Collapse
+} from 'reactstrap';
 // import * as actionService from '../../../services/actionService';
-import { MDBDataTable,MDBBtn,MDBTableHead,MDBTableBody,MDBTable } from 'mdbreact';
-import * as actionService from '../../../../services/actionService';
+import { MDBDataTable } from 'mdbreact';
+// import * as actionService from '../../../../services/actionService';
 var dataHour = {
   columns: [
     {
@@ -164,7 +168,7 @@ export default class StepThree extends Component {
       const total = element.sod + element.pod + element.over_time + element.hours_worked + element.holiday;
       var type;
       console.log(element.type);
-      if ( element.type == "monthly"){
+      if ( element.type === "monthly"){
         type = " Permanent"
       }
       else {

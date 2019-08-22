@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
-import {  DropdownItem, DropdownMenu, DropdownToggle, Nav, NavItem } from 'reactstrap';
+// import { NavLink } from 'react-router-dom';
+import {  DropdownItem, DropdownMenu, DropdownToggle, Nav} from 'reactstrap';
 import PropTypes from 'prop-types';
 // import Avatar from 'react-avatar';
 import { AppAsideToggler, AppHeaderDropdown, AppNavbarBrand, AppSidebarToggler } from '@coreui/react';
-import react from '../../assets/img/brand/react.svg'
+// import react from '../../assets/img/brand/react.svg'
 import logo from  '../../assets/img/brand/logo1.png'
 // import sygnet from '../../assets/img/brand/sygnet.svg'
 // import userava from '../../assets/img/user.png'
-import iron from '../../assets/img/iron.png';
+import captain from '../../assets/img/captain.png';
 const propTypes = {
   children: PropTypes.node,
 };
@@ -51,7 +51,7 @@ class DefaultHeader extends Component {
                                   <img
                         alt="..."
                         className="avatar"
-                        src={iron}
+                        src={captain}
                       />
               {/* <a className= "icon-user"></a> */}
             </DropdownToggle>

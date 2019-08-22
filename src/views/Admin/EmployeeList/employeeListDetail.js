@@ -7,7 +7,7 @@ import { withFirebase } from '../../../containers/Firebase';
 import { AuthUserContext } from '../../../containers/Session';
 import * as actionService from '../../../services/actionService';
 // import { Line } from 'react-chartjs-2';
-import iron from '../../../assets/img/iron.png';
+import captain from '../../../assets/img/captain.png';
 // import * as ROUTES from '../../../routes';
 // import Widget03 from '../../Widgets/Widget03';
 // import Avatar from 'react-avatar';
@@ -252,7 +252,7 @@ componentDidMount() {
                       <img
                         alt="..."
                         className="avatar"
-                        src={iron}
+                        src={captain}
                       />
                       <h5 className="title" value = {this.state.person.emp_lname + ' '+ this.state.person.emp_fname}>{this.state.person.emp_lname + ' '+ this.state.person.emp_fname}</h5>
                     </a>

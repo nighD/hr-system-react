@@ -14,9 +14,9 @@ import {Card,
   InputGroupText, 
 } from 'reactstrap';
 import * as actionService from '../../../services/actionService';
-import {FullsizePicture} from 'react-responsive-picture';
+// import {FullsizePicture} from 'react-responsive-picture';
 import a from '../../../assets/img/aaaa.png'
-import { MDBDataTable,MDBBtn} from 'mdbreact';
+import { MDBDataTable} from 'mdbreact';
 import {Button} from 'reactstrap';
 import AsyncSelect from 'react-select/async';
 let selectOptionsEmployee = [];
@@ -24,13 +24,14 @@ async function optionsForPrediction(search) {
     let response = await actionService.find_unseen_data(search);
     let data = await [response.data];
     selectOptionsEmployee = []
-    if(typeof(data[0]) == 'string'){
+    if(typeof(data[0]) === 'string'){
       return selectOptionsEmployee;
     }
     else {
       data.map((element) => {
         let dropDownEle = { label: "Employee Example: " + search, value: search };
         selectOptionsEmployee.push(dropDownEle);
+        return true;
       });
       return selectOptionsEmployee;
     }
@@ -168,16 +169,16 @@ class Model_Test extends Component {
 
   }
   async getAttritionComparison(){
-    let target_attrition;
+    // let target_attrition;
     let frequency_attrition;
-    let predict_attrition;
+    // let predict_attrition;
     let frequency_predict_attrition;
     await actionService.comparison_attrition().then((res)=>{
-      target_attrition = res.data.target;
+      // target_attrition = res.data.target;
       frequency_attrition = res.data.frequency;
     })
     await actionService.comparison_predict_attrition().then((res)=>{
-      predict_attrition = res.data.target;
+      // predict_attrition = res.data.target;
       frequency_predict_attrition = res.data.frequency;
     })
     this.setState( prevState => ({
@@ -196,17 +197,17 @@ class Model_Test extends Component {
     }));
   }
   async getFraudComparison(){
-    let target_fraud;
+    // let target_fraud;
     let frequency_fraud;
-    let predict_fraud;
+    // let predict_fraud;
     let frequency_predict_fraud;
     await actionService.comparison_fraud().then((res)=>{
-      target_fraud = res.data.target;
+      // target_fraud = res.data.target;
       frequency_fraud = res.data.frequency;
 
     })
     await actionService.comparison_predict_fraud().then((res)=>{
-      predict_fraud = res.data.target;
+      // predict_fraud = res.data.target;
       frequency_predict_fraud = res.data.frequency;
 
     })
@@ -279,19 +280,19 @@ class Model_Test extends Component {
   async predict_attrition (id) {
     await actionService.predictAttritionID(id).then((res)=>{
       const result = res.data;
-      if (result["Actual Result"] != result["Predict Result"]){
+      if (result["Actual Result"] !== result["Predict Result"]){
         this.setState({bgColor:'danger'})
       }
       else {
         this.setState({bgColor:"success"})
       }
-      if (result["Actual Result"] == 1){
+      if (result["Actual Result"] === 1){
         this.setState({actual:"Yes"})
       }
       else {
         this.setState({actual:"No"})
       }
-      if (result["Predict Result"] == 1){
+      if (result["Predict Result"] === 1){
         this.setState({predict:"Yes"})
       }
       else {
@@ -303,7 +304,7 @@ class Model_Test extends Component {
   async predict_fraud (id) {
     await actionService.predictFraudID(id).then((res)=>{
       const result = res.data;
-      if (result["Actual Result"] != result["Predict Result"]){
+      if (result["Actual Result"] !== result["Predict Result"]){
         this.setState({bgColor:'danger'})
       }
       else {
@@ -323,7 +324,9 @@ class Model_Test extends Component {
           break;
         case 3:
           actual = "Large Steal";
+          break;
         default :
+        return true;
       }
       switch(result['Predict Result']){
         case 0:
@@ -337,7 +340,9 @@ class Model_Test extends Component {
           break;
         case 3:
           predict = "Large Steal";
+          break;
         default :
+          return true;
       }
       this.setState({actual:actual,predict:predict})
     })
@@ -473,7 +478,7 @@ class Model_Test extends Component {
             <Col xs="12" sm="4">
                 <Card  >
                   <CardHeader>Confusion Matrix</CardHeader>
-                  <img src={a} style={{width:'100%',height:'100%'}}/>
+                  <img src={a} style={{width:'100%',height:'100%'}} alt="Confusion Matrix Fraud"/>
                   <CardFooter>
                     Accuracy : {this.state.accuracy_report.fraud.toString().substring(0,5)}
                   </CardFooter>
@@ -501,7 +506,7 @@ class Model_Test extends Component {
           <Col xs="12" sm="4">
               <Card  >
                 <CardHeader>Confusion Matrix</CardHeader>
-                <img src={a} style={{width:'100%',height:'100%'}}/>
+                <img src={a} style={{width:'100%',height:'100%'}}  alt="Confusion Matrix Attrition"/>
                 <CardFooter>
                   Accuracy : {this.state.accuracy_report.attrition.toString().substring(0,5)}
                 </CardFooter>

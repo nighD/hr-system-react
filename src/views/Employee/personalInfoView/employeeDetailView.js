@@ -7,7 +7,8 @@ import { withFirebase } from '../../../containers/Firebase';
 import { AuthUserContext } from '../../../containers/Session';
 import * as actionService from '../../../services/actionService';
 // import { Line } from 'react-chartjs-2';
-import iron from '../../../assets/img/iron.png';
+import captain from '../../../assets/img/captain.png';
+// import captain from '../../../assets/img/captain.png';
 // import * as ROUTES from '../../../routes';
 // import Widget03 from '../../Widgets/Widget03';
 // import Avatar from 'react-avatar';
@@ -65,7 +66,7 @@ const ButtonEdit = withRouter(({ history }) => (
 class Detail extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
+    // console.log(props);
     this.gender_male = React.createRef();
     this.gender_female = React.createRef();
     this.gender_other = React.createRef();
@@ -78,7 +79,7 @@ componentDidMount() {
     const uid =JSON.parse(localStorage.getItem('authUser')).uid;
     actionService.getUserdetail(uid).then(res => {
       const person = res.data.data;
-      console.log(res.data.data);
+      // console.log(res.data.data);
       person.emp_dob = person.emp_dob.substring(0,10);
       this.setState( {person} ); 
         if (this.state.person.emp_gender === 'male'){
@@ -247,21 +248,21 @@ componentDidMount() {
                       <img
                         alt="..."
                         className="avatar"
-                        src={iron}
+                        src={captain}
                       />
                       <h5 className="title" value = {this.state.person.emp_lname + ' '+ this.state.person.emp_fname}>{this.state.person.emp_lname + ' '+ this.state.person.emp_fname}</h5>
                     </a>
-                    <p className="description">{this.state.person.emp_role}</p>
+                    
                   </div>
-                  <div className="card-description">
+                  {/* <div className="card-description">
                     “Doesn't matter what the press says. Doesn't matter what the politicians or the mobs say. 
                     Doesn't matter if the whole country decides that something wrong is something right. 
                     This nation was founded on one principle above all else: The requirement that we stand up for what we believe, 
                     no matter the odds or the consequences. When the mob and the press and the whole world tell you to move, 
                     your job is to plant yourself like a tree beside the river of truth, and tell the whole world -- "No, YOU move.” 
-                  </div>
+                  </div> */}
                 </CardBody>
-                <CardFooter>
+                {/* <CardFooter> */}
                   {/* <div className="button-container">
                     <Button className="btn-icon btn-round" color="facebook">
                       <i className="fa fa-facebook" />
@@ -273,7 +274,7 @@ componentDidMount() {
                       <i className="fa fa-google-plus" />
                     </Button>
                   </div> */}
-                </CardFooter>
+                {/* </CardFooter> */}
               </Card>
             </Col>
           </Row>     

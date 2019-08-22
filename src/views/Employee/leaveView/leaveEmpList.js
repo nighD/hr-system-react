@@ -7,6 +7,7 @@ import {
     Pagination, 
     PaginationItem, 
     PaginationLink,
+    Label,
     Button  } from 'reactstrap';
 import { makeStyles } from '@material-ui/core/styles';
 // import Button from '@material-ui/core/Button';
@@ -155,15 +156,16 @@ function FormDialog() {
         actionService.getManagers().then(res => {
           const datas = res.data.data;
           var arrays = [];
-          datas.map( manager => {
-              console.log(manager.emp_uid);
-              console.log(values.approver);
+          datas.map( (manager,index) => {
+              // console.log(manager.emp_uid);
+              // console.log(values.approver);
               if (manager.emp_uid !== values.approver.emp_uid){
                 arrays.push({
                     emp_name: manager.emp_fname + " " + manager.emp_lname,
                     emp_uid: manager.emp_uid
                 })
               }
+              return true;
           })
         })
     }
@@ -341,22 +343,22 @@ class Leave_Emp_List extends Component {
         switch(leave.status){
           case 'Pending':
             statusColor = (
-              <a className="text-warning" onClick ={this.getLeavesStatus.bind(this,'pending')}><b>{leave.status}</b></a>
+              <Label className="text-warning" ><b>{leave.status}</b></Label>
             );
             break;
           case 'Approved':
             statusColor = (
-              <a className="text-success" onClick ={this.getLeavesStatus.bind(this,'approved')}><b>{leave.status}</b></a>
+              <Label className="text-success" ><b>{leave.status}</b></Label>
             );
             break;
           case 'Rejected':
             statusColor = (
-              <a className="text-danger" onClick ={this.getLeavesStatus.bind(this,'rejected')}><b>{leave.status}</b></a>
+              <Label className="text-danger"><b>{leave.status}</b></Label>
             );
             break;
           case 'Draft':
             statusColor = (
-              <a className="text-dark" onClick ={this.getLeavesStatus.bind(this,'draft')}><b>{leave.status}</b></a>
+              <Label className="text-dark" ><b>{leave.status}</b></Label>
             );
             break;
           default:
@@ -368,6 +370,7 @@ class Leave_Emp_List extends Component {
           nodays: leave.duration,
           status: statusColor,
         })
+        return true;
         })
       this.setState({leaveList: leaves});
       this.setState(prevState => ({
@@ -386,22 +389,22 @@ class Leave_Emp_List extends Component {
       switch(status){
         case 'Pending':
           statusColor = (
-            <a className="text-warning" ><b>{status}</b></a>
+            <Label className="text-warning" ><b>{status}</b></Label>
           );
           break;
         case 'Approved':
           statusColor = (
-            <a className="text-success" ><b>{status}</b></a>
+            <Label className="text-success" ><b>{status}</b></Label>
           );
           break;
         case 'Rejected':
           statusColor = (
-            <a className="text-danger" ><b>{status}</b></a>
+            <Label className="text-danger" ><b>{status}</b></Label>
           );
           break;
         case 'Draft':
           statusColor = (
-            <a className="text-dark" ><b>{status}</b></a>
+            <Label className="text-dark" ><b>{status}</b></Label>
           );
           break;
         default:
@@ -416,6 +419,7 @@ class Leave_Emp_List extends Component {
                 status: statusColor,
               })
         }
+        return true;
       });
       this.setState(prevState => ({
         data: {
@@ -486,7 +490,7 @@ class Leave_Emp_List extends Component {
       default:
     }
     this.setState({colors: colors});
-    console.log(this.state.colors.all);
+    // console.log(this.state.colors.all);
   }
   toggleForm(event) {
     // console.log(event);

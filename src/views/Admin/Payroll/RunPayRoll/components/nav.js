@@ -32,16 +32,16 @@ const Nav = (props) => {
     for (let i = 1; i <= props.totalSteps; i += 1) {
         const isActive = props.currentStep === i;
         var a;
-        if(i == 1){
+        if(i === 1){
             a = " 1. Hours & Earnings"
         }
-        else if (i ==2) {
+        else if (i ===2) {
             a = "2. Time Off"
         }
-        else if (i==3){
+        else if (i===3){
             a = "3. Review & Submit"
         }
-        else if (i==4){
+        else if (i===4){
             a = "4. Confirmation"
         }
         

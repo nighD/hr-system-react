@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import {  Card, CardBody} from 'reactstrap';
 import * as actionService from '../../../services/actionService';
-import captain from '../../../assets/img/captain.png';
-import hulk from '../../../assets/img/hulk.png';
-import thor from '../../../assets/img/thor.png';
-import spider from '../../../assets/img/spider.png';
-import ant from '../../../assets/img/ant.png';
+
 import { MDBDataTable,MDBBtn} from 'mdbreact';
 var data = {
     columns:[
@@ -81,6 +77,7 @@ class TeamList extends Component {
             //  [name] : value
             }
           }))
+          return true;
       })
       this.setState({teams});
       console.log(this.state);
@@ -104,7 +101,7 @@ class TeamList extends Component {
     console.log(param);
   };
   render() {
-    const avengers = [captain,hulk,thor,spider,ant]
+    // const avengers = [captain,hulk,thor,spider,ant]
     return (
         <div className="animated fadeIn">
         <Card>

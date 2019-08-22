@@ -176,12 +176,12 @@ const Stats = ({
         {/* { step < totalSteps &&
             
         } */}
-        { step == 3 ? 
+        { step === 3 ? 
           <Button style = {{marginLeft:'5px',marginRight:'5px'}}color='success' onClick={nextStep}>Submit Payroll</Button>
-          : (step == 2 || step ==1) &&
+          : (step === 2 || step ===1) &&
           <Button style = {{marginLeft:'5px',marginRight:'5px'}}color='primary' onClick={nextStep}>Continue</Button>
         }
-        { step == totalSteps && 
+        { step === totalSteps && 
           <Button style = {{marginLeft:'5px',marginRight:'5px'}}color='success' onClick={nextStep}>Back To Dashboard</Button>
         }
 
@@ -189,46 +189,4 @@ const Stats = ({
     </div>
 )};
 
-class First extends Component {
-    update = (e) => {
-        this.props.update(e.target.name, e.target.value);
-    }
-    render() {
-        return (
-            <div>
-                <h3 className='text-center'>Welcome! Have a look around!</h3>
-                <Stats step={1} {...this.props} />
-            </div>
-        );
-    }
-}
-
-class Second extends Component {
-    render() {
-        return (
-            <div>
-                <Stats step={2} {...this.props} />
-            </div>
-        );
-    }
-}
-
-class Last extends Component {
-    submit = () => {
-        alert('You did it! Yay!') // eslint-disable-line
-    }
-
-    render() {
-        return (
-            <div>
-                <div className={'text-center'}>
-                    <h3>This is the last step in this example!</h3>
-                    <hr />
-                    {/* <Plugs /> */}
-                </div>
-                <Stats step={4} {...this.props} nextStep={this.submit} />
-            </div>
-        );
-    }
-}
 export default withStyles(useStyles)(Wizard);

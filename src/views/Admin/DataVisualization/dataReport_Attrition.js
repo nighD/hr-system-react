@@ -1,7 +1,7 @@
-import React, { Component, Suspense } from 'react';
+import React, { Component} from 'react';
 
 import { withFirebase } from '../../../containers/Firebase';
-import * as actionService from '../../../services/actionService';
+// import * as actionService from '../../../services/actionService';
 // import PivotTableUI from 'react-pivottable/PivotTableUI';
 // import 'react-pivottable/pivottable.css';
 // import TableRenderers from 'react-pivottable/TableRenderers';
@@ -12,24 +12,11 @@ import axios from 'axios'
 // import Iframe from 'react-iframe'
 // import Papa from 'papaparse';
 import {
-  Badge,
-  Button,
-  ButtonDropdown,
-  ButtonGroup,
-  ButtonToolbar,
   Card,
   CardBody,
-  CardFooter,
   CardHeader,
-  CardTitle,
   Col,
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownToggle,
-  Progress,
   Row,
-  Table,
 } from 'reactstrap';
 // var excelll = '../../../../WA_Fn-UseC_-HR-Employee-Attrition.csv';
 // const Plot = createPlotlyComponent(Plotly);
@@ -42,68 +29,6 @@ import {
 // const PlotlyRenderers = createPlotlyRenderers(Plot);
 
 // let test_data = [];
-var trace1 = {
-  uid: '121349a6-e8de-4f10-add9-28c785bfdbf1', 
-  meta: {columnNames: {
-      x: 'x', 
-      y: 'y'
-    }}, 
-  name: '% of Leavers', 
-  text: '', 
-  type: 'bar', 
-  xsrc: 'nightD:81:ee6fe0', 
-  x: [1, 2, 3, 4], 
-  ysrc: 'nightD:81:2bdd87', 
-  y: [20.652173913043477, 14.85148514851485, 15.468409586056644, 14.814814814814813], 
-  marker: {
-    line: {
-      color: 'rgba(255, 153, 51, 1.0)', 
-      width: 1
-    }, 
-    color: 'rgba(255, 153, 51, 0.6)'
-  }, 
-  orientation: 'v'
-};
-var data = [trace1];
-var layout = {
-  title: {
-    font: {color: '#4D5663'}, 
-    text: 'Leavers by Relationship Satisfaction (%)'
-  }, 
-  xaxis: {
-    type: 'linear', 
-    range: [0.5, 4.5], 
-    title: {
-      font: {color: '#4D5663'}, 
-      text: ''
-    }, 
-    showgrid: true, 
-    tickfont: {color: '#4D5663'}, 
-    autorange: true, 
-    gridcolor: '#E1E5ED', 
-    zerolinecolor: '#E1E5ED'
-  }, 
-  yaxis: {
-    type: 'linear', 
-    range: [0, 21.739130434782606], 
-    title: {
-      font: {color: '#4D5663'}, 
-      text: ''
-    }, 
-    showgrid: true, 
-    tickfont: {color: '#4D5663'}, 
-    autorange: true, 
-    gridcolor: '#E1E5ED', 
-    zerolinecolor: '#E1E5ED'
-  }, 
-  legend: {
-    font: {color: '#4D5663'}, 
-    bgcolor: '#F5F6F9'
-  }, 
-  autosize: true, 
-  plot_bgcolor: '#F5F6F9', 
-  paper_bgcolor: '#F5F6F9'
-};
 // Plotly.plot('plotly-div', {
 //   data: data,
 //   layout: layout
@@ -213,7 +138,7 @@ async updateData() {
                   Over Time vs Attrition
                 </CardHeader>
                 <CardBody>
-                  <iframe width="100%" height="300" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/74.embed?show_link=false&autosize=true&logo=false&height=100%"></iframe>
+                  <iframe width="100%" height="300" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/74.embed?show_link=false&autosize=true&logo=false&height=100%" title="1"></iframe>
                 </CardBody>
               </Card>
             </Col>
@@ -224,7 +149,7 @@ async updateData() {
                   Work Life Balance vs Attrition
                 </CardHeader>
                 <CardBody>
-                  <iframe width="100%" height="300" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/72.embed?show_link=false&autosize=true"></iframe>
+                  <iframe width="100%" height="300" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/72.embed?show_link=false&autosize=true" title="2"></iframe>
                 </CardBody>
               </Card>
             </Col>
@@ -235,7 +160,7 @@ async updateData() {
                   Gender vs Attrition
                 </CardHeader>
                 <CardBody>
-                  <iframe width="100%" height="300" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/56.embed?show_link=false&autosize=true"></iframe>
+                  <iframe width="100%" height="300" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/56.embed?show_link=false&autosize=true" title="3"></iframe>
                 </CardBody>
               </Card>
             </Col>
@@ -243,7 +168,7 @@ async updateData() {
           <Row>
             <Col xs="12" md="6" lg="7">
               <Card>
-                <iframe width="100%" height="627" frameborder="0" scrolling="no" src="//plot.ly/~baole16/1.embed?show_link=false&autosize=true"></iframe>
+                <iframe width="100%" height="627" frameborder="0" scrolling="no" src="//plot.ly/~baole16/1.embed?show_link=false&autosize=true" title="4"></iframe>
               </Card>
             </Col>
 
@@ -251,14 +176,14 @@ async updateData() {
               <Row>
                 <Col xs="12" md="6" lg="12">
                   <Card>
-                    <iframe width="100%" height="300" frameborder="0" scrolling="no" src="//plot.ly/~baole16/5.embed?show_link=false&autosize=true"></iframe>
+                    <iframe width="100%" height="300" frameborder="0" scrolling="no" src="//plot.ly/~baole16/5.embed?show_link=false&autosize=true" title="5"></iframe>
                   </Card>
                 </Col>
               </Row>
               <Row>
                 <Col xs="12" md="6" lg="12">
                   <Card>
-                    <iframe width="100%" height="300" frameborder="0" scrolling="no" src="//plot.ly/~nightD/70.embed?show_link=false&autosize=true"></iframe>
+                    <iframe width="100%" height="300" frameborder="0" scrolling="no" src="//plot.ly/~nightD/70.embed?show_link=false&autosize=true" title="6"></iframe>
                   </Card>
                 </Col>
               </Row>
@@ -271,10 +196,10 @@ async updateData() {
                 <CardBody>
                   <Row>
                   <Col xs="12" sm="6" lg="6">
-                    <iframe width="100%" height="400" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/49.embed?show_link=false&autosize=true&height=100%"></iframe>
+                    <iframe width="100%" height="400" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/49.embed?show_link=false&autosize=true&height=100%" title="7"></iframe>
                   </Col>
                   <Col xs="12" sm="6" lg="6">
-                    <iframe width="100%" height="400" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/33.embed?show_link=false&autosize=true&height=100%"></iframe>
+                    <iframe width="100%" height="400" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/33.embed?show_link=false&autosize=true&height=100%" title="8"></iframe>
                   </Col>
                   </Row>
                 </CardBody>
@@ -295,9 +220,9 @@ async updateData() {
                     <Col xs="12" md="6" xl="6">
                       <Row>
                         <Col sm="12">
-                          <iframe margin="0" width="100%" height="280" display="block" frameborder="0" scrolling="no" src="//plot.ly/~baole16/7.embed?show_link=false&autosize=true&height=100%"></iframe>
-                          <iframe margin="0" width="100%" height="280" display="block" frameborder="0" scrolling="no" src="//plot.ly/~baole16/9.embed?show_link=false&autosize=true&height=100%"></iframe>
-                          <iframe margin="0" width="100%" height="280" display="block" frameborder="0" scrolling="no" src="//plot.ly/~baole16/11.embed?show_link=false&autosize=true&height=100%"></iframe>
+                          <iframe margin="0" width="100%" height="280" display="block" frameborder="0" scrolling="no" src="//plot.ly/~baole16/7.embed?show_link=false&autosize=true&height=100%" title="9"></iframe>
+                          <iframe margin="0" width="100%" height="280" display="block" frameborder="0" scrolling="no" src="//plot.ly/~baole16/9.embed?show_link=false&autosize=true&height=100%" title="10"></iframe>
+                          <iframe margin="0" width="100%" height="280" display="block" frameborder="0" scrolling="no" src="//plot.ly/~baole16/11.embed?show_link=false&autosize=true&height=100%" title="11"></iframe>
                         </Col>
 
                       </Row>
@@ -306,9 +231,9 @@ async updateData() {
                     <Col xs="12" md="6" xl="6">
                       <Row>
                         <Col sm="12">
-                          <iframe margin="0" width="100%" height="280" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/54.embed?show_link=false&autosize=true&height=100%"></iframe>
-                          <iframe margin="0" width="100%" height="280" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/64.embed?show_link=false&autosize=true&height=100%"></iframe>
-                          <iframe margin="0" width="100%" height="280" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/62.embed?show_link=false&autosize=true&height=100%"></iframe>
+                          <iframe margin="0" width="100%" height="280" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/54.embed?show_link=false&autosize=true&height=100%" title="12"></iframe>
+                          <iframe margin="0" width="100%" height="280" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/64.embed?show_link=false&autosize=true&height=100%" title="13"></iframe>
+                          <iframe margin="0" width="100%" height="280" display="block" frameborder="0" scrolling="no" src="//plot.ly/~nightD/62.embed?show_link=false&autosize=true&height=100%" title="14"></iframe>
                         </Col>
                         {/* <Col sm="6">
                           
@@ -327,7 +252,7 @@ async updateData() {
         // <div>
 
         //   <Card>
-        //   <Iframe width="500" height="500" src="//plot.ly/~nightD/82.embed"></Iframe>
+        //   <Iframe width="500" height="500" src="//plot.ly/~nightD/82.embed" title=""></iframe>
         //   <Plot data = {data} layout = {layout}></Plot>
         //     <PivotTableUI
         //         data={this.state.data}

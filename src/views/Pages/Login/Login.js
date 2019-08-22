@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Button, Card, CardBody, CardGroup, Col, Container, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
+// import { Link } from 'react-router-dom';
+import { Button, Card, CardBody, Col, Container, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
 import { PasswordForgetLink } from '../PasswordForget/passwordForget';
 import { withFirebase } from '../../../containers/Firebase';
 import { withRouter } from 'react-router-dom';

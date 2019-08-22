@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import { Badge,Label, Card, CardBody, CardHeader, Col, CardText,CardFooter, Row, Table,Button,Input,
+import {
+  Label, 
+  Card, 
+  CardBody,
+  Input,
   InputGroup,
   InputGroupAddon,
-  InputGroupButtonDropdown,
-  InputGroupText,} from 'reactstrap';
+  InputGroupText} from 'reactstrap';
 // import * as actionService from '../../../services/actionService';
-import { MDBDataTable,MDBBtn,MDBTableHead,MDBTableBody,MDBTable } from 'mdbreact';
+import { MDBDataTable} from 'mdbreact';
 import * as actionService from '../../../../services/actionService';
 const labelLast = (
   <div>
@@ -73,7 +76,7 @@ const add_earnings_button = {
   other:false
 }
 const trigger = false;
-const moneyTrigger = false;
+// const moneyTrigger = false;
 var money={
   data:[],
   moneyTrigger : false,
@@ -107,7 +110,7 @@ export default class StepOne extends Component {
   
   }
   componentDidUpdate(prevProps,prevState){
-    if (prevState.money.moneyTrigger != this.state.money.moneyTrigger){
+    if (prevState.money.moneyTrigger !== this.state.money.moneyTrigger){
         this.createTable().then(async (res) => {
           // console.log("this.setstate")
           await this.setState( {
@@ -121,7 +124,7 @@ export default class StepOne extends Component {
           });
         })
     }
-    if ( prevState.data.dataTrigger != this.state.data.dataTrigger ){
+    if ( prevState.data.dataTrigger !== this.state.data.dataTrigger ){
       this.setState({trigger:true});
     }
   }
@@ -132,7 +135,7 @@ export default class StepOne extends Component {
     const number = a.charAt(a.length - 1);
     const label = a.slice(0,a.length-1);
     var moneyArray = this.state.money.data.slice();
-    if (label == 'hours_worked'){
+    if (label === 'hours_worked'){
       let gp = this.state.money.data[number][0].salary*value;
       moneyArray[number][0][label] = value;
       moneyArray[number][0].gp = gp;
@@ -145,7 +148,7 @@ export default class StepOne extends Component {
         this.props.updateData(this.state.money);
          console.log(this.state.money);
        });
-    } else if (label == 'OverTime') {
+    } else if (label === 'OverTime') {
 
       let gp = this.state.money.data[number][0].salary*value*1.2;
       moneyArray[number][0][label] = value;
@@ -169,7 +172,7 @@ export default class StepOne extends Component {
       if(isNaN(value)){
         value = "";
       }
-      if (type == 'hourly'){
+      if (type === 'hourly'){
         gp = (hours_worked*salary + (overtime*salary*0.2)) + value;
       }
       else {
@@ -193,10 +196,10 @@ export default class StepOne extends Component {
     // console.log("yeah yeah")
     let res = await actionService.getUserList();
     const data = res.data.data;
-    var a = [];
+    // var a = [];
     return Promise.all(data.map(async (element,index)=>{
       // console.log(element);
-      if(element.emp_role != 'admin'){
+      if(element.emp_role !== 'admin'){
         var data_Sent = {
           "id":element.emp_uid,
           "month":6
@@ -206,7 +209,7 @@ export default class StepOne extends Component {
         let hour = data_response.data.data[0][0].count*4+0;
         console.log("hour :" + hour);
         let OverTime =0;
-        let hours_worked = hour;
+        // let hours_worked = hour;
         var Payroll_Type = element.Payroll_Type;
         var salary=0;
 
@@ -218,7 +221,7 @@ export default class StepOne extends Component {
         else {
           OverTime = 0;
         }
-        if (Payroll_Type.type == 'hourly'){
+        if (Payroll_Type.type === 'hourly'){
           salary = " "+ Payroll_Type.salary+"/hr";
           gp = (hour*Payroll_Type.salary + (OverTime*Payroll_Type.salary*0.2));
         }
@@ -263,7 +266,7 @@ export default class StepOne extends Component {
         if(element[0] !== undefined){
             if(element[0].emp_role !== 'admin'){        
               let hours;
-              if (element[0].type == 'hourly'){
+              if (element[0].type === 'hourly'){
                 hours = (
                   <div>
                     <div>            

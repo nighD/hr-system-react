@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {  Card, CardBody, Col, Row} from 'reactstrap';
+import {  Card, CardBody, Col, Row,Label} from 'reactstrap';
 import * as actionService from '../../../services/actionService';
 import { MDBDataTable } from 'mdbreact';
 import {Button} from 'reactstrap';
@@ -93,28 +93,28 @@ class LeaveList extends Component {
       const leaves = res.data.data;
       console.log(leaves);
       var leaveArray = [];
-      var leaveStatus = [];
+      // var leaveStatus = [];
       let statusColor;
       leaves.map((leave,index) => {
         switch(leave.status){
           case 'Pending':
             statusColor = (
-              <a className="text-warning" onClick ={this.getLeavesStatus.bind(this,'pending')}><b>{leave.status}</b></a>
+              <Label className="text-warning" onClick ={this.getLeavesStatus.bind(this,'pending')}><b>{leave.status}</b></Label>
             );
             break;
           case 'Approved':
             statusColor = (
-              <a className="text-success" onClick ={this.getLeavesStatus.bind(this,'approved')}><b>{leave.status}</b></a>
+              <Label className="text-success" onClick ={this.getLeavesStatus.bind(this,'approved')}><b>{leave.status}</b></Label>
             );
             break;
           case 'Rejected':
             statusColor = (
-              <a className="text-danger" onClick ={this.getLeavesStatus.bind(this,'rejected')}><b>{leave.status}</b></a>
+              <Label className="text-danger" onClick ={this.getLeavesStatus.bind(this,'rejected')}><b>{leave.status}</b></Label>
             );
             break;
           case 'Draft':
             statusColor = (
-              <a className="text-dark" onClick ={this.getLeavesStatus.bind(this,'draft')}><b>{leave.status}</b></a>
+              <Label className="text-dark" onClick ={this.getLeavesStatus.bind(this,'draft')}><b>{leave.status}</b></Label>
             );
             break;
           default:
@@ -126,6 +126,7 @@ class LeaveList extends Component {
           nodays: leave.duration,
           status: statusColor,
         })
+        return true;
         })
       this.setState({leaveList: leaves});
       this.setState(prevState => ({
@@ -144,25 +145,26 @@ class LeaveList extends Component {
       switch(status){
         case 'Pending':
           statusColor = (
-            <a className="text-warning" ><b>{status}</b></a>
+            <Label className="text-warning" ><b>{status}</b></Label>
           );
           break;
         case 'Approved':
           statusColor = (
-            <a className="text-success" ><b>{status}</b></a>
+            <Label className="text-success" ><b>{status}</b></Label>
           );
           break;
         case 'Rejected':
           statusColor = (
-            <a className="text-danger" ><b>{status}</b></a>
+            <Label className="text-danger" ><b>{status}</b></Label>
           );
           break;
         case 'Draft':
           statusColor = (
-            <a className="text-dark" ><b>{status}</b></a>
+            <Label className="text-dark" ><b>{status}</b></Label>
           );
           break;
         default:
+          return true;
       }
       empleaveList.map((leave,index)=>{
         if(leave.status === status){
@@ -174,6 +176,7 @@ class LeaveList extends Component {
                 status: statusColor,
               })
         }
+        return true;
       });
       this.setState(prevState => ({
         data: {

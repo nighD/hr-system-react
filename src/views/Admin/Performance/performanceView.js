@@ -1,5 +1,5 @@
 import React, { Component,useState } from 'react';
-import { Card, CardBody, Col, Row, Table, Pagination, PaginationItem, PaginationLink,    Label } from 'reactstrap';
+import { Card, CardBody, Col, Row,  Label } from 'reactstrap';
 import * as actionService from '../../../services/actionService';
 import { MDBDataTable,MDBBtn} from 'mdbreact';
 import {Button} from 'reactstrap';
@@ -109,9 +109,9 @@ const status = [
     value: 'Complete',
   },
 ];
-const unique = (value, index, self) => {
-    return self.indexOf(value) === index
-  }
+// const unique = (value, index, self) => {
+//     return self.indexOf(value) === index
+//   }
 async function optionsForEmployee(search) {
     let response = await actionService.findUserByName(search);
     let data = await response.data.data;
@@ -119,11 +119,13 @@ async function optionsForEmployee(search) {
     data.map((element,index) => {
         let dropDownEle = { label: element.emp_fname + " " + element.emp_lname, value: element.emp_uid };
         selectOptionsEmployee.push(dropDownEle);
+        return true;
     });
     return selectOptionsEmployee;
 }
 function AsyncMultiEmployee(props) {
     let [inputEmployee,setInputEmployee] = useState(props.inputEmployee);
+    console.log(inputEmployee);
     const handleInputChange = async (newValue, actionMeta) => {
         await optionsForEmployee();
         const inputEmployee = newValue;
@@ -427,6 +429,7 @@ class LeaveList extends Component {
           deadline: value.deadline.substring(0,10),
           action: ButtonTable
         })
+        return true;
       })
     }).then((result)=>{
       this.setState(prevState => ({

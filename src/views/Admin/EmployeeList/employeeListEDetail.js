@@ -40,36 +40,36 @@ import {
 //   </div>
 // );
 
-let statea = {
+// let statea = {
   
-    id:'',
-    emp_lname: '',
-    emp_fname: '',
-    emp_gender: '',
-    emp_email: '',
-    emp_role: '',
-    emp_status: '',
-    emp_dob: '',
-    emp_pass:'',
-    emp_street: '',
-    emp_phone: '',
-    emp_city: '',
-    emp_postal: '',
-    emp_country:'',
-    emp_uid:'',
+//     id:'',
+//     emp_lname: '',
+//     emp_fname: '',
+//     emp_gender: '',
+//     emp_email: '',
+//     emp_role: '',
+//     emp_status: '',
+//     emp_dob: '',
+//     emp_pass:'',
+//     emp_street: '',
+//     emp_phone: '',
+//     emp_city: '',
+//     emp_postal: '',
+//     emp_country:'',
+//     emp_uid:'',
   
-}
-const ButtonSubmit = withRouter(({ history }) => (
-  <Button type="button" 
-  size="lg" 
-  color="primary"  
-  onClick={() => { 
-    console.log(this.state);
-    history.push('/dashboard') 
-  }}>
-  <i className="fa fa-pencil"></i> 
-  Submit</Button>
-))
+// }
+// const ButtonSubmit = withRouter(({ history }) => (
+//   <Button type="button" 
+//   size="lg" 
+//   color="primary"  
+//   onClick={() => { 
+//     console.log(this.state);
+//     history.push('/dashboard') 
+//   }}>
+//   <i className="fa fa-pencil"></i> 
+//   Submit</Button>
+// ))
 class EditDetail extends Component {
   constructor(props) {
       super(props);
@@ -93,7 +93,7 @@ class EditDetail extends Component {
       if (this.state.data.emp_gender === 'male'){
         this.gender_male.current.selected = true;
       }
-      else if (this.state.data.data.emp_gender == 'female'){
+      else if (this.state.data.data.emp_gender === 'female'){
         this.gender_female.current.selected = true;
       }
       else {

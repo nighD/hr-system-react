@@ -2,9 +2,7 @@ import React,{Component} from 'react'
 import { Card } from '@material-ui/core';
 import Wizard from './components/wizard';
 class RunPayroll extends Component{
-    constructor(props){
-        super(props);
-    }
+
     componentDidMount(){
 
     }

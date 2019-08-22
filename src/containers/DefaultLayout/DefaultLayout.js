@@ -109,7 +109,7 @@ class DefaultLayout extends Component {
                             case 'manager':
                               return <AppSidebarNav navConfig={man_navigation} {...this.props}  />;
                             case 'employee':
-                              console.log("EMPLOYEE");
+                              // console.log("EMPLOYEE");
                               return <AppSidebarNav navConfig={emp_navigation} {...this.props}  />;
                             default:
                               return null;

@@ -7,7 +7,7 @@ import { withAuthentication } from './containers/Session';
 import Login from './views/Pages/Login';
 import PasswordForgetPage from './views/Pages/PasswordForget/passwordForget';
 import PasswordChange from './views/Pages/PasswordChange/passwordChange';
-import * as ROUTES from './routes';
+// import * as ROUTES from './routes';
 const loading = () => <div className="animated fadeIn pt-3 text-center">Loading...</div>;
 
 // Containers

@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { Badge,Label, Card, CardBody, CardHeader, Col, CardText,CardFooter, Row, Table,Button,Input,
-  Collapse,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupButtonDropdown,
-  InputGroupText,} from 'reactstrap';
+import { Label, 
+  Card, 
+  CardBody, 
+  Col,  
+  Row } from 'reactstrap';
 // import * as actionService from '../../../services/actionService';
-import { MDBDataTable,MDBBtn,MDBTableHead,MDBTableBody,MDBTable } from 'mdbreact';
-import * as actionService from '../../../../services/actionService';
-import { elementType } from 'prop-types';
+// import { MDBDataTable,MDBBtn,MDBTableHead,MDBTableBody,MDBTable } from 'mdbreact';
+// import * as actionService from '../../../../services/actionService';
+// import { elementType } from 'prop-types';
 
 // var data = {
 //     columns:[
@@ -43,14 +42,14 @@ import { elementType } from 'prop-types';
 // };
 
 export default class StepFour extends Component {
-  constructor(props){
-    super(props);
-    // this.state = {data:data,dataPayroll : this.props.data,trigger,dataHour};
-    // this.createTable = this.createTable.bind(this);
-    // this.prepareHour = this.prepareHour.bind(this);
-    // this.handleChange = this.handleChange.bind(this);
+  // constructor(props){
+  //   super(props);
+  //   this.state = {data:data,dataPayroll : this.props.data,trigger,dataHour};
+  //   this.createTable = this.createTable.bind(this);
+  //   this.prepareHour = this.prepareHour.bind(this);
+  //   this.handleChange = this.handleChange.bind(this);
 
-  }
+  // }
   async componentDidMount(){
 
   }

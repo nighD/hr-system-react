@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Calendar from "react-big-calendar";
 import moment from "moment";
-import { Badge, Card, CardBody, CardHeader, Col, CardText,CardFooter, Row, Table } from 'reactstrap';
+import {Card, CardBody} from 'reactstrap';
 // import "./App.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 // import logo from "./logo.svg";
@@ -20,6 +20,7 @@ class CalendarView extends Component {
     this.state = {data};
   }
   async getAttendance(){
+    console.log("getAttendance");
     const uid =JSON.parse(localStorage.getItem('authUser')).uid;
     await actionService.getAttdetail(uid).then(res => {
         console.log(res.data);
@@ -40,6 +41,7 @@ class CalendarView extends Component {
                     end: new Date(end_time),
                     desc: duration
                 });
+                return true;
             })
             resolve(eventArray)
         });
@@ -56,6 +58,7 @@ class CalendarView extends Component {
     });
   }
   getEvent(uid){
+    console.log("get Event");
     actionService.getAttdetail(uid).then(res => {
         const events = res.data.data;
         let attendancePromises = new Promise((resolve) => {
@@ -74,6 +77,7 @@ class CalendarView extends Component {
                     end: new Date(end_time),
                     desc: duration
                 });
+                return true;
             })
             resolve(attendanceArray)
         });
@@ -82,6 +86,7 @@ class CalendarView extends Component {
             let a =this.state.data.events;
             results.map((item,index)=>{
                 a.push(item);
+                return true;
             })
             this.setState( prevState => ({
                 data: {
@@ -94,7 +99,7 @@ class CalendarView extends Component {
     });
   }
   componentDidMount(){
-    const uid =JSON.parse(localStorage.getItem('authUser')).uid;
+    // const uid =JSON.parse(localStorage.getItem('authUser')).uid;
     this.getAttendance();
     // this.getEvent(uid);
     // console.log(newArray)

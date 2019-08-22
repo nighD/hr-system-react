@@ -22,7 +22,7 @@ export const goalListID = 'api/goals/'
 export const goalUpdateID = 'api/goals/'
 export const getWorkedHour = 'api/payroll_types/getHours/Worked'
 // Machine Learning
-export const baseURL_data = 'http://127.0.0.1:5000/'
+export const baseURL_data = process.env.FLASK || 'http://127.0.0.1:5000/'
 
 export const predict_attrition_id = 'predict_attrition/'
 export const predict_fraud_id = 'predict_fraud/'

@@ -59,17 +59,17 @@ const state = {
     emp_uid:'',
   }
 }
-const ButtonSubmit = withRouter(({ history }) => (
-  <Button type="button" 
-  size="lg" 
-  color="primary"  
-  onClick={() => { 
-    console.log(this.state);
-    history.push('/dashboard') 
-  }}>
-  <i className="fa fa-pencil"></i> 
-  Submit</Button>
-))
+// const ButtonSubmit = withRouter(({ history }) => (
+//   <Button type="button" 
+//   size="lg" 
+//   color="primary"  
+//   onClick={() => { 
+//     console.log(this.state);
+//     history.push('/dashboard') 
+//   }}>
+//   <i className="fa fa-pencil"></i> 
+//   Submit</Button>
+// ))
 class EditDetail extends Component {
   constructor(props) {
       super(props);
@@ -109,6 +109,7 @@ class EditDetail extends Component {
     event.preventDefault();
     console.log(this.state.person);
     const uid =JSON.parse(localStorage.getItem('authUser')).uid;
+    console.log(this.state.person);
     actionService.updateUserdetail(uid,this.state.person);
     this.props.history.push(ROUTES.DETAIL);
   };
@@ -118,10 +119,13 @@ class EditDetail extends Component {
     // let data = {...this.state.person}
     // data. = value
     // console.log(data.(name))
+    console.log(value);
      this.setState( prevState => ({
         ...prevState.person,
         [name] : value
-     }));
+     }),()=>{
+      //  console.log(this.state.)
+     });
   };
 
   render() {
@@ -365,15 +369,9 @@ class EditDetail extends Component {
                       />
                       <h5 className="title">{this.state.person.emp_lname + ' ' + this.state.person.emp_fname}</h5>
                     </a>
-                    <p className="description">{this.state.person.emp_role}</p>
+
                   </div>
-                  <div className="card-description">
-                    “Doesn't matter what the press says. Doesn't matter what the politicians or the mobs say. 
-                    Doesn't matter if the whole country decides that something wrong is something right. 
-                    This nation was founded on one principle above all else: The requirement that we stand up for what we believe, 
-                    no matter the odds or the consequences. When the mob and the press and the whole world tell you to move, 
-                    your job is to plant yourself like a tree beside the river of truth, and tell the whole world -- "No, YOU move.” 
-                  </div>
+
                 </CardBody>
                 <CardFooter>
                   {/* <div className="button-container">

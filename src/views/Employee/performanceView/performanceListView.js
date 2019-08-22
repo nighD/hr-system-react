@@ -389,8 +389,9 @@ class LeaveList extends Component {
           deadline: value.deadline.substring(0,10),
           action: ButtonTable
         })
+        return true;
       })
-    }).then((result)=>{
+    }).then(()=>{
       this.setState(prevState => ({
         data: {
          ...prevState.data,

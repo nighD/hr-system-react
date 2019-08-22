@@ -58,6 +58,7 @@ export default {
     {
       name: 'Detail',
       url: '/att_calendar',
+      attributes: { disabled: true },
       icon: 'fa fa-calendar-o',
     },
     {
@@ -110,16 +111,19 @@ export default {
     {
       name: 'Summary',
       url: '/payroll_sum',
+      attributes: { disabled: true },
       icon: 'icon-wallet',
     },
     {
       name: 'Detail',
       url: '/payroll_detail',
+      attributes: { disabled: true },
       icon: 'fa fa-money',
     },
     {
       name: 'Calculation',
       url: '/payroll_cal',
+      attributes: { disabled: true },
       icon: 'fa fa-calculator',
     },
   ],

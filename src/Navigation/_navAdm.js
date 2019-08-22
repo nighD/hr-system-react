@@ -109,6 +109,12 @@ export default {
         name: 'Summary',
         url: '/run_payroll',
         icon: 'icon-wallet',
+      },
+      {
+        name: 'Detail',
+        url: '/payroll_detail',
+        attributes: { disabled: true },
+        icon: 'fa fa-money',
       }
     ],
   };

@@ -34,7 +34,7 @@ class TeamListDetail extends Component {
     })
   }
   render() {
-    const avengers = [thor,hulk,captain,spider,ant]
+    const avengers = [thor,hulk,iron,spider,ant]
     return (
       <div className="animated fadeIn">
       <Row>
@@ -111,7 +111,7 @@ class TeamListDetail extends Component {
                             <img
                               alt="..."
                               className="avatar"
-                              src={iron}
+                              src={captain}
                             />
                             <h5 className="title" >{member.emp_lname} {member.emp_fname}</h5>
                           </a>)
