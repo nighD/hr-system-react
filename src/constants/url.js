@@ -5,7 +5,8 @@ export const PUT_METHOD = 'PUT'
 
 
 // HR database
-export const baseURL = 'http://localhost:3000/'
+export const baseURL = 'http://51.158.191.94:3000/'
+// export const baseURL = process.env.BACKEND || 'http://localhost:3000/'
 export const userList = 'api/users/'
 export const userDetail = 'api/users/'
 export const userManager = 'api/users/manager/'

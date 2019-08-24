@@ -467,9 +467,9 @@ class Model_Test extends Component {
                             striped
                             borderless
                             small
-                            pagination={false}
-                            sorting={false}
-                            searching={false}
+                            pagination="false"
+                            sorting="false"
+                            searching="false"
                             data={this.state.data_fraud}
                         />
                     </CardBody>
@@ -495,9 +495,9 @@ class Model_Test extends Component {
                           striped
                           borderless
                           small
-                          pagination={false}
-                          sorting={false}
-                          searching={false}
+                          pagination="false"
+                          sorting="false"
+                          searching="false"
                           data={this.state.data_attrition}
                       />
                   </CardBody>

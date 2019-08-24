@@ -63,12 +63,12 @@ export default class StepFour extends Component {
           <Card style={{height:'100%',width:'100%'}}>
           <CardBody>
           <Row >
-            <Col md="1">
+            {/* <Col md="1">
               <i className="fa fa-plane fa-4x" aria-hidden="true"></i>
-            </Col>
+            </Col> */}
             <Col md="11">
-              <h3> Time Off</h3>
-              <Label>With your time off policies set up, you can track the Paid Time Off, and Holiday Hours for this pay period below.</Label>
+              <h3> Summary</h3>
+              <Label><b>This function has not been fully developed, sorry for any inconvience !</b></Label>
             </Col>
           </Row>
                 {/* <MDBDataTable

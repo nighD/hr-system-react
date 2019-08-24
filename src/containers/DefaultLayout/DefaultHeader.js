@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import {  DropdownItem, DropdownMenu, DropdownToggle, Nav} from 'reactstrap';
 import PropTypes from 'prop-types';
 // import Avatar from 'react-avatar';
+import { withRouter } from 'react-router-dom';
 import { AppAsideToggler, AppHeaderDropdown, AppNavbarBrand, AppSidebarToggler } from '@coreui/react';
 // import react from '../../assets/img/brand/react.svg'
 import logo from  '../../assets/img/brand/logo1.png'
@@ -12,7 +13,12 @@ import captain from '../../assets/img/captain.png';
 const propTypes = {
   children: PropTypes.node,
 };
-
+const Buttons = withRouter(({ history }) => (
+  <DropdownItem onClick ={()=>{history.push('/detail')}}><i className="fa fa-user" ></i> Profile</DropdownItem>
+  ))
+const Button2 = withRouter(({ history }) => (
+  <DropdownItem onClick ={()=>{history.push('/password_change')}}><i className="fa fa-shield"></i> Change Password</DropdownItem>
+  ))
 const defaultProps = {};
 
 class DefaultHeader extends Component {
@@ -57,10 +63,10 @@ class DefaultHeader extends Component {
             </DropdownToggle>
             <DropdownMenu right style={{ right: 'auto' }}>
               <DropdownItem header tag="div" className="text-center"><strong>Settings</strong></DropdownItem>
-              <DropdownItem><i className="fa fa-user" href="http://localhost:3001/detail"></i> Profile</DropdownItem>
-              <DropdownItem><i className="fa fa-wrench"></i> Settings</DropdownItem>
+              <Buttons></Buttons>
+              {/* <DropdownItem><i className="fa fa-wrench"></i> Settings</DropdownItem> */}
               <DropdownItem divider />
-              <DropdownItem><i className="fa fa-shield"></i> Change Password</DropdownItem>
+              <Button2></Button2>
               <DropdownItem onClick={e => this.props.onLogout(e)}><i className="fa fa-lock"></i> Logout</DropdownItem>
             </DropdownMenu>
           </AppHeaderDropdown>

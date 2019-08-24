@@ -1,4 +1,5 @@
 import React, { Component} from 'react';
+import { withRouter } from 'react-router-dom';
 import StepWizard from 'react-step-wizard';
 import Nav from './nav';
 import {withStyles } from '@material-ui/core/styles';
@@ -7,6 +8,9 @@ import StepOne from '../StepOne';
 import StepTwo from '../StepTwo';
 import StepThree from '../StepThree';
 import StepFour from '../StepFour';
+const Buttons = withRouter(({ history }) => (
+<Button style = {{marginLeft:'5px',marginRight:'5px'}}color='success' onClick={() => { history.push('/data_report') }}>Back To Dashboard</Button>
+))
 const useStyles ={
     animated:  {
         animationDuration: '.8192s',
@@ -182,7 +186,7 @@ const Stats = ({
           <Button style = {{marginLeft:'5px',marginRight:'5px'}}color='primary' onClick={nextStep}>Continue</Button>
         }
         { step === totalSteps && 
-          <Button style = {{marginLeft:'5px',marginRight:'5px'}}color='success' onClick={nextStep}>Back To Dashboard</Button>
+          <Buttons/>
         }
 
         <hr />

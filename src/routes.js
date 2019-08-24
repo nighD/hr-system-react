@@ -28,7 +28,7 @@ const Data_Visualization_Fraud = React.lazy(() => import('./views/Admin/DataVisu
 // const Login = React.lazy(() => import('./views/Pages/Login'));
 // const Sign_out = React.lazy(() => import('./views/Users/Users'));
 const Register = React.lazy(() => import('./views/Pages/Register'));
-// const Password_Forget = React.lazy(() => import('./views/Pages/PasswordForget'));
+const Password_Change = React.lazy(() => import('./views/Pages/PasswordChange/passwordChange'));
 const Detail = React.lazy(() => import('./views/Employee/personalInfoView/employeeDetailView'));
 const Edit_detail = React.lazy(() => import('./views/Employee/personalInfoView/employeeEDetailView'));
 const Employee_List = React.lazy(() => import('./views/Admin/EmployeeList/employeeListView'));
@@ -82,7 +82,8 @@ const routes = [
   { path: '/employeelist', exact: true,name: 'Employee List', component: Employee_List},
   { path: '/employeelist/detail', exact: true,name: 'Employee List Detail', component: Employee_List_Detail},
   { path: '/employeelist/edit_detail', exact: true,name: 'Employee List Edit Detail', component: Employee_List_EDetail},
-  { path: '/leavelist', exact: true,name: 'Employee Leave List', component: Leave_List},  
+  { path: '/leavelist', exact: true,name: 'Employee Leave List', component: Leave_List}, 
+  { path: '/password_change', exact: true,name: 'Password Change', component: Password_Change},  
 ];
 
 // const routes = [

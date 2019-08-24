@@ -75,7 +75,8 @@
     "start": "react-scripts --max_old_space_size=8192 start",
     "build": "react-scripts --max_old_space_size=8192 build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "set":  "set \"BACKEND=http://51.158.191.94:3000/\" && react-scripts --max_old_space_size=8192 build"
   },
   "eslintConfig": {
     "extends": "react-app"
